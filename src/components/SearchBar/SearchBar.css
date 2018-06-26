@@ -6,4 +6,6 @@
     background: black;
     color: white;
     margin-left: 80px;
+    display: flex;
+    flex-direction: row;
 }
