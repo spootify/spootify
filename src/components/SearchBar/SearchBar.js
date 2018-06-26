@@ -7,14 +7,14 @@ class SearchBar extends Component {
         return (
             <div className='searchBar'>
                 <div className='searchDiv'>
-                    <button> back </button>
-                    <button> forward </button>
+                    <img  className='icon' src={DownArrow}/>
+                    <img  className='icon' src={DownArrow}/>
                     <input
                         className="searchInput"
                         placeholder="Search"
                     />
                 </div>
-                <div className='searchDiv'>
+                <div id='profileDiv' className='searchDiv'>
                     <p>User Name</p>
                     <img 
                     className='icon'
