@@ -19,7 +19,7 @@ class App extends Component {
         <MusicPlayer />
         <Login />
         <HashRouter>
-          <div>
+          <div className='routes'>
             <Route path='/browse' component={Browse} />
           </div>
         </HashRouter>
