@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './MusicPlayer.css';
 
 class MusicPlayer extends Component {
     render(){
         return (
-            <div>MusicPlayer</div>
+            <div className='musicPlayer'>MusicPlayer</div>
         )
     }
 }

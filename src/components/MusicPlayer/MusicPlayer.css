@@ -1,0 +1,9 @@
+.musicPlayer {
+    width: 96%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    background: black;
+    color: white;
+    margin-left: 80px;
+}

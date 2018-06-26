@@ -1,0 +1,9 @@
+.searchBar {
+    width: 96%;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    background: black;
+    color: white;
+    margin-left: 80px;
+}
