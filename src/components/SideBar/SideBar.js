@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './SideBar.css';
 import PlusIcon from './plus-icon.png';
 
@@ -8,14 +9,14 @@ class SideBar extends Component {
             <div className='sideBar'>
                 <div>
                     <div>
-                        <p>Browse</p>
+                        <Link to="/browse">Browse</Link>
                     </div>
                     <div>
                         <h3>YOUR LIBRARY</h3>
-                        <p>Recently Played</p>
-                        <p>Songs</p>
-                        <p>Albums</p>
-                        <p>Artists</p>
+                        <Link to="/recently-played">Recently Played</Link>
+                        <Link to="/songs">Songs</Link>
+                        <Link to="/albums">Albums</Link>
+                        <Link to="/artists">Artists</Link>
                     </div>
                     <div>
                         <h3>PLAYLIST</h3>
