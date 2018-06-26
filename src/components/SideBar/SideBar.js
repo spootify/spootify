@@ -23,7 +23,7 @@ class SideBar extends Component {
                     </div>
                 </div>
                 <div className='flexRow newPlaylistDiv'>
-                    <img className='icon' src={PlusIcon}/>
+                    <img className='icon' src={PlusIcon} alt='add playlist icon'/>
                     <h2>New Playlist</h2>
                 </div>
             </div>
