@@ -4,7 +4,8 @@ import BrowseNav from '../BrowseNav/BrowseNav';
 class Browse extends Component {
     render(){
         return (
-            <div>Browse
+            <div className='mainView'>
+                
                 <BrowseNav />
             </div>
         )

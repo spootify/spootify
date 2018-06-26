@@ -14,7 +14,7 @@ class App extends Component {
         <SideBar />
         <MusicPlayer />
         <HashRouter>
-          <div>
+          <div className='routes'>
             <Route path='/browse' component={Browse} />
           </div>
         </HashRouter>
