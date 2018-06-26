@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import "./SearchBar.css";
+import DownArrow from './down-arrow.svg';
 
 class SearchBar extends Component {
-    render(){
+    render() {
         return (
             <div className='searchBar'>
-                <button> back </button>
-                <button> forward </button>
-                <input />
+                <div className='searchDiv'>
+                    <button> back </button>
+                    <button> forward </button>
+                    <input
+                        className="searchInput"
+                        placeholder="Search"
+                    />
+                </div>
+                <div className='searchDiv'>
+                    <p>User Name</p>
+                    <img 
+                    className='icon'
+                    src={DownArrow} />
+                </div>
             </div>
         )
     }
