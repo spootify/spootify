@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class BrowseNav extends Component {
     render() {
         return (
-            <div className='stickyNav'>
+            <div>
                 <div>
                     <h1>Browse</h1>
                     <div className='flexRow'>
