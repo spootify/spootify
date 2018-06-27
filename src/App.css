@@ -9,7 +9,7 @@ html {
   width: 100%;
   height: 200vh;
   background: linear-gradient(#181818, black);
-  color: white;
+  color: lightgray;
 }
 
 .flexRow {
@@ -29,5 +29,19 @@ h3 {
 .mainView {
   height: 100%;
   width: 100%;
+}
+
+.stickyNav {
+  position: sticky;
+  top: 25px;
+}
+
+a {
+  text-decoration: none;
+  color: lightgray;
+}
+
+a:hover {
+  color: white;
 }
 
