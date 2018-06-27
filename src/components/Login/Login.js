@@ -47,6 +47,7 @@ class Login extends Component {
     }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <a href="http://localhost:3005/login"><button>Login With Spotify</button></a>
