@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import BrowseNav from '../BrowseNav/BrowseNav';
+
+import BrowserNav from '../BrowseNav/BrowseNav';
 
 class Browse extends Component {
     render(){
         return (
             <div className='mainView'>
-                
-                <BrowseNav />
+                <BrowserNav />
             </div>
         )
     }
