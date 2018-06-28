@@ -51,15 +51,9 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 app.use(session({
-<<<<<<< HEAD
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true
-=======
-	secret           : 'SESSION_SECRET',
-	resave           : false,
-	saveUninitialized: true
->>>>>>> master
 }));
 
 app.use(passport.initialize());
