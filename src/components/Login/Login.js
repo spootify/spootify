@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import {getUser} from '../../ducks/user';
 
 //Spotify API Imports
 import Spotify from 'spotify-web-api-js';
@@ -52,17 +51,19 @@ class Login extends Component {
     console.log(this.props)
     return (
       <div>
-        <a href="http://localhost:3005/login"><button>Login With Spotify</button></a>
+        <a href="http://localhost:3005/auth/spotify">
+            <button>Login With Spotify</button>
+        </a>
         <div>
           Now Playing: {this.state.nowPlaying.name}
         </div>
 
         {/* <img src={this.state.nowPlaying.image} style={{width: 100}}/> */}
 
-        <button onClick={() => this.props.getUser()}>Check now playing</button>
+        <button>Check now playing</button>
       </div>
     )
   }
 }
 
-export default connect(null, {getUser})(Login);
+export default Login;

@@ -77,7 +77,7 @@ passport.deserializeUser((id, done) => {
 app.get('/auth/spotify', passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}));
 
 app.get('/auth/spotify/callback', passport.authenticate('spotify', {
-    successRedirect: 'http://localhost:3000',
+    successRedirect: 'http://localhost:3000/#/dashboard/browse/overview',
     failureRedirect: 'http://localhost:3000'
 }))
 
