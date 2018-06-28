@@ -13,10 +13,10 @@ class SideBar extends Component {
                     </div>
                     <div>
                         <h3>YOUR LIBRARY</h3>
-                        <Link to="/recently-played">Recently Played</Link>
-                        <Link to="/songs">Songs</Link>
-                        <Link to="/albums">Albums</Link>
-                        <Link to="/artists">Artists</Link>
+                        <Link to="/recently-played"><p>Recently Played</p></Link>
+                        <Link to="/songs"><p>Songs</p></Link>
+                        <Link to="/albums"><p>Albums</p></Link>
+                        <Link to="/artists"><p>Artists</p></Link>
                     </div>
                     <div>
                         <h3>PLAYLIST</h3>

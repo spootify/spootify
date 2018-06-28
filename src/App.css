@@ -1,14 +1,15 @@
-/* html {
+html {
   background: black;
+  color: white;
 }
 
 .App {
-  padding-top: 150px;
+  /* padding-top: 150px; */
   text-align: left;
   width: 100%;
   height: 200vh;
   background: linear-gradient(#181818, black);
-  color: white;
+  color: lightgray;
 }
 
 .flexRow {
@@ -31,14 +32,16 @@ h3 {
 }
 
 .stickyNav {
-  width: 100%;
-  height: 100%;
-  padding-left: 225px;
-
+  position: sticky;
+  top: 25px;
 }
 
-.stickyHeader {
-  position: sticky;
-  top: 50px;
-} */
+a {
+  text-decoration: none;
+  color: lightgray;
+}
+
+a:hover {
+  color: white;
+}
 
