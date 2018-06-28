@@ -6,6 +6,9 @@ import {getUser} from '../../ducks/user';
 class Overview extends Component {
 	componentWillMount() {
 		this.props.getUser();
+		axios.get('/spotify/browse/featuredPlaylist').then(res => {
+			console.log(res.data)
+		})
 	}
 
 	render() {
