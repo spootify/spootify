@@ -7,9 +7,9 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const massive         = require('massive');
 const bodyParser      = require('body-parser');
 const axios           = require('axios');
-const Sportify        = require('spotify-web-api-node');
+const Spotify        = require('spotify-web-api-node');
 
-const sp = new Sportify({
+const sp = new Spotify({
 	clientId    : process.env.CLIENT_ID,
 	clientSecret: process.env.CLIENT_SECRET,
 	redirectUri : process.env.CALLBACK_URL
@@ -118,5 +118,25 @@ app.get('/auth/me', (req, res) => {
 		res.status(401).send('Nope, not you loser')
 	}
 })
+
+// Spotify Data End Points
+app.get('/spotify/browse/featuredPlaylist', (req, res) => {
+	sp.getFeaturedPlaylists().then( featuredPlayLists => {
+		res.send(featuredPlayLists)
+	})
+})
+
+app.get('/spotify/browse/newReleases', (req, res) => {
+	sp.getNewReleases().then(newReleases => {
+		res.send(newReleases)
+	})
+})
+
+app.get('/spotify/browse/catergories', (req, res) => {
+	sp.getCategories().then(catergories => {
+		res.send(catergories)
+	})
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));
