@@ -6,6 +6,30 @@ const Auth0Strategy = require('passport-auth0');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const massive = require('massive');
 const bodyParser =require('body-parser');
+const axios = require('axios');
+const Sportify = require('spotify-web-api-node');
+
+const sp = new Sportify({
+	clientId: process.env.CLIENT_ID,
+	clientSecret: process.env.CLIENT_SECRET,
+	redirectUri: process.env.CALLBACK_URL
+})
+
+sp.clientCredentialsGrant().then(
+	function(data) {
+		console.log('The access token expires in ' + data.body['expires_in']);
+		console.log('The access token is ' + data.body['access_token']);
+
+		// Save the access token so that it's used in future calls
+		sp.setAccessToken(data.body['access_token']);
+	},
+	function(err) {
+		console.log(
+			'Something went wrong when retrieving an access token',
+			err.message
+		);
+	}
+);
 
 const {
     SERVER_PORT,
@@ -49,7 +73,7 @@ passport.use(new SpotifyStrategy({
 
     accToken = accessToken;
     refToken = refreshToken;
-    
+
     db.find_user([id]).then((foundUser) => {
         if(foundUser[0]){
             done(null, foundUser[0].spotify_id)
