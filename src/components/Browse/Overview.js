@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import {getUser} from '../../ducks/user';
 
 class Overview extends Component {
@@ -8,7 +9,6 @@ class Overview extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 
