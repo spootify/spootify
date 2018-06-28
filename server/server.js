@@ -1,139 +1,93 @@
 require('dotenv').config();
-var express = require('express'); // Express web server framework
-var request = require('request'); // "Request" library
-var cors = require('cors');
-var querystring = require('querystring');
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
+const SpotifyStrategy = require('passport-spotify').Strategy;
+const massive = require('massive');
+const bodyParser =require('body-parser');
 
-var client_id = process.env.CLIENT_ID; // Your client id
-var client_secret = process.env.CLIENT_SECRET; // Your secret
-var redirect_uri = process.env.CALLBACK_URL; // Your redirect uri
+const {
+    SERVER_PORT,
+    SESSION_SECRET,
+    DOMAIN,
+    CLIENT_ID,
+    CLIENT_SECRET,
+    CALLBACK_URL,
+    CONNECTION_STRING
+} = process.env;
 
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
-var generateRandomString = function(length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const app = express();
+app.use(bodyParser.json());
 
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
+//Massive Connection To Database
+massive(CONNECTION_STRING).then(db => {
+    console.log('Connected to Database')
+    app.set('db', db);
+})
 
-var stateKey = 'spotify_auth_state';
+app.use(session({
+    secret: 'SESSION_SECRET',
+    resave: false,
+    saveUninitialized: true
+}));
 
-var app = express();
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(express.static(__dirname + '/public'))
-   .use(cors())
-   .use(cookieParser());
+//Tokens
+    let accToken;
+    let refToken;
 
-app.get('/login', function(req, res) {
+passport.use(new SpotifyStrategy({
+    clientID: CLIENT_ID,
+    clientSecret: CLIENT_SECRET,
+    callbackURL: CALLBACK_URL,
+}, (accessToken, refreshToken, expires_in, profile, done) => {
+    let db = app.get('db');
+    let {provider, id, username, displayName, profileUrl, photos, country, followers, product} = profile;
 
-  var state = generateRandomString(16);
-  res.cookie(stateKey, state);
+    accToken = accessToken;
+    refToken = refreshToken;
+    
+    db.find_user([id]).then((foundUser) => {
+        if(foundUser[0]){
+            done(null, foundUser[0].spotify_id)
+        }else {
+            db.create_user([provider, id, username, displayName, profileUrl, photos[0], country, followers, product]).then(user => {
+                console.log(user)
+                return done(null, user.spotify_id)
+            })
+        }
+    })}
+));
 
-  // your application requests authorization
-  var scope = 'user-read-private user-read-email user-read-playback-state';
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: client_id,
-      scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
-    }));
-});
+passport.serializeUser((id, done) => {
+    done(null, id);
+})
 
-app.get('/callback', function(req, res) {
+passport.deserializeUser((id, done) => {
+    app.get('db').find_session_user([id]).then(user => {
+        done(null, user[0]);
+    })
+})
 
-  // your application requests refresh and access tokens
-  // after checking the state parameter
 
-  var code = req.query.code || null;
-  var state = req.query.state || null;
-  var storedState = req.cookies ? req.cookies[stateKey] : null;
+//Passport Spotify End Points
+app.get('/auth/spotify', passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}));
 
-  if (state === null || state !== storedState) {
-    res.redirect('/#' +
-      querystring.stringify({
-        error: 'state_mismatch'
-      }));
-  } else {
-    res.clearCookie(stateKey);
-    var authOptions = {
-      url: 'https://accounts.spotify.com/api/token',
-      form: {
-        code: code,
-        redirect_uri: redirect_uri,
-        grant_type: 'authorization_code'
-      },
-      headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
-      },
-      json: true
-    };
+app.get('/auth/spotify/callback', passport.authenticate('spotify', {
+    successRedirect: 'http://localhost:3000',
+    failureRedirect: 'http://localhost:3000'
+}))
 
-    request.post(authOptions, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
-
-        var access_token = body.access_token,
-            refresh_token = body.refresh_token;
-
-        var options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-        };
-
-        // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
-          console.log(body);
-        });
-
-        // we can also pass the token to the browser to make requests from there
-        res.redirect('http://localhost:3000/#/dashboard/browse/' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
-      } else {
-        res.redirect('/#' +
-          querystring.stringify({
-            error: 'invalid_token'
-          }));
-      }
-    });
-  }
-});
-
-app.get('/refresh_token', function(req, res) {
-
-  // requesting access token from refresh token
-  var refresh_token = req.query.refresh_token;
-  var authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
-    form: {
-      grant_type: 'refresh_token',
-      refresh_token: refresh_token
-    },
-    json: true
-  };
-
-  request.post(authOptions, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      var access_token = body.access_token;
-      res.send({
-        'access_token': access_token
-      });
+//End Points
+app.get('/auth/me', (req, res) => {
+    if(req.user){
+        res.status(200).send([req.user, accToken, refToken]);
+    }else {
+        res.status(401).send('Nope, not you loser')
     }
-  });
-});
+})
 
-console.log('Listening on 3005');
-app.listen(3005);
+app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));
