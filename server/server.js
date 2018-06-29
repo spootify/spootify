@@ -119,24 +119,42 @@ app.get('/auth/me', (req, res) => {
 	}
 })
 
+
 // Spotify Data End Points
 app.get('/spotify/browse/featuredPlaylist', (req, res) => {
 	sp.getFeaturedPlaylists().then( featuredPlayLists => {
 		res.send(featuredPlayLists)
+	}).catch(err => {
+		res.send(err)
 	})
 })
 
 app.get('/spotify/browse/newReleases', (req, res) => {
 	sp.getNewReleases().then(newReleases => {
 		res.send(newReleases)
+	}).catch(err => {
+		res.send(err)
 	})
 })
 
 app.get('/spotify/browse/catergories', (req, res) => {
 	sp.getCategories().then(catergories => {
 		res.send(catergories)
+	}).catch(err => {
+		res.send(err)
 	})
 })
 
+app.get('/spotify/library/songs', (req, res) => {
+	sp.getMySavedTracks({
+		limit: 100,
+		offset: 1
+	}).then(myTracks => {
+		res.send(myTracks)
+	}).catch(err => {
+		res.send(err)
+	})
+	
+})
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));

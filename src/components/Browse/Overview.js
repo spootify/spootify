@@ -6,18 +6,20 @@ import {getUser} from '../../ducks/user';
 class Overview extends Component {
 	componentWillMount() {
 		this.props.getUser();
-		axios.get('/spotify/browse/featuredPlaylist').then(res => {
-			console.log(res.data)
-		})
 	}
-
+	
 	render() {
+		console.log(this.props.user)
 		return (
 			<div>
-
 			</div>
 		)
 	}
 };
+function mapStateToProps(state){
+	return {
+		user: state.user
+	}
+}
 
-export default connect(({user}) => ({user}), {getUser})(Overview);
+export default connect(mapStateToProps, {getUser})(Overview);
