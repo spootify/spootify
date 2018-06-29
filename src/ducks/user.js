@@ -1,11 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
-	user: {
-		id: '',
-		access_token: '',
-		refresh_token: ''
-	}
+	
 };
 
 const GET_USER = 'GET_USER';
