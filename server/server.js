@@ -173,5 +173,12 @@ app.get('/spotify/search/playlists/:search', (req, res) => {
 	})
 })
 
+app.get('/spotify/playlist/:ownerId/:playlistId', (req, res) => {
+	const {ownerId, playlistId} = req.params
+	sp.getPlaylist(ownerId, playlistId).then(playlist => {
+		res.send(playlist)
+	})
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));

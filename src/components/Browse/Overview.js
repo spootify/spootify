@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { getUser } from '../../ducks/user';
 import './Browse.css';
 import downArrow from '../SearchBar/down-arrow.svg'
@@ -59,7 +60,6 @@ class Overview extends Component {
 	}
 
 	render() {
-		console.log(this.state.featuredPlaylistsBody)
 		return (
 			<div className='browseMainView'>
 				<div className='messageHeader flexRow'>
@@ -75,10 +75,12 @@ class Overview extends Component {
 							return i < this.state.offset && i >= this.state.startingIndex
 						}).map((filteredPL, i) => {
 							return (
-								<div id='featuredPlaylist' className='flexColumn' key={filteredPL.id + i}>
-									<img src={filteredPL.images[0].url} style={{ height: "250px" }} />
-									<p>{filteredPL.name}</p>
-								</div>
+								<Link to={`/playlist/${filteredPL.owner.id}/${filteredPL.id}`} key={filteredPL.id + i}>
+									<div id='featuredPlaylist' className='flexColumn'>
+										<img src={filteredPL.images[0].url} style={{ height: "250px" }} />
+										<p>{filteredPL.name}</p>
+									</div>
+								</Link>
 							)
 						})
 					}
@@ -102,7 +104,7 @@ class Overview extends Component {
 					{this.state.categories.map((cat, i) => {
 						return (
 							<div key={cat.id + i}>
-								<img src={cat.icons[0].url} style={{margin: "15px"}}/>
+								<img src={cat.icons[0].url} style={{ margin: "15px" }} />
 							</div>
 						)
 					})}
