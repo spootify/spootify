@@ -137,9 +137,9 @@ app.get('/spotify/browse/newReleases', (req, res) => {
 	})
 })
 
-app.get('/spotify/browse/catergories', (req, res) => {
-	sp.getCategories().then(catergories => {
-		res.send(catergories)
+app.get('/spotify/browse/categories', (req, res) => {
+	sp.getCategories().then(categories => {
+		res.send(categories)
 	}).catch(err => {
 		res.send(err)
 	})

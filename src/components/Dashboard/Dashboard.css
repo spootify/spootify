@@ -7,6 +7,6 @@
     left: 225px;
     display: flex;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: scroll;
     
 }
