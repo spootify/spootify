@@ -1,18 +1,18 @@
 require('dotenv').config();
-const express         = require('express');
-const session         = require('express-session');
-const passport        = require('passport');
-const Auth0Strategy   = require('passport-auth0');
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
 const SpotifyStrategy = require('passport-spotify').Strategy;
-const massive         = require('massive');
-const bodyParser      = require('body-parser');
-const axios           = require('axios');
-const Spotify        = require('spotify-web-api-node');
+const massive = require('massive');
+const bodyParser = require('body-parser');
+const axios = require('axios');
+const Spotify = require('spotify-web-api-node');
 
 const sp = new Spotify({
-	clientId    : process.env.CLIENT_ID,
+	clientId: process.env.CLIENT_ID,
 	clientSecret: process.env.CLIENT_SECRET,
-	redirectUri : process.env.CALLBACK_URL
+	redirectUri: process.env.CALLBACK_URL
 })
 
 sp.clientCredentialsGrant().then(
@@ -32,14 +32,14 @@ sp.clientCredentialsGrant().then(
 );
 
 const {
-		  SERVER_PORT,
-		  SESSION_SECRET,
-		  DOMAIN,
-		  CLIENT_ID,
-		  CLIENT_SECRET,
-		  CALLBACK_URL,
-		  CONNECTION_STRING
-	  } = process.env;
+	SERVER_PORT,
+	SESSION_SECRET,
+	DOMAIN,
+	CLIENT_ID,
+	CLIENT_SECRET,
+	CALLBACK_URL,
+	CONNECTION_STRING
+} = process.env;
 
 const app = express();
 app.use(bodyParser.json());
@@ -51,9 +51,9 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 app.use(session({
-    secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
+	secret: SESSION_SECRET,
+	resave: false,
+	saveUninitialized: true
 }));
 
 app.use(passport.initialize());
@@ -64,28 +64,28 @@ let accToken;
 let refToken;
 
 passport.use(new SpotifyStrategy({
-		clientID    : CLIENT_ID,
-		clientSecret: CLIENT_SECRET,
-		callbackURL : CALLBACK_URL,
-	}, (accessToken, refreshToken, expires_in, profile, done) => {
-		let db                                                                                     = app.get('db');
-		let {provider, id, username, displayName, profileUrl, photos, country, followers, product} = profile;
+	clientID: CLIENT_ID,
+	clientSecret: CLIENT_SECRET,
+	callbackURL: CALLBACK_URL,
+}, (accessToken, refreshToken, expires_in, profile, done) => {
+	let db = app.get('db');
+	let { provider, id, username, displayName, profileUrl, photos, country, followers, product } = profile;
 
-		accToken = accessToken;
-		refToken = refreshToken;
+	accToken = accessToken;
+	refToken = refreshToken;
 
-		db.find_user([id]).then((foundUser) => {
-			if (foundUser[0]) {
-				done(null, foundUser[0].spotify_id)
-			} else {
-				db.create_user([provider, id, username, displayName, profileUrl, photos[0], country, followers, product])
-				  .then(user => {
-					  console.log(user)
-					  return done(null, user.spotify_id)
-				  })
-			}
-		})
-	}
+	db.find_user([id]).then((foundUser) => {
+		if (foundUser[0]) {
+			done(null, foundUser[0].spotify_id)
+		} else {
+			db.create_user([provider, id, username, displayName, profileUrl, photos[0], country, followers, product])
+				.then(user => {
+					console.log(user)
+					return done(null, user.spotify_id)
+				})
+		}
+	})
+}
 ));
 
 passport.serializeUser((id, done) => {
@@ -101,7 +101,7 @@ passport.deserializeUser((id, done) => {
 
 //Passport Spotify End Points
 app.get('/auth/spotify', passport.authenticate('spotify', {
-	scope     : ['user-read-email', 'user-read-private'],
+	scope: ['user-read-email', 'user-read-private', 'user-library-read'],
 	showDialog: true
 }));
 
@@ -122,7 +122,7 @@ app.get('/auth/me', (req, res) => {
 
 // Spotify Data End Points
 app.get('/spotify/browse/featuredPlaylist', (req, res) => {
-	sp.getFeaturedPlaylists().then( featuredPlayLists => {
+	sp.getFeaturedPlaylists().then(featuredPlayLists => {
 		res.send(featuredPlayLists)
 	}).catch(err => {
 		res.send(err)
@@ -145,16 +145,33 @@ app.get('/spotify/browse/catergories', (req, res) => {
 	})
 })
 
-app.get('/spotify/library/songs', (req, res) => {
-	sp.getMySavedTracks({
-		limit: 100,
-		offset: 1
-	}).then(myTracks => {
-		res.send(myTracks)
-	}).catch(err => {
-		res.send(err)
+app.get('/spotify/search/tracks/:search', (req, res) => {
+	const { search } = req.params
+	sp.searchTracks(search).then(results => {
+		res.send(results)
 	})
-	
 })
+
+app.get('/spotify/search/artists/:search', (req, res) => {
+	const { search } = req.params
+	sp.searchArtists(search).then(results => {
+		res.send(results)
+	})
+})
+
+app.get('/spotify/search/albums/:search', (req, res) => {
+	const { search } = req.params
+	sp.searchAlbums(search).then(results => {
+		res.send(results)
+	})
+})
+
+app.get('/spotify/search/playlists/:search', (req, res) => {
+	const { search } = req.params
+	sp.searchPlaylists(search).then(results => {
+		res.send(results)
+	})
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));
