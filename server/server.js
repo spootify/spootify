@@ -121,7 +121,7 @@ app.get('/auth/me', (req, res) => {
 
 
 // Spotify Data End Points
-app.get('/spotify/browse/featuredPlaylist', (req, res) => {
+app.get('/spotify/browse/featuredPlaylists', (req, res) => {
 	sp.getFeaturedPlaylists().then(featuredPlayLists => {
 		res.send(featuredPlayLists)
 	}).catch(err => {

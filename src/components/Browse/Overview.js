@@ -2,47 +2,89 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { getUser } from '../../ducks/user';
+import './Browse.css';
+import downArrow from '../SearchBar/down-arrow.svg'
 
 class Overview extends Component {
 	constructor() {
 		super()
 		this.state = {
-			featuredPlaylistBody: {},
+			featuredPlaylistsBody: {},
 			featuredPlaylists: [],
+			secFeaturedPlaylist: [],
 			categoriesBody: {},
 			categories: [],
+			offset: 6,
+			startingIndex: 0,
 		}
 	}
 	componentWillMount() {
 		this.props.getUser();
-		axios.get('/spotify/browse/featuredPlaylist').then(res => {
+		axios.get(`/spotify/browse/featuredPlaylists`).then(res => {
 			axios.get('/spotify/browse/categories').then(results => {
 				this.setState({
-					featuredPlaylistBody: res.data.body,
+					featuredPlaylistsBody: res.data.body,
 					featuredPlaylists: res.data.body.playlists.items,
 					categoriesBody: results.data.body.categories,
 					categories: results.data.body.categories.items
 				})
 
+
+
 			})
 		})
 	}
 
-	render() {
-		console.log(this.state.categories)
+	getMore() {
+		if (this.state.startingIndex === 6) {
+			null
 
+		} else {
+			this.setState({
+				offset: this.state.offset + 6,
+				startingIndex: this.state.startingIndex + 6
+			})
+		}
+	}
+
+	goBack() {
+		if (this.state.startingIndex >= 6) {
+			this.setState({
+				offset: this.state.offset - 6,
+				startingIndex: this.state.startingIndex - 6
+			})
+		} else {
+			null
+		}
+	}
+
+	render() {
+		console.log(this.state.featuredPlaylistsBody)
 		return (
-			<div>
-				<h3>{this.state.featuredPlaylistBody.message}</h3>
-				<div className='flexRow'>
-					{this.state.featuredPlaylists.map(featPlaylist => {
-						return (
-							<div key={featPlaylist.id}>
-								<img src={featPlaylist.images[0].url} />
-							</div>
-						)
-					})}
+			<div className='browseMainView'>
+				<div className='messageHeader flexRow'>
+					<h3>{this.state.featuredPlaylistsBody.message}</h3>
+					<div>
+						<img src={downArrow} onClick={() => this.goBack()} style={{ height: "20px", margin: "5px" }} />
+						<img src={downArrow} onClick={() => this.getMore()} style={{ height: "20px", margin: "5px" }} />
+					</div>
 				</div>
+				<div className='flexRow'>
+					{
+						this.state.featuredPlaylists.filter((featPlaylist, i) => {
+							return i < this.state.offset && i >= this.state.startingIndex
+						}).map((filteredPL, i) => {
+							return (
+								<div id='featuredPlaylist' className='flexColumn' key={filteredPL.id + i}>
+									<img src={filteredPL.images[0].url} style={{ height: "250px" }} />
+									<p>{filteredPL.name}</p>
+								</div>
+							)
+						})
+					}
+				</div>
+
+
 				<div className='flexRow'>
 					<div>
 						<h1>Charts</h1>
@@ -54,15 +96,18 @@ class Overview extends Component {
 					</div>
 				</div>
 				<div className='flexRowWrap'>
-					{this.state.categories.map( (cat, i) => {
+					<div className='messageHeader flexRow'>
+						<h3>Genres & Moods</h3>
+					</div>
+					{this.state.categories.map((cat, i) => {
 						return (
-						<div key={cat.id + i}>
-							<img src={cat.icons[0].url} />
-						</div>
+							<div key={cat.id + i}>
+								<img src={cat.icons[0].url} style={{margin: "15px"}}/>
+							</div>
 						)
 					})}
 				</div>
-			</div>
+			</div >
 		)
 	}
 };
