@@ -50,7 +50,7 @@ class Login extends Component {
     console.log(this.props)
     return (
       <div>
-        <a href="http://localhost:3005/login"><button>Login With Spotify</button></a>
+        <a href="http://localhost:3005/auth/spotify"><button>Login With Spotify</button></a>
         <div>
           Now Playing: {this.state.nowPlaying.name}
         </div>
