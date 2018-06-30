@@ -14,7 +14,7 @@ class Browse extends Component {
                 <BrowserNav />
 
                 {/* Browse Routes */}
-                <div className=''>
+                <div>
                     {browseRoutes}
                 </div>
             </div>

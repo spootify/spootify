@@ -1,12 +1,16 @@
 .routes-container {
     padding-top: 100px;
-    width: 100%;
+    width: 89%;
     height: 87%;
     position: fixed;
     top: 4%;
     left: 225px;
     display: flex;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
     
 }

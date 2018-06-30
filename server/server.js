@@ -121,7 +121,7 @@ app.get('/auth/me', (req, res) => {
 
 
 // Spotify Data End Points
-app.get('/spotify/browse/featuredPlaylist', (req, res) => {
+app.get('/spotify/browse/featuredPlaylists', (req, res) => {
 	sp.getFeaturedPlaylists().then(featuredPlayLists => {
 		res.send(featuredPlayLists)
 	}).catch(err => {
@@ -137,9 +137,9 @@ app.get('/spotify/browse/newReleases', (req, res) => {
 	})
 })
 
-app.get('/spotify/browse/catergories', (req, res) => {
-	sp.getCategories().then(catergories => {
-		res.send(catergories)
+app.get('/spotify/browse/categories', (req, res) => {
+	sp.getCategories().then(categories => {
+		res.send(categories)
 	}).catch(err => {
 		res.send(err)
 	})
@@ -170,6 +170,13 @@ app.get('/spotify/search/playlists/:search', (req, res) => {
 	const { search } = req.params
 	sp.searchPlaylists(search).then(results => {
 		res.send(results)
+	})
+})
+
+app.get('/spotify/playlist/:ownerId/:playlistId', (req, res) => {
+	const {ownerId, playlistId} = req.params
+	sp.getPlaylist(ownerId, playlistId).then(playlist => {
+		res.send(playlist)
 	})
 })
 

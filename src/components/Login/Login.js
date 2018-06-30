@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux';
 
 //Spotify API Imports
 import Spotify from 'spotify-web-api-js';
