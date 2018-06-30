@@ -75,7 +75,7 @@ class Overview extends Component {
 							return i < this.state.offset && i >= this.state.startingIndex
 						}).map((filteredPL, i) => {
 							return (
-								<Link to={`/playlist/${filteredPL.owner.id}/${filteredPL.id}`} key={filteredPL.id + i}>
+								<Link to={`/dashboard/playlist/${filteredPL.owner.id}/${filteredPL.id}`} key={filteredPL.id + i}>
 									<div id='featuredPlaylist' className='flexColumn'>
 										<img src={filteredPL.images[0].url} style={{ height: "250px" }} />
 										<p>{filteredPL.name}</p>
@@ -92,10 +92,10 @@ class Overview extends Component {
 						<h1>Charts</h1>
 						<p>Gloabal and regional top charts</p>
 					</div>
-					<div>
+					<Link to="/dashboard/browse/releases"><div>
 						<h1>New Releases</h1>
 						<p>Drake, Florence + The Machine, Gorillaz</p>
-					</div>
+					</div></Link>
 				</div>
 				<div className='flexRowWrap'>
 					<div className='messageHeader flexRow'>
@@ -103,9 +103,9 @@ class Overview extends Component {
 					</div>
 					{this.state.categories.map((cat, i) => {
 						return (
-							<div key={cat.id + i}>
+							<Link to={`/dashboard/category/${cat.id}/${cat.name}`} key={cat.id + i}><div >
 								<img src={cat.icons[0].url} style={{ margin: "15px" }} />
-							</div>
+							</div></Link>
 						)
 					})}
 				</div>

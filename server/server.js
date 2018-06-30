@@ -174,9 +174,23 @@ app.get('/spotify/search/playlists/:search', (req, res) => {
 })
 
 app.get('/spotify/playlist/:ownerId/:playlistId', (req, res) => {
-	const {ownerId, playlistId} = req.params
+	const { ownerId, playlistId } = req.params
 	sp.getPlaylist(ownerId, playlistId).then(playlist => {
 		res.send(playlist)
+	})
+})
+
+app.get('/spotify/category/:categoryId', (req, res) => {
+	const { categoryId } = req.params
+	sp.getPlaylistsForCategory(categoryId).then(category => {
+		res.send(category)
+	})
+})
+
+app.get('/spotify/album/:albumId', (req, res) => {
+	const { albumId } = req.params
+	sp.getAlbum(albumId).then(album => {
+		res.send(album)
 	})
 })
 

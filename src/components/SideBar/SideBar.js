@@ -9,7 +9,7 @@ class SideBar extends Component {
             <div className='sideBar'>
                 <div>
                     <div>
-                        <Link to="/browse">Browse</Link>
+                        <Link to="/dashboard/browse/overview">Browse</Link>
                     </div>
                     <div>
                         <h3>YOUR LIBRARY</h3>
