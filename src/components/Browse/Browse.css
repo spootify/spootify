@@ -19,7 +19,11 @@
     margin-top: 15px;
     padding: 10px;
 }
+#featuredPlaylists{
+    width: 100%;
+    justify-content: flex-start;
+}
 
 #featuredPlaylist {
-    margin: 10px;
+    margin: 8px 15px;
 }

@@ -15,7 +15,7 @@ class Overview extends Component {
 			secFeaturedPlaylist: [],
 			categoriesBody: {},
 			categories: [],
-			offset: 6,
+			offset: 5,
 			startingIndex: 0,
 		}
 	}
@@ -37,22 +37,22 @@ class Overview extends Component {
 	}
 
 	getMore() {
-		if (this.state.startingIndex === 6) {
+		if (this.state.startingIndex === 10) {
 			null
 
 		} else {
 			this.setState({
-				offset: this.state.offset + 6,
-				startingIndex: this.state.startingIndex + 6
+				offset: this.state.offset + 5,
+				startingIndex: this.state.startingIndex + 5
 			})
 		}
 	}
 
 	goBack() {
-		if (this.state.startingIndex >= 6) {
+		if (this.state.startingIndex >= 5) {
 			this.setState({
-				offset: this.state.offset - 6,
-				startingIndex: this.state.startingIndex - 6
+				offset: this.state.offset - 5,
+				startingIndex: this.state.startingIndex - 5
 			})
 		} else {
 			null
@@ -69,7 +69,7 @@ class Overview extends Component {
 						<img src={downArrow} onClick={() => this.getMore()} style={{ height: "20px", margin: "5px" }} />
 					</div>
 				</div>
-				<div className='flexRow'>
+				<div id='featuredPlaylists' className='flexRow'>
 					{
 						this.state.featuredPlaylists.filter((featPlaylist, i) => {
 							return i < this.state.offset && i >= this.state.startingIndex
