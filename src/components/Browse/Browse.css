@@ -1,11 +1,12 @@
 .browseMainView {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 95%;
     align-items: center;
-    
-
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .invisable {
     display: none;
 }

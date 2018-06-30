@@ -23,6 +23,7 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .flexColumn {
@@ -45,7 +46,7 @@ h3 {
 
 .mainView {
   height: 100%;
-  width: 95%;
+  width: 100%;
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
