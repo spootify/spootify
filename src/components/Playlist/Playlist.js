@@ -12,7 +12,6 @@ class Playlist extends Component {
     }
 
     componentDidMount() {
-		console.log('PLAYLIST');
         axios.get(`/spotify/playlist/${this.props.match.params.ownerId}/${this.props.match.params.playlistId}`).then(res => {
             this.setState({
                 playlist: res.data.body,
