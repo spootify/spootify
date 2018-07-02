@@ -12,6 +12,8 @@ class Browse extends Component {
         return (
             <div className='mainView'>
                 <BrowserNav />
+
+                {/* Browse Routes */}
                 <div>
                     {browseRoutes}
                 </div>
