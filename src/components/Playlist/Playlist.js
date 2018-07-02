@@ -22,9 +22,9 @@ class Playlist extends Component {
     }
 
     render() {
-        console.log(this.state.playlist, this.state.tracks)
+        console.log(this.state.playlist, this.state.tracks, this.state.image)
         return (
-            <div>
+            <div className='categoryPlaylists'>
                 <img src={this.state.image} style={{ width: "300px" }} alt='playlist' />
                 <h1>{this.state.playlist.name}</h1>
                 <p>{this.state.playlist.description}</p>
