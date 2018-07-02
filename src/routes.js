@@ -1,20 +1,22 @@
 import React from 'react';
 
 //Routing
-import {Switch, Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 //Components
 import Login from './components/Login/Login';
-import Browse from './components/Browse/Browse';
-import SideBar from './components/SideBar/SideBar';
-import SearchBar from './components/SearchBar/SearchBar';
-import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import DashBoard from './components/Dashboard/Dashboard';
+import Playlist from './components/Playlist/Playlist';
+import Category from './components/Category/Category';
+import Album from './components/Album/Album';
 
 export default (
     <div>
         {/* Main Routes */}
-        <Route exact path="/" component={Login}/>
+        <Route exact path="/" component={Login} />
         <Route path="/dashboard/browse" component={DashBoard} />
+        <Route path="/dashboard/playlist/:ownerId/:playlistId" component={Playlist} />
+        <Route path='/dashboard/category/:categoryId/:categoryName' component={Category} />
+        <Route path='/dashboard/album/:albumId' component={Album} />
     </div>
 )

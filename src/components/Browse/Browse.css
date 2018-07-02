@@ -1,0 +1,30 @@
+.browseMainView {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.invisable {
+    display: none;
+}
+
+.messageHeader {
+    width: 100%;
+    height: 35px;
+    justify-content: space-between;
+    border-bottom: .25px solid #2f2f30;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 10px;
+}
+#featuredPlaylists{
+    width: 100%;
+    justify-content: flex-start;
+}
+
+#featuredPlaylist {
+    margin: 8px 15px;
+}
