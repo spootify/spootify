@@ -112,6 +112,7 @@ app.get('/auth/spotify/callback', passport.authenticate('spotify', {
 
 //End Points
 app.get('/auth/me', (req, res) => {
+	console.log(sp._credentials);
 	if (req.user) {
 		res.status(200).send([req.user, accToken, refToken]);
 	} else {
