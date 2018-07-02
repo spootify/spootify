@@ -28,15 +28,11 @@ export default (
         <Route path="/dashboard/browse/charts" component={Charts} />
         <Route path="/dashboard/browse/genres" compnonent={Genres} />
         <Route path="/dashboard/browse/releases" component={NewReleases} />
-
-
         <Route path="/dashboard/playlist/:ownerId/:playlistId" component={Playlist} />
         <Route path='/dashboard/category/:categoryId/:categoryName' component={Category} />
         <Route path='/dashboard/album/:albumId' component={Album} />
         <Route path='/dashboard/songs' component={Songs} />
         <Route path='/dashboard/Albums' component={Albums} />
         <Route path='/dashboard/Artists' component={Artists} />
-
-
     </div>
 )
