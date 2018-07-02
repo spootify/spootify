@@ -194,5 +194,12 @@ app.get('/spotify/album/:albumId', (req, res) => {
 	})
 })
 
+app.get('/spotify/user/:userId', (req, res) => {
+	const {userId} = req.params
+	sp.getUser(userId).then(user => {
+		res.send(user)
+	})
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));
