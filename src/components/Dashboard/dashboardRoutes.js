@@ -1,6 +1,4 @@
 import React from 'react';
-
-//Routeer-DOM
 import {Switch, Route} from 'react-router-dom';
 
 //Components
@@ -17,6 +15,5 @@ export default (
         <Route path="/dashboard/songs" component={Songs}/>
         <Route path="/dashboard/albums" component={Albums}/>
         <Route path="/dashboard/artists" component={Artists}/>
-        <Route path="" component={'#'}/>
     </Switch>
 )

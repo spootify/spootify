@@ -1,19 +1,24 @@
-import React, { Component } from 'react';
-
-//Components
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {getUser} from './ducks/user';
+import Login from "./components/Login/Login";
 import './App.css';
-
-//Routing
-import routes from './routes';
+import Dashboard from "./components/Dashboard/Dashboard";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        {routes}
-      </div>
-    );
-  }
+	componentDidMount() {
+		this.props.getUser();
+	}
+
+	render() {
+		console.log(this.props);
+		return (
+			<div className="App">
+				{(this.props.user.id) ? <Dashboard/> : <Login/>}
+			</div>
+		);
+	}
 }
 
-export default App;
+export default withRouter(connect(({user}) => ({user}), {getUser})(App));
