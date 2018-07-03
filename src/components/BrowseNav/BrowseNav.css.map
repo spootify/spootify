@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGC,oBAAS;EACR,OAAO,EAAE,IAAI;EACb,sBAAE;IACD,YAAY,EAAE,IAAI;IAClB,eAAe,EAAE,IAAI;IACrB,KAAK,ECRD,OAAO;IDSX,iCAAa;MACZ,YAAY,EAAE,CAAC",
+"sources": ["BrowseNav.scss","../../variables.scss"],
+"names": [],
+"file": "BrowseNav.css"
+}
