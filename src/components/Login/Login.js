@@ -54,7 +54,7 @@ class Login extends Component {
       <div className='loginScreen'>
         <img id='logo' src={logo} alt='spotify' />
         <a href="http://localhost:3005/auth/spotify">
-          <button>LOG IN</button>
+          <button id='login'>LOG IN</button>
         </a>
           <div id='boxOne' className='box'>
           </div>
