@@ -1,24 +1,18 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
-//Components
-import SearchBar from '../SearchBar/SearchBar';
-import SideBar from '../SideBar/SideBar';
 import MusicPlayer from '../MusicPlayer/MusicPlayer';
+import SideBar from '../SideBar/SideBar';
+import Content from '../Content/Content';
 
-//Styling
 import './Dashboard.css';
 
 class Dashboard extends Component {
-  render() {
-    return (
-      <div>
-        {/* Main Components */}
-        <SearchBar />
-        <SideBar />
-        <MusicPlayer />
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div className='dashboard'>
+			</div>
+		)
+	}
 }
 
 export default Dashboard;

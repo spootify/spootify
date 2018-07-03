@@ -1,98 +1,19 @@
-html {
-  background: black;
-  box-sizing: border-box;
-  overflow: scroll;
-  height: 100vh;
-  width: 100%;
-  background:#121212;
-}
+body {
+  margin: 0;
+  padding: 0; }
+
+* {
+  box-sizing: border-box; }
 
 .App {
-  background: linear-gradient(#212121, #121212);
-  padding-top: 50px;
-  text-align: left;
-  width: 100%;
-  /* height: 100vh; */
-  color: lightgray;
-
-}
-
-.routes-container {
-  padding-top: 100px;
-  padding-bottom: 100px;
-  width: 100%;
-  top: 4%;
-  padding-left: 225px;
-  display: flex;
-  box-sizing: border-box;
-  overflow: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  
-}
-
-.browseMainView{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+  .App .container {
     display: flex;
-    flex-direction: column;
-    width: 95%;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100%;
-}
+    width: 100%;
+    height: 85vh; }
+  .App ::-webkit-scrollbar {
+    display: none; }
 
-.flexRow {
-  display: flex;
-  flex-direction: row;
-}
-
-.flexRowWrap {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.flexColumn {
-  display: flex;
-  flex-direction: column;
-}
-
-.spaceEvenly {
-  justify-content: space-evenly;
-}
-
-h3 {
-  margin: 5px;
-  font-size: 15px;
-}
-
-.routes {
-  height: 100%;
-  width: 100%;
-}
-
-.mainView {
-  height: 100%;
-  width: 100%;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-}
-
-.stickyNav {
-  position: sticky;
-  top: 25px;
-}
-
-a {
-  text-decoration: none;
-  color: lightgray;
-}
-
-a:hover {
-  color: white;
-}
-
+/*# sourceMappingURL=App.css.map */
