@@ -1,5 +1,5 @@
 .sideBar {
-    width: 225px;
+    width: 185px;
     height: 92vh;
     background: #121212;
     color: white;
@@ -11,8 +11,32 @@
     flex-direction: column;
 }
 
+.textColumn {
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
 .newPlaylistDiv {
     align-items: center;
     justify-content: center;
     border-top: .5px solid grey;
 }
+
+
+.sideBarText{
+    font-size: 13px;
+    font-weight: 100;
+}
+
+.pTags {
+    margin: 0px;
+    font-weight: 500;
+    margin-bottom: 18px;
+    
+}
+
