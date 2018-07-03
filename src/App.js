@@ -1,28 +1,39 @@
-import React, { Component } from 'react';
-
-//Font Awesome
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStepBackward } from '@fortawesome/free-solid-svg-icons'
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
-import { faStepForward } from '@fortawesome/free-solid-svg-icons'
-import { faPauseCircle } from '@fortawesome/free-solid-svg-icons'
-
-//Components
+import React, {Component} from 'react';
+import SideBar from './components/SideBar/SideBar';
+import Content from './components/Content/Content';
+import MusicPlayer from './components/MusicPlayer/MusicPlayer';
+import {connect} from 'react-redux';
+import {getUser} from './ducks/user';
 import './App.css';
-
-//Routing
-import routes from './routes';
+import Login from "./components/Login/Login";
 
 class App extends Component {
-  render() {
-    library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle);
-    return (
-      <div className="App">
-        {routes}
-      </div>
-    );
-  }
+	constructor(props) {
+		super(props);
+	}
+
+	componentDidMount() {
+		console.log(this.props);
+		this.props.getUser();
+	}
+
+
+	render() {
+		console.log(this.props);
+		return (
+			<div className="App">
+				{(this.props.user.id) ?
+				 <div>
+					 <div className="container">
+						 <SideBar/>
+						 <Content/>
+					 </div>
+					 <MusicPlayer/>
+				 </div> :
+				 <Login/>}
+			</div>
+		);
+	}
 }
 
-export default App;
+export default connect(({user}) => ({user}), {getUser})(App);
