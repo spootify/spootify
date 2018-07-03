@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {getUser} from './ducks/user';
+import {withRouter} from 'react-router-dom';
 import SideBar from './components/SideBar/SideBar';
 import Content from './components/Content/Content';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
-import {connect} from 'react-redux';
-import {getUser} from './ducks/user';
-import './App.css';
 import Login from "./components/Login/Login";
+import './App.css';
 
 class App extends Component {
 	constructor(props) {
@@ -36,4 +37,4 @@ class App extends Component {
 	}
 }
 
-export default connect(({user}) => ({user}), {getUser})(App);
+export default withRouter(connect(({user}) => ({user}), {getUser})(App));
