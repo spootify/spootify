@@ -34,7 +34,7 @@ class MusicPlayer extends Component {
                     <button onClick={() => this.getCurrentlyPlaying()}></button>
                 </div>
 
-                <div className="player-options container">
+                <div className="player-options">
                     <div className="play-button-container">
 
                     </div>

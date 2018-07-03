@@ -1,10 +1,6 @@
 .musicPlayer {
-    width: 100%;
-    height: 9%;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #212121;
-    color: white;
-}
+  width: 100%;
+  background-color: #282828;
+  height: 15vh; }
+
+/*# sourceMappingURL=MusicPlayer.css.map */

@@ -1,0 +1,15 @@
+@import "../../variables";
+
+.browse-nav {
+	.flexRow {
+		display: flex;
+		a {
+			margin-right: 20px;
+			text-decoration: none;
+			color: $text;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}

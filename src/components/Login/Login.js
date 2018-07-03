@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-
-//Spotify API Imports
 import Spotify from 'spotify-web-api-js';
+import {connect} from 'react-redux';
+import {getUser} from '../../ducks/user';
 
 const spotifyWebApi = new Spotify();
 
 class Login extends Component {
-    constructor(){
-        super()
+    constructor(props){
+		super(props);
     
         const params = this.getHashParams();
     
@@ -65,4 +65,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null, {getUser})(Login);
