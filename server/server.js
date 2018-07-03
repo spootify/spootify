@@ -8,6 +8,7 @@ const massive = require('massive');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const Spotify = require('spotify-web-api-node');
+const stringify = require('json-stringify-safe');
 
 const sp = new Spotify({
 	clientId: process.env.CLIENT_ID,
@@ -209,7 +210,7 @@ app.get('/currently/playing', (req, res) => {
 			"Authorization" : "Bearer" + ' ' + accToken
 		}
 	}).then(response => {
-		// res.status(200).send(response)
+		res.status(200).send(stringify(response))
 	})
 })
 
