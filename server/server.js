@@ -213,6 +213,16 @@ app.get('/spotify/tracks/:offset', (req, res) => {
 	})
 })
 
+app.get('/spotify/saved/albums', (req, res) => {
+	axios.get('https://api.spotify.com/v1/me/albums', {
+		headers: {
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(result => {
+		res.status(200).send(stringify(result))
+	})
+})
+
 //Music Player EndPoints
 // Get Currently Playing song
 app.get('/currently/playing', (req, res) => {
