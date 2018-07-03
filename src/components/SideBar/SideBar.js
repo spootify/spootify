@@ -7,25 +7,25 @@ class SideBar extends Component {
     render() {
         return (
             <div className='sideBar'>
-                <div>
+                <div className='textColumn'>
                     <div>
-                        <Link to="/dashboard/browse/overview">Browse</Link>
+                        <Link to="/dashboard/browse/overview"><p className='sideBarText pTags'>Browse</p></Link>
                     </div>
                     <div>
-                        <h3>YOUR LIBRARY</h3>
-                        <Link to="/recently-played"><p>Recently Played</p></Link>
-                        <Link to="/songs"><p>Songs</p></Link>
-                        <Link to="/albums"><p>Albums</p></Link>
-                        <Link to="/artists"><p>Artists</p></Link>
+                        <p className='sideBarText'>YOUR LIBRARY</p>
+                        <Link to="/dashboard/recent"><p className='sideBarText pTags'>Recently Played</p></Link>
+                        <Link to="/dashboard/songs"><p className='sideBarText pTags'>Songs</p></Link>
+                        <Link to="/dashboard/albums"><p className='sideBarText pTags'>Albums</p></Link>
+                        <Link to="/dashboard/artists"><p className='sideBarText pTags'>Artists</p></Link>
                     </div>
                     <div>
-                        <h3>PLAYLIST</h3>
-                        <p>Example Playlist</p>
+                        <p className='sideBarText'>PLAYLIST</p>
+                        <p className='sideBarText pTags'>Example Playlist</p>
                     </div>
                 </div>
                 <div className='flexRow newPlaylistDiv'>
                     <img className='icon' src={PlusIcon} alt='add playlist icon'/>
-                    <h2>New Playlist</h2>
+                    <p className='sideBarText'>New Playlist</p>
                 </div>
             </div>
         )

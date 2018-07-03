@@ -194,7 +194,24 @@ app.get('/spotify/album/:albumId', (req, res) => {
 	})
 })
 
+app.get('/spotify/user/:userId', (req, res) => {
+	const {userId} = req.params
+	sp.getUser(userId).then(user => {
+		res.send(user)
+	})
+})
 
+//Music Player EndPoints
+	// Get Currently Playing song
+app.get('/currently/playing', (req, res) => {
+	axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+		headers: {
+			"Authorization" : "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		// res.status(200).send(response)
+	})
+})
 
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));
