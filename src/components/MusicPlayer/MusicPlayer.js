@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import './MusicPlayer.css';
+// import './MusicPlayer.css';
 
 //Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -128,12 +128,12 @@ class MusicPlayer extends Component {
         console.log(this.state)
         return (
             <div className='musicPlayer'>
--                <div className="currently-playing-container">
--                    <img src={this.state.currentlyPlayingAlbumCover} alt="album cover"/>
--                    <div className="song-artist-container">
--                        <h3>{this.state.currentlyPlayingSongName}</h3>
--                        <p>{this.state.currentlyPlayingArtistName}</p>
--                    </div>
+                <div className="currently-playing-container">
+                    <img src={this.state.currentlyPlayingAlbumCover} alt="album cover"/>
+                    <div className="song-artist-container">
+                        <h3>{this.state.currentlyPlayingSongName}</h3>
+                        <p>{this.state.currentlyPlayingArtistName}</p>
+                    </div>
                 </div>
 
                 <div className="player-options-container">

@@ -6,7 +6,6 @@ import SideBar from './components/SideBar/SideBar';
 import Content from './components/Content/Content';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import Login from "./components/Login/Login";
-import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
