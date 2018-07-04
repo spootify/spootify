@@ -200,18 +200,39 @@ app.get('/spotify/album/:albumId', (req, res) => {
 })
 
 app.get('/spotify/user/:userId', (req, res) => {
-	const {userId} = req.params
+	const { userId } = req.params
 	sp.getUser(userId).then(user => {
 		res.send(user)
 	})
 })
 
+app.get('/spotify/tracks/:offset', (req, res) => {
+	const { offset } = req.params
+	axios.get(`https://api.spotify.com/v1/me/tracks?limit=50&offset=${offset}`, {
+		headers: {
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(result => {
+		res.status(200).send(stringify(result))
+	})
+})
+
+app.get('/spotify/saved/albums', (req, res) => {
+	axios.get('https://api.spotify.com/v1/me/albums', {
+		headers: {
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(result => {
+		res.status(200).send(stringify(result))
+	})
+})
+
 //Music Player EndPoints
-	// Get Currently Playing song
+// Get Currently Playing song
 app.get('/currently/playing', (req, res) => {
 	axios.get('https://api.spotify.com/v1/me/player', {
 		headers: {
-			"Authorization" : "Bearer" + ' ' + accToken
+			"Authorization": "Bearer" + ' ' + accToken
 		}
 	}).then(response => {
 		contextUri = response.data.item.album.uri

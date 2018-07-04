@@ -1,0 +1,11 @@
+.content {
+  display: inline-block;
+  height: 85vh;
+  overflow: scroll;
+  background-color: #181818;
+  padding: 20px 40px;
+  width: 100%; }
+  .content ::-webkit-scrollbar {
+    display: none; }
+
+/*# sourceMappingURL=Content.css.map */

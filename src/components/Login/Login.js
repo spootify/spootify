@@ -1,6 +1,7 @@
+
 import React, { Component } from 'react'
 import './Login.css';
-import logo from './white-spotify-logo.png';
+import logo from './Spootify-01.png';
 
 //Spotify API Imports
 import Spotify from 'spotify-web-api-js';

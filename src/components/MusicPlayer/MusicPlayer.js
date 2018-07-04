@@ -3,12 +3,15 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import './MusicPlayer.css';
 
+<<<<<<< HEAD
 //Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 //Reducer Functions
 import {getDeviceId, getUser} from '../../ducks/user';
 
+=======
+>>>>>>> master
 class MusicPlayer extends Component {
     constructor(props){
         super(props)
@@ -20,8 +23,12 @@ class MusicPlayer extends Component {
             currentlyPlayingAlbumCover: '',
             currentlyPlayingArtistName: '',
             currentlyPlayingSongName: '',
+<<<<<<< HEAD
             previewURL: '',
             deviceID: ''
+=======
+            item: []
+>>>>>>> master
         };
 
 
@@ -34,6 +41,7 @@ class MusicPlayer extends Component {
         this.eventHandler = this.eventHandler.bind(this);
     }
 
+<<<<<<< HEAD
     //Lifecycle Hooks
     componentDidMount(){
         this.props.getUser();
@@ -58,6 +66,8 @@ class MusicPlayer extends Component {
         this.setState({playing: !this.state.playing})
     }
 
+=======
+>>>>>>> master
     // Get Currently Playing
     getCurrentlyPlaying(){
         axios.get('/currently/playing').then(response => {
@@ -121,23 +131,24 @@ class MusicPlayer extends Component {
     getDevices(){
         axios.get('/available/devices').then(response => {
             console.log(response)
+<<<<<<< HEAD
+=======
+            this.setState({item: response.data})
+>>>>>>> master
         })
     }
 
     render(){
         console.log(this.props)
         return (
-            <div className='musicPlayer'>
-                <div className="currently-playing-container">
-                    <img src={this.state.currentlyPlayingAlbumCover} alt="album cover"/>
-                    <div className="song-artist-container">
-                        <h3>{this.state.currentlyPlayingSongName}</h3>
-                        <p>{this.state.currentlyPlayingArtistName}</p>
-                    </div>
+            <div className='musicPlayer'>MusicPlayer>
+                <div className="currently-playing">
+                    <button onClick={() => this.getCurrentlyPlaying()}></button>
                 </div>
 
-                <div className="player-options-container">
+                <div className="player-options">
                     <div className="play-button-container">
+<<<<<<< HEAD
                         <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.getDevices()}/>
                         {this.state.playing ?
                         <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSong()}/>
@@ -145,6 +156,9 @@ class MusicPlayer extends Component {
                         <FontAwesomeIcon icon="play-circle" id="middle-icon" onClick={() => this.playSong()}/>
                         }
                         <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.skipTrack()}/>
+=======
+
+>>>>>>> master
                     </div>
 
                     <div className="playback-time-container">
@@ -153,6 +167,7 @@ class MusicPlayer extends Component {
                 </div>
 
                 <div className="volume-container">
+
                 </div>
             </div>
         )

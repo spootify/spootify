@@ -1,42 +1,31 @@
 .sideBar {
-    width: 185px;
-    height: 92vh;
-    background: #121212;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
+  height: 85vh;
+  width: 15%;
+  background-color: #121212;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  color: #959595; }
+  .sideBar a {
+    text-decoration: none;
+    color: #959595; }
+    .sideBar a > p {
+      margin-bottom: 10px; }
+  .sideBar div > p {
+    margin-bottom: 20px; }
+  .sideBar div {
+    margin-bottom: 50px; }
+  .sideBar .newPlaylistDiv {
+    display: flex; }
+    .sideBar .newPlaylistDiv .fa-plus {
+      margin-right: 10px;
+      border: 2px solid #959595;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      padding: 2.5%; }
 
-.textColumn {
-    height: 55%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 25px;
-    padding: 15px;
-    box-sizing: border-box;
-}
-
-.newPlaylistDiv {
-    align-items: center;
-    justify-content: center;
-    border-top: .5px solid grey;
-}
-
-
-.sideBarText{
-    font-size: 13px;
-    font-weight: 100;
-}
-
-.pTags {
-    margin: 0px;
-    font-weight: 500;
-    margin-bottom: 18px;
-    
-}
-
+/*# sourceMappingURL=SideBar.css.map */

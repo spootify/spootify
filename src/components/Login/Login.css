@@ -12,12 +12,18 @@
     margin-left: auto;
     margin-right: auto;
     z-index: 5;
+    outline: none;
+}
+
+#login:hover {
+    cursor: pointer;
+    
 }
 
 #logo {
     z-index: 4;
     position: fixed;
-    top: 20%;
+    top: 30%;
     left: 50%;
     width: 250px;
     right: 0;
