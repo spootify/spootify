@@ -1,0 +1,62 @@
+.browseMainView hr {
+  width: 100%;
+  height: 1px;
+  margin: 30px 0;
+  padding: 0;
+  border-bottom: 2px solid #FFFFFF;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent; }
+.browseMainView .messageHeader {
+  margin: 20px 0;
+  justify-content: space-between; }
+  .browseMainView .messageHeader h3 {
+    color: #FFFFFF;
+    font: bold 24px 'Arial'; }
+.browseMainView .flexRow {
+  display: flex; }
+  .browseMainView .flexRow div {
+    display: flex; }
+    .browseMainView .flexRow div .arrow {
+      width: 18px;
+      height: 18px;
+      border-left: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF; }
+    .browseMainView .flexRow div .arrow-left {
+      transform: rotate(45deg); }
+    .browseMainView .flexRow div .arrow-right {
+      transform: rotate(225deg); }
+.browseMainView .featuredPlaylists {
+  width: 100%; }
+  .browseMainView .featuredPlaylists a {
+    text-decoration: none;
+    color: #FFFFFF;
+    text-align: center;
+    margin-right: 40px;
+    width: calc(100% / 5); }
+    .browseMainView .featuredPlaylists a:nth-child(5n) {
+      margin-right: 0; }
+  .browseMainView .featuredPlaylists .featuredPlaylist {
+    display: flex;
+    flex-direction: column; }
+    .browseMainView .featuredPlaylists .featuredPlaylist img {
+      width: 100%; }
+.browseMainView .subheader {
+  margin: 40px 0; }
+  .browseMainView .subheader a {
+    text-decoration: none;
+    color: #959595;
+    margin-right: 20px; }
+    .browseMainView .subheader a:last-child {
+      margin-right: 0; }
+.browseMainView .flexRowWrap .category {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .browseMainView .flexRowWrap .category a {
+    margin-right: 40px;
+    margin-bottom: 40px; }
+    .browseMainView .flexRowWrap .category a:nth-child(4n) {
+      margin-right: 0; }
+
+/*# sourceMappingURL=Overview.css.map */
