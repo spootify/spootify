@@ -1,5 +1,91 @@
 .musicPlayer {
 	width: 100%;
 	background-color: #282828;
-	height: 15vh;
-}
+	height: 15vh; }
+  
+  .currently-playing-container {
+	  width: 20%;
+	  height: 100%;
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: flex-start;
+	  align-items: center;
+	  margin-left: 2%;
+  }
+  .currently-playing-container > img {
+	  height: 70%;
+  }
+  
+  .song-artist-container {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: flex-start;
+	  align-items: flex-start;
+	  margin-left: 5%;
+  }
+  
+  .song-artist-container > h3 {
+	  font-size: 13px;
+	  margin-bottom: 1%;
+	  margin-left: 0;
+  }
+  
+  .song-artist-container > p {
+	  font-size: 11px;
+	  margin-bottom: 3%;
+  }
+  
+  .player-options-container {
+	  width: 45%;
+	  height: 100%;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: flex-start;
+	  align-items: center;
+  }
+  
+  .play-button-container {
+	  width: 100%;
+	  height: 65%;
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: center;
+	  align-items: center;
+	  font-size: 14px;
+	  color: gray;
+  }
+  
+  #first-icon :hover {
+	  color: white;
+	  cursor: pointer;
+  }
+  
+  #middle-icon {
+	  font-size: 25px;
+	  margin: 0 5%;
+  }
+  
+  #middle-icon :hover {
+	  color: white;
+	  cursor: pointer;
+  }
+  
+  #last-icon :hover {
+	  color: white;
+	  cursor: pointer;
+  }
+  
+  .playback-time-container {
+	  width: 100%;
+	  height: 35%;
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: space-around;
+	  align-items: center;
+	  background: red;
+  }
+  
+  .volume-container {
+	  width: 20%;
+	  height: 100%;
+  }
