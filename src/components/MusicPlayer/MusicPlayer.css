@@ -1,7 +1,10 @@
 .musicPlayer {
   width: 100%;
   background-color: #282828;
-  height: 15vh; }
+  height: 15vh; 
+  display: flex;
+  flex-direction: row;
+}
 
 .currently-playing-container {
     width: 20%;
