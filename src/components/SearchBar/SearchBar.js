@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "./SearchBar.css";
 import { getUser } from '../../ducks/user';
 import { connect } from 'react-redux';
 

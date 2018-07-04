@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './ducks/store';
-import './index.css';
 import App from './App';
+import './index.css';
 // import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

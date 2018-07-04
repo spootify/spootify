@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './MusicPlayer.css';
-
 class MusicPlayer extends Component {
     constructor(props){
         super(props)

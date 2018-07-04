@@ -6,8 +6,6 @@ import SideBar from './components/SideBar/SideBar';
 import Content from './components/Content/Content';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import Login from "./components/Login/Login";
-import './App.css';
-
 class App extends Component {
 	constructor(props) {
 		super(props);

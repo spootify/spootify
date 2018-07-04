@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Spotify from 'spotify-web-api-js';
 import {connect} from 'react-redux';
 import {getUser} from '../../ducks/user';
+import logo from './white-spotify-logo.png';
+import './Login.css'
 
 const spotifyWebApi = new Spotify();
 
@@ -49,18 +51,18 @@ class Login extends Component {
   render() {
     console.log(this.props)
     return (
-      <div>
-        <a href="http://localhost:3005/auth/spotify">
-            <button>Login With Spotify</button>
-        </a>
-        <div>
-          Now Playing: {this.state.nowPlaying.name}
-        </div>
-
-        {/* <img src={this.state.nowPlaying.image} style={{width: 100}}/> */}
-
-        <button>Check now playing</button>
-      </div>
+		<div className='loginScreen'>
+			<img id='logo' src={logo} alt='spotify' />
+			<a href="http://localhost:3005/auth/spotify">
+				<button id='login'>LOG IN</button>
+			</a>
+			<div id='boxOne' className='box'>
+			</div>
+			<div id='boxTwo' className='box'>
+			</div>
+			<div id='boxThree' className='box'>
+			</div>
+		</div>
     )
   }
 }
