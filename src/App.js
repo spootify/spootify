@@ -8,6 +8,13 @@ import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import Login from "./components/Login/Login";
 import './App.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStepBackward } from '@fortawesome/free-solid-svg-icons'
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
+import { faStepForward } from '@fortawesome/free-solid-svg-icons'
+import { faPauseCircle } from '@fortawesome/free-solid-svg-icons'
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -20,6 +27,7 @@ class App extends Component {
 
 
 	render() {
+		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle);
 		console.log(this.props);
 		return (
 			<div className="App">
