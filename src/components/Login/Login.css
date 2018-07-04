@@ -1,66 +1,66 @@
-.loginScreen {
-	background: linear-gradient(#212121, #121212);
-	height: 100vh;
+#login {
+    background: #1db954;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    width: 100px;
+    height: 30px;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 5;
+    outline: none;
 }
 
-#login {
-	background: #1DB954;
-	color: white;
-	border: none;
-	border-radius: 15px;
-	width: 100px;
-	height: 30px;
-	position: fixed;
-	top: 50%;
-	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;
-	z-index: 5;
-	cursor: pointer;
+#login:hover {
+    cursor: pointer;
+    
 }
 
 #logo {
-	z-index: 4;
-	position: fixed;
-	top: 20%;
-	left: 50%;
-	width: 250px;
-	right: 0;
-	left: 0;
-	margin-right: auto;
-	margin-left: auto;
+    z-index: 4;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    width: 250px;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .box {
-	background: linear-gradient(700deg, #121212, #212121);
-	width: 100px;
-	height: 650px;
-	position: fixed;
-	bottom: -150px;
-	z-index: 3;
+    background:linear-gradient(700deg, #121212 ,#212121);
+    width: 100px;
+    height: 650px;
+    position: fixed;
+    bottom: -150px;
+    z-index: 3;
 }
 
 #boxOne {
-	transform: rotate(30deg);
-	width: 175px;
-	left: 6%;
-	height: 800px;
+    transform: rotate(30deg);
+    width: 175px;
+    left: 6%;
+    height: 800px;
 }
 
 #boxTwo {
-	transform: rotate(40deg);
-	width: 350px;
-	height: 1550px;
-	left: 27%;
-	bottom: -400px;
+    transform: rotate(40deg);
+    width: 350px;
+    height: 1550px;
+    left: 27%;
+    bottom: -400px;
 }
 
 #boxThree {
-	width: 650px;
-	left: 50%;
-	transform: rotate(50deg);
-	height: 1900px;
-	bottom: -800px;
+    width: 650px;
+    left: 50%;
+    transform: rotate(50deg);
+    height: 1900px;
+    bottom: -800px;
 
 }
