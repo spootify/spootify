@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import './MusicPlayer.css';
+// import './MusicPlayer.css';
 
 //Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -125,14 +125,18 @@ class MusicPlayer extends Component {
     }
 
     render(){
-        console.log(this.props)
+        console.log(this.state)
         return (
-            <div className='musicPlayer'>MusicPlayer>
-                <div className="currently-playing">
-                    <button onClick={() => this.getCurrentlyPlaying()}></button>
+            <div className='musicPlayer'>
+                <div className="currently-playing-container">
+                    <img src={this.state.currentlyPlayingAlbumCover} alt="album cover"/>
+                    <div className="song-artist-container">
+                        <h3>{this.state.currentlyPlayingSongName}</h3>
+                        <p>{this.state.currentlyPlayingArtistName}</p>
+                    </div>
                 </div>
 
-                <div className="player-options">
+                <div className="player-options-container">
                     <div className="play-button-container">
                         <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.getDevices()}/>
                         {this.state.playing ?

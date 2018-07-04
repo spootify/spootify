@@ -18,7 +18,7 @@ export function getUser() {
 				access_token: resp.data[1],
 				refresh_token: resp.data[2],
 				displayName: res.data.body.display_name,
-				image: res.data.body.images[0].url
+				// image: res.data.body.images[0].url
 			}
 		}).catch((err) => console.error(err));
 		
