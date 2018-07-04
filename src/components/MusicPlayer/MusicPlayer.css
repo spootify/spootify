@@ -61,13 +61,28 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 14px;
     color: gray;
 }
 
+#first-icon :hover {
+    color: white;
+    cursor: pointer;
+}
+
 #middle-icon {
-    font-size: 30px;
+    font-size: 25px;
     margin: 0 5%;
+}
+
+#middle-icon :hover {
+    color: white;
+    cursor: pointer;
+}
+
+#last-icon :hover {
+    color: white;
+    cursor: pointer;
 }
 
 .playback-time-container {

@@ -10,6 +10,10 @@ const axios = require('axios');
 const Spotify = require('spotify-web-api-node');
 const stringify = require('json-stringify-safe');
 
+let contextUri = '';
+
+const scope = 'user-read-private user-read-email user-read-birthdate user-top-read user-read-recently-played user-library-modify user-library-read playlist-modify-public playlist-modify-private playlist-read-collaborative playlist-read-private user-follow-modify user-follow-read user-read-currently-playing user-read-playback-state user-modify-playback-state streaming';
+
 const sp = new Spotify({
 	clientId: process.env.CLIENT_ID,
 	clientSecret: process.env.CLIENT_SECRET,
@@ -102,7 +106,7 @@ passport.deserializeUser((id, done) => {
 
 //Passport Spotify End Points
 app.get('/auth/spotify', passport.authenticate('spotify', {
-	scope: ['user-read-email', 'user-read-private', 'user-library-read', 'user-read-playback-state', 'streaming'],
+	scope: scope,
 	showDialog: true
 }));
 
@@ -205,14 +209,66 @@ app.get('/spotify/user/:userId', (req, res) => {
 //Music Player EndPoints
 	// Get Currently Playing song
 app.get('/currently/playing', (req, res) => {
-	axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+	axios.get('https://api.spotify.com/v1/me/player', {
 		headers: {
 			"Authorization" : "Bearer" + ' ' + accToken
 		}
 	}).then(response => {
+		contextUri = response.data.item.album.uri
 		res.status(200).send(stringify(response))
 	})
 })
+
+	//Pause Current Playing Info
+app.get('/pause/song', (req, res) => {
+	let body = JSON.stringify({'context_uri': contextUri})
+	axios.put('https://api.spotify.com/v1/me/player/pause', body, {
+		headers: {
+			"Accept" : "application/json",
+			"Content-Type" : "application/json",
+			"Authorization" : "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		res.status(200).send('Music Paused');
+	}).catch(error => console.log(error))
+})
+
+	//Play Paused Track
+	app.put('/resume/track', (req, res) => {
+		let {deviceID} = req.body;
+		let body = JSON.stringify({'context_uri': contextUri,})
+		axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`, body, {
+			headers: {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json",
+				"Authorization" : "Bearer" + ' ' + accToken
+			}
+		}).then(response => {
+			res.status(200).send('Music Resumed')
+		})
+	})
+
+	//Skip To Next Track
+app.get('/skip/next/track', (req, res) => {
+	axios.post('https://api.spotify.com/v1/me/player/next', {
+		headers: {
+			"Authorization" : "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		res.status(200).send('Skipped Track');
+	})
+})
+
+	// Get Available Devices
+	app.get('/available/devices', (req, res) => {
+		axios.get('https://api.spotify.com/v1/me/player/devices', {
+			headers: {
+				"Authorization" : "Bearer" + ' ' + accToken
+			}
+		}).then(response => {
+			res.status(200).send(response.data.devices[0].id)
+		}).catch(error => console.log(error))
+	})
 
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));
