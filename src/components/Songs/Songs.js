@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { changeCurrentSong } from '../../ducks/user';
 
-import './Songs.css';
+// import './Songs.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
