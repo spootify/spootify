@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { changeCurrentSong } from '../../ducks/user';
 
-export default class Songs extends Component {
-  constructor(){
+class Songs extends Component {
+  constructor() {
     super()
     this.state = {
       tracks: [],
@@ -11,26 +13,25 @@ export default class Songs extends Component {
   }
 
 
-  componentDidMount(){
+  componentDidMount() {
     axios.get(`/spotify/tracks/${this.state.offset}`).then(res => {
-      console.log(res.data)
       this.setState({
         tracks: res.data.data.items
       })
     })
   }
 
-  playTrack(albumuri, trackuri){
-    console.log(albumuri, trackuri)
+  playTrack(albumUri, trackUri) {
+    this.props.changeCurrentSong(albumUri, trackUri)
   }
 
   render() {
-    console.log(this.state.tracks, this.state.offset)
     return (
-      <div  className='flexColumn'>
-      {this.state.tracks.map(track => {
-        return (
-            <div onDoubleClick={()=>this.playTrack(track.track.album.uri, track.track.uri)} className='flexRow' key={track.track.id}>
+      <div className='flexColumn'>
+        {this.state.tracks.map(track => {
+          return (
+
+            <div onDoubleClick={() => this.playTrack(track.track.album.uri, track.track.uri)} className='flexRow' key={track.track.id}>
               <p>{track.track.name}</p>
               {track.track.artists.map(artist => {
                 return (
@@ -49,3 +50,11 @@ export default class Songs extends Component {
     )
   }
 }
+
+function mapStateToProps(state){
+  return {
+    currentSong: state.user.currentSong
+  }
+}
+
+export default connect(mapStateToProps, { changeCurrentSong })(Songs);
