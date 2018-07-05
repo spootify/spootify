@@ -3,8 +3,9 @@
 @import "./components/Browse/Overview.scss";
 @import "./components/BrowseNav/BrowseNav.scss";
 @import "./components/Content/Content.scss";
-@import "./components/Dashboard/Dashboard.scss";
-// @import "./components/MusicPlayer/MusicPlayer.scss";
+@import "components/Home/Home";
+//@import "./components/MusicPlayer/MusicPlayer.scss";
 @import "./components/SearchBar/SearchBar.scss";
 @import "./components/SideBar/SideBar.scss";
 @import "./components/SongList/SongList";
+@import "./components/Playlist/Playlist";

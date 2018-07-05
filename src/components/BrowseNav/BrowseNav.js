@@ -7,10 +7,10 @@ class BrowseNav extends Component {
 			<div className='browse-nav'>
 				<div>
 					<div className='flexRow'>
-						<Link to='/dashboard/browse/overview'><h3>OVERVIEW</h3></Link>
-						<Link to='/dashboard/browse/charts'><h3>CHARTS</h3></Link>
-						<Link to='/dashboard/browse/genres'><h3>GENRES & MOODS</h3></Link>
-						<Link to='/dashboard/browse/releases'><h3>NEW RELEASES</h3></Link>
+						<Link to='/home/browse/overview'><h3>OVERVIEW</h3></Link>
+						<Link to='/home/browse/charts'><h3>CHARTS</h3></Link>
+						<Link to='/home/browse/genres'><h3>GENRES & MOODS</h3></Link>
+						<Link to='/home/browse/releases'><h3>NEW RELEASES</h3></Link>
 					</div>
 				</div>
 			</div>

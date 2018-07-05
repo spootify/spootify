@@ -174,7 +174,46 @@ body {
       height: 24px;
       padding: 2.5%; }
 
-.song-list table tr {
-  border-bottom: 1px solid; }
+.song-list {
+  width: 100%; }
+  .song-list table {
+    margin-top: 50px;
+    width: 100%;
+    table-layout: fixed; }
+    .song-list table tr {
+      border-bottom: 1px solid #282828; }
+      .song-list table tr td:first-child {
+        width: 4%; }
+      .song-list table tr td:last-child {
+        width: 9%; }
+    .song-list table thead tr td {
+      color: #A2A2A2;
+      text-transform: uppercase;
+      text-align: center; }
+    .song-list table td {
+      padding: 5px 20px;
+      color: #FFFFFF; }
+    .song-list table tbody tr td {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden; }
+      .song-list table tbody tr td svg {
+        cursor: pointer; }
+      .song-list table tbody tr td:last-child {
+        text-align: center; }
 
-/*# sourceMappingURL=index.css.map */
+.playlist .playlist-header {
+  display: flex; }
+  .playlist .playlist-header .playlist-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 20px; }
+    .playlist .playlist-header .playlist-info h1 {
+      color: #FFFFFF;
+      font: bold 48px sans-serif; }
+    .playlist .playlist-header .playlist-info h3 {
+      color: #FFFFFF;
+      text-transform: uppercase; }
+    .playlist .playlist-header .playlist-info p {
+      color: #A2A2A2; }

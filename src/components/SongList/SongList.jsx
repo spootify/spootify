@@ -1,20 +1,22 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SongLIst(props) {
 	let {tracks} = props;
-	console.log(tracks);
 	tracks = tracks.map((e) => (
 		<tr key={e.track.id}>
-			<td>PlayBut</td>
+			<td><FontAwesomeIcon icon="play-circle"/></td>
 			<td>{e.track.name}</td>
-			<td>{e.track.artists.map((artist) => artist.name)}</td>
+			<td>{e.track.artists.map((artist, i, arr) => (
+				(arr.length>1) ? (i===arr.length-1) ? artist.name : artist.name + ', ' : artist.name))}
+			</td>
 			<td>{e.track.album.name}</td>
 			<td>{Math.floor(e.track.duration_ms / 1000 / 60)}:{(e.track.duration_ms / 60 % 60 < 10) ?
 															   '0' + Math.floor(e.track.duration_ms / 60 % 60) :
 															   Math.floor(e.track.duration_ms / 60 % 60)}
 			</td>
 		</tr>
-	))
+	));
 	return (
 		<div className='song-list'>
 			<table>

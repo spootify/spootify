@@ -3,7 +3,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
 import Login from './components/Login/Login';
-import DashBoard from './components/Dashboard/Dashboard';
+import Home from './components/Home/Home';
 import Playlist from './components/Playlist/Playlist';
 import Category from './components/Category/Category';
 import Album from './components/Album/Album';
@@ -20,12 +20,9 @@ import SearchResults from './components/SearchResults/SearchResults';
 export default (
 	<Switch className='routes-container'>
 		{/*<Route exact path="/" component={Login}/>*/}
-		{/*<Route path="/dashboard/" component={DashBoard}/>*/}
+		<Route path="/home/" component={Home}/>
 		{/*<Route exact path="/dashboard/browse" component={BrowseNav}/>*/}
-		<Route path="/dashboard/browse/overview" component={Overview}/>
-		<Route path="/dashboard/browse/charts" component={Charts}/>
-		<Route path="/dashboard/browse/genres" compnonent={Genres}/>
-		<Route path="/dashboard/browse/releases" component={NewReleases}/>
+
 		<Route path="/dashboard/playlist/:ownerId/:playlistId" component={Playlist}/>
 		<Route path='/dashboard/category/:categoryId/:categoryName' component={Category}/>
 		<Route path='/dashboard/album/:albumId' component={Album}/>
