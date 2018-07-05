@@ -3,12 +3,17 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { changeCurrentSong } from '../../ducks/user';
 
+import './Songs.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 class Songs extends Component {
   constructor() {
     super()
     this.state = {
       tracks: [],
-      offset: 0
+      offset: 0,
+      highlightedTrack: ''
     }
   }
 
@@ -25,13 +30,31 @@ class Songs extends Component {
     this.props.changeCurrentSong(albumUri, trackUri)
   }
 
+  highlightedTrack(trackId) {
+    this.setState({
+      highlightedTrack: trackId
+    })
+  }
+
+  unHighlightTrack(){
+    this.setState({
+      highlightedTrack: ''
+    })
+  }
+
   render() {
     return (
       <div className='flexColumn'>
         {this.state.tracks.map(track => {
           return (
-
-            <div onDoubleClick={() => this.playTrack(track.track.album.uri, track.track.uri)} className='flexRow' key={track.track.id}>
+            <div onDoubleClick={() => this.playTrack(track.track.album.uri, track.track.uri)}
+              onMouseEnter={() => this.highlightedTrack(track.track.id)} 
+              onMouseLeave={() => this.unHighlightTrack()}
+              className='flexRow' 
+              key={track.track.id}>
+              <FontAwesomeIcon icon="play-circle"
+                className={this.state.highlightedTrack === track.track.id ? "middle-icon" : "invisable"}
+                onClick={() => this.playTrack(track.track.album.uri, track.track.uri)} />
               <p>{track.track.name}</p>
               {track.track.artists.map(artist => {
                 return (
@@ -51,7 +74,7 @@ class Songs extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     currentSong: state.user.currentSong
   }
