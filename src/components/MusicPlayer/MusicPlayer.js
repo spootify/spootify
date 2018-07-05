@@ -7,7 +7,8 @@ import './MusicPlayer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 //Reducer Functions
-import {getDeviceId, getUser} from '../../ducks/user';
+import {getUser} from '../../ducks/user';
+import {setDeviceID, getCurrentlyPlaying, pauseSong, playSong, skipTrack, previousTrack} from '../../ducks/player';
 
 class MusicPlayer extends Component {
     constructor(props){
@@ -27,14 +28,13 @@ class MusicPlayer extends Component {
 
         //Binding Methods
         this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
-        this.pauseSong = this.pauseSong.bind(this);
-        this.switchPlayingState = this.switchPlayingState.bind(this);
-        this.skipTrack = this.skipTrack.bind(this);
-        this.playSong = this.playSong.bind(this);
         this.eventHandler = this.eventHandler.bind(this);
+        this.playSongFunc = this.playSongFunc.bind(this);
+        this.pauseSongFunc = this.pauseSongFunc.bind(this);
     }
 
     //Lifecycle Hooks
+        //Setting Player
     componentDidMount(){
         this.props.getUser();
         let interval_id = setInterval(() => {
@@ -49,42 +49,26 @@ class MusicPlayer extends Component {
             this.eventHandler();
         }
         }, 3000)
-        this.props.getDeviceId();
         this.getCurrentlyPlaying();
     }
 
-    //Playing / Paused
-    switchPlayingState(){
-        this.setState({playing: !this.state.playing})
-    }
-
-    // Get Currently Playing
-    getCurrentlyPlaying(){
-        axios.get('/currently/playing').then(response => {
-            console.log(response.data)
-            this.setState({currentlyPlayingAlbumCover: response.data.data.item.album.images[2].url, currentlyPlayingArtistName: response.data.data.item.artists[0].name, currentlyPlayingSongName: response.data.data.item.name,
-            playing: response.data.data.is_playing,
-            previewURL: response.data.data.item.preview_url
-            })
-        })
-    }
-
-    //Event Handlers
+    
+    //Initializing the SDK Player
     eventHandler(){
         this.player.addListener('initialization_error', ({message}) => {console.error(message)});
         this.player.addListener('authentication_error', ({ message }) => { console.error(message); });
         this.player.addListener('account_error', ({ message }) => { console.error(message); });
         this.player.addListener('playback_error', ({ message }) => { console.error(message); });
-
+        
         // Playback status updates
         this.player.addListener('player_state_changed', state => { console.log(state); });
-
+        
         // Ready
         this.player.addListener('ready', ({ device_id }) => {
-            this.setState({deviceID: device_id})
+            this.props.setDeviceID(device_id)
             console.log('Ready with Device ID', device_id);
         });
-
+        
         // Not Ready
         this.player.addListener('not_ready', ({ device_id }) => {
             console.log('Device ID has gone offline', device_id);
@@ -92,43 +76,32 @@ class MusicPlayer extends Component {
         // Connect to the player!
         this.player.connect();
     }
-
-    //Pause Currently Playing Song
-    pauseSong(){
-        axios.get('/pause/song').then(response => {
-            this.switchPlayingState();
+    
+    // Get Currently Playing
+    getCurrentlyPlaying(){
+        axios.get('/currently/playing').then(response => {
+            console.log(response.data)
+            this.setState({currentlyPlayingAlbumCover: response.data.data.item.album.images[2].url, currentlyPlayingArtistName: response.data.data.item.artists[0].name, currentlyPlayingSongName: response.data.data.item.name,
+            playing: response.data.data.is_playing,
+            })
         })
     }
 
-    //Play A Currently Paused Song
-    playSong(){
-        axios.put('/resume/track', {deviceID: this.state.deviceID}).then(response => {
-            console.log(response)
-        })
-        this.switchPlayingState();
+    //changePlayingState
+    changePlayingState(){
+        this.setState({playing: !this.state.playing})
     }
 
-    // Skip to Next Track
-    skipTrack(){
-        axios.post('/skip/next/track', {deviceID: this.state.deviceID}).then(response => {
-            console.log(response)
-            this.getCurrentlyPlaying();
-        })
+    //Play Song
+    playSongFunc(){
+        this.props.playSong();
+        this.changePlayingState();
     }
 
-    //Skip to Previous Track
-    previousTrack(){
-        axios.post('/previous/track', {deviceID: this.state.deviceID}).then(response => {
-            console.log(response)
-            this.getCurrentlyPlaying();
-        })
-    }
-
-    //Get Avilable devices
-    getDevices(){
-        axios.get('/available/devices').then(response => {
-            console.log(response)
-        })
+    //Pause Song
+    pauseSongFunc(){
+        this.props.pauseSong();
+        this.changePlayingState();
     }
 
     render(){
@@ -145,13 +118,13 @@ class MusicPlayer extends Component {
 
                 <div className="player-options-container">
                     <div className="play-button-container">
-                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.previousTrack()}/>
+                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.props.previousTrack()}/>
                         {this.state.playing ?
-                        <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSong()}/>
+                        <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSongFunc()}/>
                         :
-                        <FontAwesomeIcon icon="play-circle" id="middle-icon" onClick={() => this.playSong()}/>
+                        <FontAwesomeIcon icon="play-circle" id="middle-icon" onClick={() => this.playSongFunc()}/>
                         }
-                        <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.skipTrack()}/>
+                        <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.props.skipTrack()}/>
                     </div>
 
                     <div className="playback-time-container">
@@ -170,8 +143,8 @@ class MusicPlayer extends Component {
 function mapStateToProps(state){
     return {
         user: state.user,
-        deviceId: state.user.deviceId
+        player: state.player
     }
 }
 
-export default connect(mapStateToProps, {getDeviceId, getUser})(MusicPlayer);
+export default connect(mapStateToProps, {setDeviceID, getUser})(MusicPlayer);

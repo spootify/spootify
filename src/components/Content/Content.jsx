@@ -7,7 +7,6 @@ function Content(props) {
 	return (
 		<div className='content'>
 			<SearchBar/>
-			<BrowseNav/>
 			{routes}
 		</div>
 	);

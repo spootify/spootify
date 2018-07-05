@@ -173,3 +173,8 @@ body {
       width: 24px;
       height: 24px;
       padding: 2.5%; }
+
+.song-list table tr {
+  border-bottom: 1px solid; }
+
+/*# sourceMappingURL=index.css.map */
