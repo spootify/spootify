@@ -13,19 +13,24 @@ export default class Songs extends Component {
 
   componentDidMount(){
     axios.get(`/spotify/tracks/${this.state.offset}`).then(res => {
+      console.log(res.data)
       this.setState({
         tracks: res.data.data.items
       })
     })
   }
 
+  playTrack(albumuri, trackuri){
+    console.log(albumuri, trackuri)
+  }
+
   render() {
     console.log(this.state.tracks, this.state.offset)
     return (
-      <div className='flexColumn'>
-        {this.state.tracks.map(track => {
-          return (
-            <div className='flexRow' key={track.track.id}>
+      <div  className='flexColumn'>
+      {this.state.tracks.map(track => {
+        return (
+            <div onDoubleClick={()=>this.playTrack(track.track.album.uri, track.track.uri)} className='flexRow' key={track.track.id}>
               <p>{track.track.name}</p>
               {track.track.artists.map(artist => {
                 return (
