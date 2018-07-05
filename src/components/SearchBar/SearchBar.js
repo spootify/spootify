@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
 import { getUser } from '../../ducks/user';
+import { updateResults } from '../../ducks/results';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
-            user: {}
+            user: {},
+            results: {
+                albums: [],
+                artists: [],
+                playlists: []
+            }
         }
     }
     componentDidMount() {
         getUser()
     }
+
+    search(input){
+        axios.get(`/spotify/search/albums/${input}`).then(albums => {
+            axios.get(`/spotify/search/artists/${input}`).then(artists => {
+                axios.get(`/spotify/search/playlists/${input}`).then(playlists => {
+                    this.setState({
+                        results: {
+                            albums: albums.data.body.albums.items,
+                            artists: artists.data.body.artists.items,
+                            playlists: playlists.data.body.playlists.items
+                        }
+                    })
+                    this.props.updateResults(this.state.results)
+                })
+            })
+        })
+    }
     render() {
-        console.log(this.props.user)
         return (
             <div className='searchBar'>
                 <div className='searchDiv'>
-                    <input
+                   <Link to='/dashboard/search/results'><input
                         className="searchInput"
                         placeholder="Search"
-                    />
+                        onChange={e => this.search(e.target.value)}
+                    /></Link>
                 </div>
                 <div id='profileDiv' className='searchDiv'>
-                    <img src={this.props.user.image} alt={this.props.user.displayName} style={{height: "30px", borderRadius: "50%"}}/>
+                    <img src={this.props.user.image} alt={this.props.user.displayName} style={{ height: "30px", borderRadius: "50%" }} />
                     <p>{this.props.user.displayName}</p>
                 </div>
             </div>
@@ -33,8 +58,8 @@ class SearchBar extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
     }
 }
 
-export default connect(mapStateToProps)(SearchBar);
+export default connect(mapStateToProps, {getUser, updateResults})(SearchBar);
