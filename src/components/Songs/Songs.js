@@ -3,14 +3,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { changeCurrentSong } from '../../ducks/user';
 
-<<<<<<< HEAD
 import SongList from '../SongList/SongList';
 import PlayButton from '../PlayButton/PlayButton';
-=======
-// import './Songs.css';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
->>>>>>> master
 
 class Songs extends Component {
   constructor() {
