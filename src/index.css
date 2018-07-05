@@ -25,12 +25,14 @@ body {
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-left: 1px solid transparent; }
+
 .browseMainView .messageHeader {
   margin: 20px 0;
   justify-content: space-between; }
   .browseMainView .messageHeader h3 {
     color: #FFFFFF;
     font: bold 24px 'Arial'; }
+
 .browseMainView .flexRow {
   display: flex; }
   .browseMainView .flexRow div {
@@ -45,6 +47,7 @@ body {
       transform: rotate(45deg); }
     .browseMainView .flexRow div .arrow-right {
       transform: rotate(225deg); }
+
 .browseMainView .featuredPlaylists {
   width: 100%;
   height: 360px;
@@ -84,6 +87,7 @@ body {
       flex-direction: column; }
       .browseMainView .featuredPlaylists .slider .featuredPlaylist img {
         width: 100%; }
+
 .browseMainView .subheader {
   margin: 40px 0; }
   .browseMainView .subheader a {
@@ -92,6 +96,7 @@ body {
     margin-right: 20px; }
     .browseMainView .subheader a:last-child {
       margin-right: 0; }
+
 .browseMainView .flexRowWrap .category {
   display: flex;
   justify-content: space-between;
@@ -252,4 +257,5 @@ body {
       height: 24px;
       padding: 2.5%; }
 
-/*# sourceMappingURL=index.css.map */
+.song-list table tr {
+  border-bottom: 1px solid; }

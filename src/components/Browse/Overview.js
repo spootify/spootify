@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {getUser} from '../../ducks/user';
+import BrowseNav from '../BrowseNav/BrowseNav';
 
 class Overview extends Component {
 	constructor() {
@@ -37,7 +38,7 @@ class Overview extends Component {
 	getMore() {
 		let {startingIndex} = this.state;
 		startingIndex++;
-		if (startingIndex > 3) {
+		if (startingIndex > 2) {
 			return;
 		}
 		this.setState({startingIndex});
@@ -55,6 +56,7 @@ class Overview extends Component {
 	render() {
 		return (
 			<div className='browseMainView'>
+				<BrowseNav/>
 				<div className='messageHeader flexRow'>
 					<h3>{this.state.featuredPlaylistsBody.message}</h3>
 					<div>
