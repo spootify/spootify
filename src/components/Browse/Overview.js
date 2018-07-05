@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {getUser} from '../../ducks/user';
-import './Overview.css';
 
 class Overview extends Component {
 	constructor() {
@@ -36,26 +35,21 @@ class Overview extends Component {
 	}
 
 	getMore() {
-		if (this.state.startingIndex === 10) {
-			null
-
-		} else {
-			this.setState({
-				offset       : this.state.offset + 5,
-				startingIndex: this.state.startingIndex + 5
-			})
+		let {startingIndex} = this.state;
+		startingIndex++;
+		if (startingIndex > 3) {
+			return;
 		}
+		this.setState({startingIndex});
 	}
 
 	goBack() {
-		if (this.state.startingIndex >= 5) {
-			this.setState({
-				offset       : this.state.offset - 5,
-				startingIndex: this.state.startingIndex - 5
-			})
-		} else {
-			null;
+		let {startingIndex} = this.state;
+		startingIndex--;
+		if (startingIndex < 0) {
+			return;
 		}
+		this.setState({startingIndex});
 	}
 
 	render() {
@@ -70,13 +64,15 @@ class Overview extends Component {
 				</div>
 				<hr/>
 				<div className='featuredPlaylists flexRow'>
-					{
-						this.state.featuredPlaylists.filter((featPlaylist, i) => {
-							return i < this.state.offset && i >= this.state.startingIndex
-						}).map((filteredPL, i) => {
+					<div className='slider'
+						 style={{
+							 transform: `translateX(-${this.state.startingIndex * 100}%)`
+						 }}>
+						{this.state.featuredPlaylists.map((filteredPL, i) => {
 							return (
 								<Link to={`/dashboard/playlist/${filteredPL.owner.id}/${filteredPL.id}`}
-									  key={filteredPL.id + i}>
+									  key={filteredPL.id + i}
+									  className='hot-playlist'>
 									<div className='featuredPlaylist flexColumn'>
 										<img src={filteredPL.images[0].url}/>
 										<p>{filteredPL.name}</p>
@@ -84,7 +80,8 @@ class Overview extends Component {
 								</Link>
 							)
 						})
-					}
+						}
+					</div>
 				</div>
 
 
@@ -120,7 +117,7 @@ class Overview extends Component {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 };
 

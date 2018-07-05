@@ -1,0 +1,255 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+* {
+  box-sizing: border-box; }
+
+.App {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+  .App .container {
+    display: flex;
+    width: 100%;
+    height: 85vh; }
+  .App ::-webkit-scrollbar {
+    display: none; }
+
+.browseMainView hr {
+  width: 100%;
+  height: 1px;
+  margin: 30px 0;
+  padding: 0;
+  border-bottom: 2px solid #FFFFFF;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent; }
+.browseMainView .messageHeader {
+  margin: 20px 0;
+  justify-content: space-between; }
+  .browseMainView .messageHeader h3 {
+    color: #FFFFFF;
+    font: bold 24px 'Arial'; }
+.browseMainView .flexRow {
+  display: flex; }
+  .browseMainView .flexRow div {
+    display: flex; }
+    .browseMainView .flexRow div .arrow {
+      width: 18px;
+      height: 18px;
+      border-left: 1px solid #FFFFFF;
+      border-bottom: 1px solid #FFFFFF;
+      cursor: pointer; }
+    .browseMainView .flexRow div .arrow-left {
+      transform: rotate(45deg); }
+    .browseMainView .flexRow div .arrow-right {
+      transform: rotate(225deg); }
+.browseMainView .featuredPlaylists {
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  transition: transform 0.5s linear; }
+  .browseMainView .featuredPlaylists .slider {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s linear; }
+    .browseMainView .featuredPlaylists .slider .hot-playlist {
+      text-decoration: none;
+      color: #FFFFFF;
+      text-align: center;
+      height: 100%;
+      min-width: 24%;
+      max-width: 24%;
+      margin-right: calc((100% - 24% * 4) / 3);
+      overflow: hidden; }
+      @media (max-width: 1185px) {
+        .browseMainView .featuredPlaylists .slider .hot-playlist {
+          min-width: 33%;
+          max-width: 33%;
+          margin-right: calc((100% - 33% * 3) / 2); }
+          .browseMainView .featuredPlaylists .slider .hot-playlist:nth-child(3n) {
+            margin-right: 0; } }
+      @media (min-width: 1186px) {
+        .browseMainView .featuredPlaylists .slider .hot-playlist:nth-child(4n) {
+          margin-right: 0; } }
+      .browseMainView .featuredPlaylists .slider .hot-playlist:last-child {
+        margin-right: 0; }
+    .browseMainView .featuredPlaylists .slider .featuredPlaylist {
+      display: flex;
+      flex-direction: column; }
+      .browseMainView .featuredPlaylists .slider .featuredPlaylist img {
+        width: 100%; }
+.browseMainView .subheader {
+  margin: 40px 0; }
+  .browseMainView .subheader a {
+    text-decoration: none;
+    color: #959595;
+    margin-right: 20px; }
+    .browseMainView .subheader a:last-child {
+      margin-right: 0; }
+.browseMainView .flexRowWrap .category {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%; }
+  .browseMainView .flexRowWrap .category a {
+    min-width: 24%;
+    margin-right: calc((100% - 24% * 4) / 3);
+    margin-bottom: 40px; }
+    @media (max-width: 1185px) {
+      .browseMainView .flexRowWrap .category a {
+        flex-basis: 33%;
+        margin-right: calc((100% - 33% * 3) / 2); }
+        .browseMainView .flexRowWrap .category a:nth-child(3n) {
+          margin-right: 0; } }
+    .browseMainView .flexRowWrap .category a div img {
+      width: 100%; }
+    @media (min-width: 1186px) {
+      .browseMainView .flexRowWrap .category a:nth-child(4n) {
+        margin-right: 0; } }
+
+.browse-nav .flexRow {
+  display: flex; }
+  .browse-nav .flexRow a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #959595; }
+    .browse-nav .flexRow a:last-child {
+      margin-right: 0; }
+
+.content {
+  display: inline-block;
+  height: 85vh;
+  overflow: scroll;
+  background-color: #181818;
+  padding: 20px 40px;
+  width: 100%; }
+  .content ::-webkit-scrollbar {
+    display: none; }
+
+.dashboard {
+  margin: 0; }
+
+.musicPlayer {
+  width: 100%;
+  background-color: #282828;
+  height: 15vh;
+  display: flex;
+  justify-content: center; }
+
+.currently-playing-container {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 2%;
+  align-self: flex-start; }
+
+.currently-playing-container > img {
+  height: 70%; }
+
+.song-artist-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 5%; }
+
+.song-artist-container > h3 {
+  font-size: 13px;
+  margin-bottom: 1%;
+  margin-left: 0; }
+
+.song-artist-container > p {
+  font-size: 11px;
+  margin-bottom: 3%; }
+
+.player-options-container {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; }
+
+.play-button-container {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: gray; }
+
+#first-icon :hover {
+  color: white;
+  cursor: pointer; }
+
+#middle-icon {
+  font-size: 25px;
+  margin: 0 5%; }
+
+#middle-icon :hover {
+  color: white;
+  cursor: pointer; }
+
+#last-icon :hover {
+  color: white;
+  cursor: pointer; }
+
+.playback-time-container {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: red; }
+
+.volume-container {
+  width: 20%;
+  height: 100%; }
+
+.searchBar {
+  display: flex;
+  justify-content: flex-end; }
+
+.sideBar {
+  height: 85vh;
+  width: 15%;
+  background-color: #121212;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  color: #959595; }
+  .sideBar a {
+    text-decoration: none;
+    color: #959595; }
+    .sideBar a > p {
+      margin-bottom: 10px; }
+  .sideBar div > p {
+    margin-bottom: 20px; }
+  .sideBar div {
+    margin-bottom: 50px; }
+  .sideBar .newPlaylistDiv {
+    display: flex; }
+    .sideBar .newPlaylistDiv .fa-plus {
+      margin-right: 10px;
+      border: 2px solid #959595;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      padding: 2.5%; }
+
+/*# sourceMappingURL=index.css.map */

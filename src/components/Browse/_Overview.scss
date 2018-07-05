@@ -1,0 +1,132 @@
+@import "../../variables";
+
+.browseMainView {
+	hr {
+		width: 100%;
+		height: 1px;
+		margin: 30px 0;
+		padding: 0;
+		border-bottom: 2px solid #FFFFFF;
+		border-top: 1px solid transparent;
+		border-right: 1px solid transparent;
+		border-left: 1px solid transparent;
+	}
+	.messageHeader {
+		margin: 20px 0;
+		justify-content: space-between;
+		h3 {
+			color: #FFFFFF;
+			font: bold 24px 'Arial';
+		}
+	}
+	.flexRow {
+		display: flex;
+		div {
+			display: flex;
+			.arrow {
+				width: 18px;
+				height: 18px;
+				border-left: 1px solid #FFFFFF;
+				border-bottom: 1px solid #FFFFFF;
+				cursor: pointer;
+			}
+			.arrow-left {
+				transform: rotate(45deg);
+			}
+			.arrow-right {
+				transform: rotate(225deg);
+			}
+		}
+	}
+	.featuredPlaylists {
+		width: 100%;
+		height: 360px;
+		overflow: hidden;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-around;
+		transition: transform 0.5s linear;
+		.slider {
+			width: 100%;
+			height: 100%;
+			transition: transform 0.5s linear;
+			.hot-playlist {
+				text-decoration: none;
+				color: #FFFFFF;
+				text-align: center;
+				height: 100%;
+				min-width: 24%;
+				max-width: 24%;
+				margin-right: calc((100% - 24% * 4) / 3);
+				overflow: hidden;
+				@media (max-width: 1185px) {
+					min-width: 33%;
+					max-width: 33%;
+					margin-right: calc((100% - 33% * 3) / 2);
+					&:nth-child(3n) {
+						margin-right: 0;
+					}
+				}
+				&:nth-child(4n) {
+					@media (min-width: 1186px) {
+						margin-right: 0;
+					}
+				}
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+			.featuredPlaylist {
+				display: flex;
+				flex-direction: column;
+				img {
+					width: 100%;
+				}
+			}
+		}
+
+	}
+	.subheader {
+		margin: 40px 0;
+		a {
+			text-decoration: none;
+			color: $text;
+			margin-right: 20px;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+	.flexRowWrap {
+		.category {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			width: 100%;
+			a {
+				min-width: 24%;
+				margin-right: calc((100% - 24% * 4) / 3);
+				margin-bottom: 40px;
+				@media (max-width: 1185px) {
+					flex-basis: 33%;
+					//min-width: 33%;
+					margin-right: calc((100% - 33% * 3) / 2);
+					&:nth-child(3n) {
+						margin-right: 0;
+					}
+				}
+				div {
+					img {
+						width: 100%;
+					}
+				}
+				&:nth-child(4n) {
+					@media (min-width: 1186px) {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+}
