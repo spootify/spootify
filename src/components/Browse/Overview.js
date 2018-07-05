@@ -56,7 +56,6 @@ class Overview extends Component {
 	render() {
 		return (
 			<div className='browseMainView'>
-				<BrowseNav/>
 				<div className='messageHeader flexRow'>
 					<h3>{this.state.featuredPlaylistsBody.message}</h3>
 					<div>

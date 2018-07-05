@@ -111,7 +111,7 @@ app.get('/auth/spotify', passport.authenticate('spotify', {
 }));
 
 app.get('/auth/spotify/callback', passport.authenticate('spotify', {
-	successRedirect: 'http://localhost:3000/#/dashboard/browse/overview',
+	successRedirect: 'http://localhost:3000/#/home/browse/overview',
 	failureRedirect: 'http://localhost:3000'
 }))
 

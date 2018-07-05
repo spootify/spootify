@@ -8,7 +8,7 @@ class SideBar extends Component {
 			<div className='sideBar'>
 				<div className='textColumn'>
 					<div>
-						<Link to="/dashboard/browse/overview"><p className='sideBarText pTags'>Browse</p></Link>
+						<Link to="/home/browse/overview"><p className='sideBarText pTags'>Browse</p></Link>
 					</div>
 					<div>
 						<p className='sideBarText'>YOUR LIBRARY</p>
