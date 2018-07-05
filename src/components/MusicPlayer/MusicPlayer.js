@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-// import './MusicPlayer.css';
+import './MusicPlayer.css';
 
 //Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -96,7 +96,6 @@ class MusicPlayer extends Component {
     //Pause Currently Playing Song
     pauseSong(){
         axios.get('/pause/song').then(response => {
-            console.log(response)
             this.switchPlayingState();
         })
     }
@@ -104,16 +103,24 @@ class MusicPlayer extends Component {
     //Play A Currently Paused Song
     playSong(){
         axios.put('/resume/track', {deviceID: this.state.deviceID}).then(response => {
-            console.log(this.props.deviceId)
             console.log(response)
         })
         this.switchPlayingState();
     }
 
-    // Skip Track
+    // Skip to Next Track
     skipTrack(){
-        axios.get('/skip/next/track').then(response => {
-            console.log(response).catch(error => console.log(error))
+        axios.post('/skip/next/track', {deviceID: this.state.deviceID}).then(response => {
+            console.log(response)
+            this.getCurrentlyPlaying();
+        })
+    }
+
+    //Skip to Previous Track
+    previousTrack(){
+        axios.post('/previous/track', {deviceID: this.state.deviceID}).then(response => {
+            console.log(response)
+            this.getCurrentlyPlaying();
         })
     }
 
@@ -138,7 +145,7 @@ class MusicPlayer extends Component {
 
                 <div className="player-options-container">
                     <div className="play-button-container">
-                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.getDevices()}/>
+                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.previousTrack()}/>
                         {this.state.playing ?
                         <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSong()}/>
                         :
