@@ -17,7 +17,7 @@ class Playlist extends Component {
 			 .then(res => {
 				 this.setState({
 					 playlist: res.data.body,
-					 image   : res.data.body.images[0].url,
+					 image   : <img src={res.data.body.images[0].url} alt=""/>,
 					 tracks  : res.data.body.tracks.items
 				 })
 			 });
@@ -27,9 +27,14 @@ class Playlist extends Component {
 		return (
 			<div className='playlist'>
 				<div className="playlist-header">
-					<img src={this.state.image} style={{width: "300px"}} alt='playlist'/>
-					<h1>{this.state.playlist.name}</h1>
-					<p>{this.state.playlist.description}</p>
+					<div className="plylist-image">
+						{this.state.image}
+					</div>
+					<div className="playlist-info">
+						<h3>Playist</h3>
+						<h1>{this.state.playlist.name}</h1>
+						<p>{this.state.playlist.description}</p>
+					</div>
 				</div>
 				<SongList tracks={this.state.tracks}/>
 			</div>

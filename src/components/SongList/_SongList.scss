@@ -1,7 +1,45 @@
 .song-list {
+	width: 100%;
 	table {
-		tr{
-			border-bottom: 1px solid;
+		margin-top: 50px;
+		width: 100%;
+		table-layout: fixed;
+		tr {
+			border-bottom: 1px solid #282828;
+			td:first-child {
+				width: 4%;
+			}
+			td:last-child {
+				width: 9%;
+			}
+		}
+		thead {
+			tr {
+				td {
+					color: #A2A2A2;
+					text-transform: uppercase;
+					text-align: center;
+				}
+			}
+		}
+		td {
+			padding: 5px 20px;
+			color: #FFFFFF;
+		}
+		tbody {
+			tr {
+				td {
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					svg {
+						cursor: pointer;
+					}
+					&:last-child {
+						text-align: center;
+					}
+				}
+			}
 		}
 	}
 }

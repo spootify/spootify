@@ -1,0 +1,22 @@
+.playlist {
+	.playlist-header {
+		display: flex;
+		.playlist-info {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			padding: 0 20px;
+			h1 {
+				color: #FFFFFF;
+				font: bold 48px sans-serif;
+			}
+			h3 {
+				color: #FFFFFF;
+				text-transform: uppercase;
+			}
+			p {
+				color: #A2A2A2
+			}
+		}
+	}
+}
