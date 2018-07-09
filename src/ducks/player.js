@@ -35,6 +35,7 @@ export function getCurrentlyPlaying(){
 }
 
 export function pauseSong(){
+    console.log(initialState.deviceID)
     axios.get('/pause/song').then(response => {
         return console.log('Music Paused')
     })
@@ -44,9 +45,9 @@ export function pauseSong(){
     }
 }
 
-export function playSong(){
-    axios.put('/resume/track', {deviceID: initialState.deviceID}).then(response => {
-        console.log("Music Resumed")
+export function playSong(deviceID){
+    axios.put('/resume/track', {deviceID}).then(response => {
+        console.log('end point hit')
     })
     return {
         type: PLAY_SONG,
@@ -54,8 +55,8 @@ export function playSong(){
     }
 }
 
-export function skipTrack(){
-    axios.post('/skip/next/track', {deviceID: initialState.deviceID}).then(response => {
+export function skipTrack(deviceID){
+    axios.post('/skip/next/track', {deviceID}).then(response => {
         console.log("Track Skipped")
     })
     return {
@@ -64,8 +65,8 @@ export function skipTrack(){
     }
 }
 
-export function previousTrack(){
-    axios.post('/previous/track', {deviceID: initialState.deviceID}).then(response => {console.log("Skipped to previous track")})
+export function previousTrack(deviceID){
+    axios.post('/previous/track', {deviceID}).then(response => {console.log("Skipped to previous track")})
     return {
         type: PREVIOUS_SONG,
         payload: initialState

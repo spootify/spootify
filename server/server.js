@@ -11,6 +11,7 @@ const Spotify = require('spotify-web-api-node');
 const stringify = require('json-stringify-safe');
 
 let contextUri = '';
+let userDevice = '';
 
 const scope = 'user-read-private user-read-email user-read-birthdate user-top-read user-read-recently-played user-library-modify user-library-read playlist-modify-public playlist-modify-private playlist-read-collaborative playlist-read-private user-follow-modify user-follow-read user-read-currently-playing user-read-playback-state user-modify-playback-state streaming';
 
@@ -227,7 +228,23 @@ app.get('/spotify/saved/albums', (req, res) => {
 	})
 })
 
+app.get('/spotify/recent/tracks', (req, res) => {
+	axios.get('https://api.spotify.com/v1/me/player/recently-played', {
+		headers: {
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(recentlyPlayed => {
+		res.status(200).send(stringify(recentlyPlayed))
+	})
+})
+
 //Music Player EndPoints
+
+//Transfer User Playback
+
+
+
+
 // Get Currently Playing song
 app.get('/currently/playing', (req, res) => {
 	axios.get('https://api.spotify.com/v1/me/player', {
@@ -236,82 +253,82 @@ app.get('/currently/playing', (req, res) => {
 		}
 	}).then(response => {
 		contextUri = response.data.item.album.uri
+		console.log(contextUri)
 		res.status(200).send(stringify(response))
 	})
 })
 
-
-
-	//Pause Current Playing Info
+//Pause Current Playing Info
 app.get('/pause/song', (req, res) => {
-	let body = JSON.stringify({'context_uri': contextUri})
+	let body = JSON.stringify({ 'context_uri': contextUri })
 	axios.put('https://api.spotify.com/v1/me/player/pause', body, {
 		headers: {
-			"Accept" : "application/json",
-			"Content-Type" : "application/json",
-			"Authorization" : "Bearer" + ' ' + accToken
+			"Accept": "application/json",
+			"Content-Type": "application/json",
+			"Authorization": "Bearer" + ' ' + accToken
 		}
 	}).then(response => {
 		res.status(200).send('Music Paused');
 	})
 })
 
-	//Play Paused Track
-	app.put('/resume/track', (req, res) => {
-		let {deviceID} = req.body;
-		let body = JSON.stringify({'context_uri': contextUri})
-		axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`, body, {
-			headers: {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json",
-				"Authorization" : "Bearer" + ' ' + accToken
-			}
-		}).then(response => {
-			res.status(200).send('Music Resumed')
-		})
+//Play Paused Track
+app.put('/resume/track', (req, res) => {
+	console.log(req.body.deviceID)
+	let { deviceID } = req.body;
+	let body = JSON.stringify({ 'context_uri': contextUri })
+	axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`, body, {
+		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json",
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		res.status(200).send('Music Resumed')
+	})
+})
+
+//Skip To Next Track
+app.post('/skip/next/track', (req, res) => {
+	let { deviceID } = req.body;
+	let body = JSON.stringify({ 'context_uri': contextUri })
+	axios.post(`https://api.spotify.com/v1/me/player/next?device_id=${deviceID}`, body, {
+		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json",
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		res.status(200).send('Skipped Track');
+	})
+})
+
+//Skip To Previous Track
+app.post('/previous/track', (req, res) => {
+	let { deviceID } = req.body;
+	let body = JSON.stringify({ 'context_uri': contextUri })
+	axios.post(`https://api.spotify.com/v1/me/player/previous?device_id=${deviceID}`, body, {
+		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json",
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		res.status(200).send('Skipped to previous track')
 	})
 
-	//Skip To Next Track
-	app.post('/skip/next/track', (req, res) => {
-		let {deviceID} = req.body;
-		let body = JSON.stringify({'context_uri': contextUri})
-		axios.post(`https://api.spotify.com/v1/me/player/next?device_id=${deviceID}`, body, {
-			headers: {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json",
-				"Authorization" : "Bearer" + ' ' + accToken
-			}
-		}).then(response => {
-			res.status(200).send('Skipped Track');
-		})
-	})
+})
 
-	//Skip To Previous Track
-	app.post('/previous/track', (req, res) => {
-		let {deviceID} = req.body;
-		let body = JSON.stringify({'context_uri': contextUri})
-		axios.post(`https://api.spotify.com/v1/me/player/previous?device_id=${deviceID}`, body, {
-			headers: {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json",
-				"Authorization" : "Bearer" + ' ' + accToken
-			}
-		}).then(response => {
-			res.status(200).send('Skipped to previous track')
-		})
-
+// Get Available Devices
+app.get('/available/devices', (req, res) => {
+	axios.get(`https://api.spotify.com/v1/me/player/devices`, {
+		headers: {
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		res.status(200).send(response.data.devices[0].id)
 	})
-
-	// Get Available Devices
-	app.get('/available/devices', (req, res) => {
-		axios.get(`https://api.spotify.com/v1/me/player/devices`, {
-			headers: {
-				"Authorization" : "Bearer" + ' ' + accToken
-			}
-		}).then(response => {
-			res.status(200).send(response.data.devices[0].id)
-		})
-	})
+})
 
 
 app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`));

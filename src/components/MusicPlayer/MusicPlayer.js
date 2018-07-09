@@ -31,6 +31,8 @@ class MusicPlayer extends Component {
         this.eventHandler = this.eventHandler.bind(this);
         this.playSongFunc = this.playSongFunc.bind(this);
         this.pauseSongFunc = this.pauseSongFunc.bind(this);
+        this.nextSongFunc = this.nextSongFunc.bind(this);
+        this.previousSongFunc = this.previousSongFunc.bind(this);
     }
 
     //Lifecycle Hooks
@@ -51,7 +53,6 @@ class MusicPlayer extends Component {
             this.eventHandler();
         }
         }, 3000)
-
         this.getCurrentlyPlaying();
     }
 
@@ -69,6 +70,7 @@ class MusicPlayer extends Component {
         // Ready
         this.player.addListener('ready', ({ device_id }) => {
             this.props.setDeviceID(device_id)
+            this.props.transferPlayBack(device_id)
             console.log('Ready with Device ID', device_id);
         });
         
@@ -97,18 +99,28 @@ class MusicPlayer extends Component {
 
     //Play Song
     playSongFunc(){
-        this.props.playSong();
+        this.props.playSong(this.props.player.deviceID);
         this.changePlayingState();
     }
 
     //Pause Song
     pauseSongFunc(){
-        this.props.pauseSong();
+        this.props.pauseSong(this.props.player.deviceID);
         this.changePlayingState();
     }
 
+    nextSongFunc(){
+        this.props.skipTrack(this.props.player.deviceID);
+        this.getCurrentlyPlaying();
+    }
+
+    previousSongFunc(){
+        this.props.previousTrack(this.props.player.deviceID)
+        this.getCurrentlyPlaying();
+    }
+
     render(){
-        console.log(this.props)
+        console.log(this.props.player.deviceID)
         return (
             <div className='musicPlayer'>
                 <div className="currently-playing-container">
@@ -121,13 +133,13 @@ class MusicPlayer extends Component {
 
                 <div className="player-options-container">
                     <div className="play-button-container">
-                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.props.previousTrack()}/>
+                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.previousSongFunc()}/>
                         {this.state.playing ?
                         <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSongFunc()}/>
                         :
                         <FontAwesomeIcon icon="play-circle" id="middle-icon" onClick={() => this.playSongFunc()}/>
                         }
-                        <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.props.skipTrack()}/>
+                        <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.nextSongFunc()}/>
                     </div>
 
                     <div className="playback-time-container">
