@@ -2,7 +2,8 @@
 	display: inline-block;
 	height: 85vh;
 	overflow: scroll;
-	background-color: #181818;
+	//background-color: #181818;
+	background: linear-gradient(#3F3F3F, #181818);
 	padding: 20px 40px;
 	width: 100%;
 	::-webkit-scrollbar {
