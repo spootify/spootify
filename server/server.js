@@ -11,7 +11,7 @@ const Spotify = require('spotify-web-api-node');
 const stringify = require('json-stringify-safe');
 
 let contextUri = '';
-let trackUri = '';
+let userDevice = '';
 
 const scope = 'user-read-private user-read-email user-read-birthdate user-top-read user-read-recently-played user-library-modify user-library-read playlist-modify-public playlist-modify-private playlist-read-collaborative playlist-read-private user-follow-modify user-follow-read user-read-currently-playing user-read-playback-state user-modify-playback-state streaming';
 
@@ -239,6 +239,12 @@ app.get('/spotify/recent/tracks', (req, res) => {
 })
 
 //Music Player EndPoints
+
+//Transfer User Playback
+
+
+
+
 // Get Currently Playing song
 app.get('/currently/playing', (req, res) => {
 	axios.get('https://api.spotify.com/v1/me/player', {
@@ -247,7 +253,7 @@ app.get('/currently/playing', (req, res) => {
 		}
 	}).then(response => {
 		contextUri = response.data.item.album.uri
-		trackUri = response.data.item.uri
+		console.log(contextUri)
 		res.status(200).send(stringify(response))
 	})
 })
@@ -268,6 +274,7 @@ app.get('/pause/song', (req, res) => {
 
 //Play Paused Track
 app.put('/resume/track', (req, res) => {
+	console.log(req.body.deviceID)
 	let { deviceID } = req.body;
 	let body = JSON.stringify({ 'context_uri': contextUri })
 	axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`, body, {
