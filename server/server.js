@@ -11,7 +11,6 @@ const Spotify = require('spotify-web-api-node');
 const stringify = require('json-stringify-safe');
 
 let contextUri = '';
-let trackUri = '';
 
 const scope = 'user-read-private user-read-email user-read-birthdate user-top-read user-read-recently-played user-library-modify user-library-read playlist-modify-public playlist-modify-private playlist-read-collaborative playlist-read-private user-follow-modify user-follow-read user-read-currently-playing user-read-playback-state user-modify-playback-state streaming';
 
@@ -237,10 +236,11 @@ app.get('/currently/playing', (req, res) => {
 		}
 	}).then(response => {
 		contextUri = response.data.item.album.uri
-		trackUri = response.data.item.uri
 		res.status(200).send(stringify(response))
 	})
 })
+
+
 
 	//Pause Current Playing Info
 app.get('/pause/song', (req, res) => {

@@ -36,7 +36,9 @@ class MusicPlayer extends Component {
     //Lifecycle Hooks
         //Setting Player
     componentDidMount(){
+        //Getting User Info
         this.props.getUser();
+        //Setting Player SDK
         let interval_id = setInterval(() => {
         console.log(window.Spotify, this.props.user.access_token);
         if(window.Spotify && this.props.user.access_token){
@@ -49,6 +51,7 @@ class MusicPlayer extends Component {
             this.eventHandler();
         }
         }, 3000)
+
         this.getCurrentlyPlaying();
     }
 
@@ -105,7 +108,7 @@ class MusicPlayer extends Component {
     }
 
     render(){
-        console.log(this.state)
+        console.log(this.props)
         return (
             <div className='musicPlayer'>
                 <div className="currently-playing-container">
@@ -147,4 +150,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {setDeviceID, getUser})(MusicPlayer);
+export default connect(mapStateToProps, {setDeviceID, getUser, getCurrentlyPlaying, pauseSong, playSong, skipTrack, previousTrack})(MusicPlayer);
