@@ -16,6 +16,7 @@ import Songs from './components/Songs/Songs';
 import Albums from './components/Albums/Albums';
 import Artists from './components/Artists/Artists';
 import SearchResults from './components/SearchResults/SearchResults';
+import Profile from './components/Profile/Profile';
 
 export default (
 	<Switch className='routes-container'>
@@ -30,5 +31,6 @@ export default (
 		<Route path='/dashboard/Albums' component={Albums}/>
 		<Route path='/dashboard/Artists' component={Artists}/>
 		<Route path='/dashboard/search/results' component={SearchResults}/>
+		<Route path='/dashboard/profile' component={Profile}/>
 	</Switch>
 )

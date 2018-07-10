@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const Spotify = require('spotify-web-api-node');
 const stringify = require('json-stringify-safe');
+const profile_controller = require('./profile_controller');
 
 let contextUri = '';
 let trackUri = '';
@@ -104,6 +105,12 @@ passport.deserializeUser((id, done) => {
 	})
 })
 
+
+//Favorite Song Endpoints
+app.get('/get/favorite/song/:spotify_id', profile_controller.getFavoriteSong)
+app.post('/post/favorite/song/:spotify_id', profile_controller.addFavoriteSong)
+app.put('/edit/favorite/song/:fav_song_id', profile_controller.editFavoriteSong)
+app.delete('/delete/favorite/song/:fav_song_id', profile_controller.deleteFavoriteSong)
 
 //Passport Spotify End Points
 app.get('/auth/spotify', passport.authenticate('spotify', {
