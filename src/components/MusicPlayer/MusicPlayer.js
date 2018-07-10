@@ -18,25 +18,33 @@ class MusicPlayer extends Component {
 
         this.state = {
             playing: false,
+            deviceID: '',
+            currentlyPlayingSong: '',
+            currentlyPlayingAlbum: '',
             currentlyPlayingAlbumCover: '',
-            currentlyPlayingArtistName: '',
-            currentlyPlayingSongName: '',
-            previewURL: '',
-            deviceID: ''
+            currentlyPlayingArtist: '',
+            progress_ms: '',
+            duration_ms: '',
+            track_uri: '',
+            album_uri: ''
         };
 
 
         //Binding Methods
-        this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
+        this.currentlyPlaying = this.currentlyPlaying.bind(this);
         this.eventHandler = this.eventHandler.bind(this);
         this.playSongFunc = this.playSongFunc.bind(this);
         this.pauseSongFunc = this.pauseSongFunc.bind(this);
+        this.nextSongFunc = this.nextSongFunc.bind(this);
+        this.previousSongFunc = this.previousSongFunc.bind(this);
     }
 
     //Lifecycle Hooks
         //Setting Player
     componentDidMount(){
+        //Getting User Info
         this.props.getUser();
+        //Setting Player SDK
         let interval_id = setInterval(() => {
         console.log(window.Spotify, this.props.user.access_token);
         if(window.Spotify && this.props.user.access_token){
@@ -49,7 +57,8 @@ class MusicPlayer extends Component {
             this.eventHandler();
         }
         }, 3000)
-        this.getCurrentlyPlaying();
+        this.props.getCurrentlyPlaying();
+        setTimeout(() => this.currentlyPlaying(), 1000);
     }
 
     
@@ -77,13 +86,18 @@ class MusicPlayer extends Component {
         this.player.connect();
     }
     
-    // Get Currently Playing
-    getCurrentlyPlaying(){
-        axios.get('/currently/playing').then(response => {
-            console.log(response.data)
-            this.setState({currentlyPlayingAlbumCover: response.data.data.item.album.images[2].url, currentlyPlayingArtistName: response.data.data.item.artists[0].name, currentlyPlayingSongName: response.data.data.item.name,
-            playing: response.data.data.is_playing,
-            })
+    // Set Currently Playing
+    currentlyPlaying(){
+        this.setState({
+            playing: this.props.player.currentlyPlaying.is_playing,
+            currentlyPlayingSong: this.props.player.currentlyPlaying.item.name,
+            currentlyPlayingAlbum: this.props.player.currentlyPlaying.item.album.name,
+            currentlyPlayingAlbumCover: this.props.player.currentlyPlaying.item.album.images[1].url,
+            currentlyPlayingArtist: this.props.player.currentlyPlaying.item.artists[0].name,
+            progress_ms: this.props.player.currentlyPlaying.progress_ms,
+            duration_ms: this.props.player.currentlyPlaying.item.duration_ms,
+            track_uri: this.props.player.currentlyPlaying.item.uri,
+            album_uri: this.props.player.currentlyPlaying.item.album.uri
         })
     }
 
@@ -94,37 +108,49 @@ class MusicPlayer extends Component {
 
     //Play Song
     playSongFunc(){
-        this.props.playSong();
+        this.props.playSong(this.props.player.deviceID);
         this.changePlayingState();
     }
 
     //Pause Song
     pauseSongFunc(){
-        this.props.pauseSong();
+        this.props.pauseSong(this.props.player.deviceID);
         this.changePlayingState();
     }
 
+    nextSongFunc(){
+        this.props.skipTrack(this.props.player.deviceID);
+        this.props.getCurrentlyPlaying();
+        this.currentlyPlaying();
+    }
+
+    previousSongFunc(){
+        this.props.previousTrack(this.props.player.deviceID)
+        this.props.getCurrentlyPlaying();
+        this.currentlyPlaying();
+    }
+
     render(){
-        console.log(this.state)
+        console.log(this.props.player.currentlyPlaying)
         return (
             <div className='musicPlayer'>
                 <div className="currently-playing-container">
                     <img src={this.state.currentlyPlayingAlbumCover} alt="album cover"/>
                     <div className="song-artist-container">
-                        <h3>{this.state.currentlyPlayingSongName}</h3>
-                        <p>{this.state.currentlyPlayingArtistName}</p>
+                        <h3>{this.state.currentlyPlayingSong}</h3>
+                        <p>{this.state.currentlyPlayingArtist}</p>
                     </div>
                 </div>
 
                 <div className="player-options-container">
                     <div className="play-button-container">
-                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.props.previousTrack()}/>
+                        <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.previousSongFunc()}/>
                         {this.state.playing ?
                         <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSongFunc()}/>
                         :
                         <FontAwesomeIcon icon="play-circle" id="middle-icon" onClick={() => this.playSongFunc()}/>
                         }
-                        <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.props.skipTrack()}/>
+                        <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.nextSongFunc()}/>
                     </div>
 
                     <div className="playback-time-container">
@@ -147,4 +173,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {setDeviceID, getUser})(MusicPlayer);
+export default connect(mapStateToProps, {setDeviceID, getUser, getCurrentlyPlaying, pauseSong, playSong, skipTrack, previousTrack})(MusicPlayer);

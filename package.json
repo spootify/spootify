@@ -28,6 +28,7 @@
 		"react-scripts": "1.1.4",
 		"react-spotify-player": "^1.0.4",
 		"redux": "^4.0.0",
+		"redux-devtools-extension": "^2.13.5",
 		"redux-promise-middleware": "^5.1.1",
 		"request": "^2.87.0",
 		"spotify-web-api-js": "^0.24.0",
