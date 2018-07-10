@@ -70,7 +70,6 @@ class MusicPlayer extends Component {
         // Ready
         this.player.addListener('ready', ({ device_id }) => {
             this.props.setDeviceID(device_id)
-            this.props.transferPlayBack(device_id)
             console.log('Ready with Device ID', device_id);
         });
         
