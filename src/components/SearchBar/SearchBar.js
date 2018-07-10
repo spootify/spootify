@@ -49,7 +49,7 @@ class SearchBar extends Component {
                 </div>
                 <div id='profileDiv' className='searchDiv'>
                     <img src={this.props.user.image} alt={this.props.user.displayName} style={{ height: "30px", borderRadius: "50%" }} />
-                    <p>{this.props.user.displayName}</p>
+                    <Link to='/dashboard/profile'><p>{this.props.user.displayName}</p></Link>
                 </div>
             </div>
         )
