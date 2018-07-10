@@ -241,8 +241,12 @@ app.get('/spotify/recent/tracks', (req, res) => {
 //Music Player EndPoints
 
 //Transfer User Playback
+// app.put('/transfer/playback' , (req, res) => {
+// 	axios.put(`https://api.spotify.com/v1/me/player`)
+// })
 
 
+//
 
 
 // Get Currently Playing song
@@ -299,7 +303,7 @@ app.post('/skip/next/track', (req, res) => {
 			"Authorization": "Bearer" + ' ' + accToken
 		}
 	}).then(response => {
-		res.status(200).send('Skipped Track');
+		res.status(200).send(stringify(response));
 	})
 })
 
