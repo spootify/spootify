@@ -1,14 +1,9 @@
 .musicPlayer {
-  position: fixed;
   width: 100%;
   background-color: #282828;
-  height: 100px;
+  height: 15vh;
   display: flex;
-  flex-direction: row;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+  flex-direction: row; }
 
 .currently-playing-container {
   width: 20%;

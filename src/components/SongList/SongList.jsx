@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 
 function SongLIst(props) {
 	let {tracks} = props;
+	console.log(tracks)
 
 	tracks = tracks.map((e) => (
 		<tr key={e.track.id}>
