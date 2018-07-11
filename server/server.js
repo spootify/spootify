@@ -245,6 +245,19 @@ app.get('/spotify/recent/tracks', (req, res) => {
 	})
 })
 
+app.get('/spotify/check/saved/tracks/:ids', (req, res) => {
+	const { ids } = req.params
+	axios.get(`https://api.spotify.com/v1/me/tracks/contains?ids=${ids}`, {
+		headers: {
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(result => {
+		res.status(200).send(stringify(result))
+	}).catch(err => {
+		res.send(err)
+	})
+})
+
 //Music Player EndPoints
 
 //Transfer User Playback
