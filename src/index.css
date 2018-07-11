@@ -194,9 +194,9 @@ body {
     text-decoration: none;
     color: #959595; }
     .sideBar a > p {
-      margin-bottom: 10px; }
+      margin-bottom: 15px; }
   .sideBar div > p {
-    margin-bottom: 20px; }
+    margin-bottom: 28px; }
   .sideBar div {
     margin-bottom: 50px; }
   .sideBar .newPlaylistDiv {
@@ -208,6 +208,9 @@ body {
       width: 24px;
       height: 24px;
       padding: 2.5%; }
+
+.pTags:hover {
+  color: white; }
 
 .song-list {
   width: 100%; }

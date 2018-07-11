@@ -260,6 +260,17 @@ app.get('/spotify/check/saved/tracks', (req, res) => {
 	})
 })
 
+app.get('/spotify/saved/playlists', (req, res) => {
+	axios.get('https://api.spotify.com/v1/me/playlists', {
+		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json",
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(result => {
+		res.status(200).send(stringify(result))
+	})
+})
 //Music Player EndPoints
 
 //Transfer User Playback
