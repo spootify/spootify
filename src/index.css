@@ -136,7 +136,7 @@ body {
   height: 85vh;
   overflow: scroll;
   background: linear-gradient(#3F3F3F, #181818);
-  padding: 20px 40px;
+  padding: 3px 40px;
   width: 100%; }
   .content ::-webkit-scrollbar {
     display: none; }
@@ -146,7 +146,30 @@ body {
 
 .searchBar {
   display: flex;
-  justify-content: flex-end; }
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 25px; }
+
+.searchDiv > * {
+  margin: 0 10px; }
+
+.searchDiv {
+  display: flex;
+  justify-content: flex-end;
+  width: 15%;
+  align-items: center; }
+
+.searchDiv > a {
+  text-decoration: none;
+  color: lightgray; }
+
+.searchInput {
+  width: 150px;
+  height: 25px;
+  border-radius: 15px;
+  border: none;
+  outline: none; }
 
 .sideBar {
   height: 85vh;
