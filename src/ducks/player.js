@@ -4,7 +4,7 @@ import axios from 'axios';
 //Initial State
 const initialState = {
     deviceID: '',
-
+    currentlyPlaying: []
 };
 
 //Action Types
@@ -57,7 +57,7 @@ export function playSong(deviceID){
 
 export function skipTrack(deviceID){
     axios.post('/skip/next/track', {deviceID}).then(response => {
-        console.log("Track Skipped")
+        console.log(response)
     })
     return {
         type: NEXT_SONG,
@@ -80,7 +80,7 @@ export default function reducer(state = initialState, action){
         case SET_DEVICE_ID:
             return Object.assign({}, state, {deviceID: action.payload})
         case GET_CURRENTLY_PLAYING + '_FULFILLED':
-            return Object.assign({}, state, action.payload)
+            return Object.assign({}, state, {currentlyPlaying: action.payload})
         case PAUSE_SONG:
             return state;
         case PLAY_SONG:
