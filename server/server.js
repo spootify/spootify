@@ -245,10 +245,12 @@ app.get('/spotify/recent/tracks', (req, res) => {
 	})
 })
 
-app.get('/spotify/check/saved/tracks/:ids', (req, res) => {
-	const { ids } = req.params
+app.get('/spotify/check/saved/tracks', (req, res) => {
+	const { ids } = req.body
 	axios.get(`https://api.spotify.com/v1/me/tracks/contains?ids=${ids}`, {
 		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json",
 			"Authorization": "Bearer" + ' ' + accToken
 		}
 	}).then(result => {
