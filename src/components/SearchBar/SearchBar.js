@@ -4,6 +4,8 @@ import { updateResults } from '../../ducks/results';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 class SearchBar extends Component {
     constructor() {
@@ -41,6 +43,9 @@ class SearchBar extends Component {
         return (
             <div className='searchBar'>
                 <div className='searchDiv'>
+                <FontAwesomeIcon icon="angle-left" className='arrowIcon'/>
+                <FontAwesomeIcon icon='angle-right' className='arrowIcon' />
+
                    <Link to='/dashboard/search/results'><input
                         className="searchInput"
                         placeholder="Search"

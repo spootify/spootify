@@ -15,6 +15,8 @@ import { faStepForward } from '@fortawesome/free-solid-svg-icons'
 import { faPauseCircle } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 
 class App extends Component {
@@ -29,7 +31,7 @@ class App extends Component {
 
 
 	render() {
-		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle, faPlus, faCheck);
+		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle, faPlus, faCheck, faAngleLeft, faAngleRight);
 		console.log(this.props);
 		return (
 			<div className="App">

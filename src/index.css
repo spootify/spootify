@@ -149,10 +149,13 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 25px; }
+  margin-bottom: 25px;
+  height: 50px;
+  color: #959595; }
 
 .searchDiv > * {
-  margin: 0 10px; }
+  margin: 0 10px;
+  color: #959595; }
 
 .searchDiv {
   display: flex;
@@ -170,6 +173,11 @@ body {
   border-radius: 15px;
   border: none;
   outline: none; }
+
+.arrowIcon {
+  color: white;
+  font-size: 25px;
+  color: #959595; }
 
 .sideBar {
   height: 85vh;
