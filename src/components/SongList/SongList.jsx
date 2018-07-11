@@ -6,6 +6,7 @@ function SongLIst(props) {
 	tracks = tracks.map((e) => (
 		<tr key={e.track.id}>
 			<td><FontAwesomeIcon icon="play-circle"/></td>
+			<td><FontAwesomeIcon icon="plus"/></td>
 			<td>{e.track.name}</td>
 			<td>{e.track.artists.map((artist, i, arr) => (
 				(arr.length>1) ? (i===arr.length-1) ? artist.name : artist.name + ', ' : artist.name))}
