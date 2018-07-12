@@ -87,14 +87,14 @@ class Overview extends Component {
 
 
 				<div className='flexRow subheader'>
-					<Link to='/dashboard/browse/charts'>
+					<Link to='/home/browse/charts'>
 						<div>
 							<h1>Charts</h1>
 							<p>Gloabal and regional top charts</p>
 						</div>
 					</Link>
 
-					<Link to="/dashboard/browse/releases">
+					<Link to="/home/browse/releases">
 						<div>
 							<h1>New Releases</h1>
 							<p>Drake, Florence + The Machine, Gorillaz</p>

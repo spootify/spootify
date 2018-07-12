@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import SongList2 from '../SongList2/SongList2';
 
 export default class Album extends Component {
     constructor() {
@@ -12,7 +13,6 @@ export default class Album extends Component {
     }
     componentDidMount() {
         axios.get(`/spotify/album/${this.props.match.params.albumId}`).then(res => {
-            console.log(res)
             this.setState({
                 album: res.data.body,
                 image: res.data.body.images[1].url,
@@ -25,16 +25,9 @@ export default class Album extends Component {
             <div>
                 <img src={this.state.image} />
                 <h1>{this.state.album.name}</h1>
-                {this.state.tracks.map( (track, i) => {
-                    return (
-                        <div key={track.id + i}>
-                            <p>{track.name}</p>
-                            <p>{track.duration_ms}</p>
-                        </div>
-                    )
+                <SongList2 tracks={this.state.tracks} album={this.state.album}/>
 
-
-                })}
+              
             </div>
         )
     }
