@@ -135,7 +135,7 @@ body {
   display: inline-block;
   height: 90vh;
   overflow: scroll;
-  background: linear-gradient(#3F3F3F, #181818);
+  background: #181818;
   padding: 3px 40px;
   width: 100%; }
   .content ::-webkit-scrollbar {
@@ -303,17 +303,24 @@ body {
     width: 100%;
     table-layout: fixed; }
     .song-list table tr {
-      border-bottom: 1px solid #282828; }
+      border-bottom: 1px solid #282828;
+      transition: background-color 0.3s linear; }
       .song-list table tr td:first-child {
-        width: 4%; }
+        width: 4%;
+        opacity: 0;
+        transition: opacity 0.3s linear; }
       .song-list table tr td:last-child {
         width: 9%; }
+      .song-list table tr:hover {
+        background-color: #282828; }
+        .song-list table tr:hover td:first-child {
+          opacity: 1; }
     .song-list table thead tr td {
       color: #A2A2A2;
       text-transform: uppercase;
       text-align: center; }
     .song-list table td {
-      padding: 5px 20px;
+      padding: 20px 20px;
       color: #FFFFFF; }
     .song-list table tbody tr td {
       text-overflow: ellipsis;
