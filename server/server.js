@@ -311,9 +311,13 @@ app.get('/pause/song', (req, res) => {
 
 //Play Paused Track
 app.put('/resume/track', (req, res) => {
-	console.log(req.body.deviceID)
-	let { deviceID } = req.body;
-	let body = JSON.stringify({ 'context_uri': contextUri })
+	let { deviceID, playlistUri } = req.body;
+	let trackUri = []
+	trackUri.push(playlistUri);
+	console.log(trackUri)
+	let body = {
+		"uris": trackUri
+	}
 	axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`, body, {
 		headers: {
 			"Accept": "application/json",

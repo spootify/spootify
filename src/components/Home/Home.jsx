@@ -13,7 +13,7 @@ class Home extends Component {
 				<BrowseNav/>
 				<Route path="/home/browse/overview" component={Overview}/>
 				<Route path="/home/browse/charts" component={Charts}/>
-				<Route path="/home/browse/genres" compnonent={Genres}/>
+				<Route path="/home/browse/genres" component={Genres}/>
 				<Route path="/home/browse/releases" component={NewReleases}/>
 			</div>
 		);

@@ -24,6 +24,8 @@ class Playlist extends Component {
 	}
 
 	render() {
+		console.log(this.state.playlist);
+		// const {}
 		return (
 			<div className='playlist'>
 				<div className="playlist-header">
@@ -36,7 +38,7 @@ class Playlist extends Component {
 						<p>{this.state.playlist.description}</p>
 					</div>
 				</div>
-				<SongList tracks={this.state.tracks}/>
+				<SongList tracks={this.state.tracks} playlistUri={this.state.playlist.uri}/>
 			</div>
 		)
 

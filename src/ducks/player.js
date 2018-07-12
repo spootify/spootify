@@ -45,8 +45,8 @@ export function pauseSong(){
     }
 }
 
-export function playSong(deviceID){
-    axios.put('/resume/track', {deviceID}).then(response => {
+export function playSong(deviceID, playlistUri){
+    axios.put('/resume/track', {deviceID, playlistUri}).then(response => {
         console.log('end point hit')
     })
     return {

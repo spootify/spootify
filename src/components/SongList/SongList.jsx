@@ -1,15 +1,23 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {playSong, pauseSong} from '../../ducks/player';
+import {connect} from 'react-redux';
+
+// import {playPlayList} from '../../ducks/player';
 
 function SongLIst(props) {
 	let {tracks} = props;
+	console.log(tracks)
+
 	tracks = tracks.map((e) => (
 		<tr key={e.track.id}>
-			<td><FontAwesomeIcon icon="play-circle"/></td>
-			<td><FontAwesomeIcon icon="plus"/></td>
+			<td><FontAwesomeIcon
+				icon="play-circle"
+				onClick={() => props.playSong(props.player.deviceID, e.track.uri)}/>
+			</td>
 			<td>{e.track.name}</td>
 			<td>{e.track.artists.map((artist, i, arr) => (
-				(arr.length>1) ? (i===arr.length-1) ? artist.name : artist.name + ', ' : artist.name))}
+				(arr.length > 1) ? (i === arr.length - 1) ? artist.name : artist.name + ', ' : artist.name))}
 			</td>
 			<td>{e.track.album.name}</td>
 			<td>{Math.floor(e.track.duration_ms / 1000 / 60)}:{(e.track.duration_ms / 60 % 60 < 10) ?
@@ -18,6 +26,7 @@ function SongLIst(props) {
 			</td>
 		</tr>
 	));
+
 	return (
 		<div className='song-list'>
 			<table>
@@ -38,4 +47,9 @@ function SongLIst(props) {
 	);
 }
 
-export default SongLIst;
+export default connect(({player}) => ({player}),
+	{
+		playSong,
+		pauseSong,
+	})
+(SongLIst);
