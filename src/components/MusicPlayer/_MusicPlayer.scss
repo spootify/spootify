@@ -1,9 +1,11 @@
 .musicPlayer {
+	position: fixed;
 	width: 100%;
 	background-color: #282828;
-	height: 15vh; 
+	height: 10vh; 
 	display: flex;
 	flex-direction: row;
+	bottom: 0px;
 }
   
   .currently-playing-container {
