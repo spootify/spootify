@@ -51,11 +51,9 @@ class MusicPlayer extends Component {
             })
             this.eventHandler();
         }
-        }, 3000)
-        this.getCurrentlyPlaying();
+        }, 200)
     }
 
-    
     //Initializing the SDK Player
     eventHandler(){
         this.player.addListener('initialization_error', ({message}) => {console.error(message)});
@@ -65,7 +63,7 @@ class MusicPlayer extends Component {
         
         // Playback status updates
         this.player.addListener('player_state_changed', state => { console.log(state); });
-        
+
         // Ready
         this.player.addListener('ready', ({ device_id }) => {
             this.props.setDeviceID(device_id)
@@ -89,6 +87,7 @@ class MusicPlayer extends Component {
             })
         })
     }
+    
 
     //changePlayingState
     changePlayingState(){
@@ -118,7 +117,6 @@ class MusicPlayer extends Component {
     }
 
     render(){
-        console.log(this.props.player.deviceID)
         return (
             <div className='musicPlayer'>
                 <div className="currently-playing-container">
@@ -156,7 +154,7 @@ class MusicPlayer extends Component {
 function mapStateToProps(state) {
 	return {
 		user  : state.user,
-		player: state.player
+        player: state.player
 	}
 }
 
