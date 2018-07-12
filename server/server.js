@@ -273,15 +273,6 @@ app.get('/spotify/saved/playlists', (req, res) => {
 })
 //Music Player EndPoints
 
-//Transfer User Playback
-// app.put('/transfer/playback' , (req, res) => {
-// 	axios.put(`https://api.spotify.com/v1/me/player`)
-// })
-
-
-//
-
-
 // Get Currently Playing song
 app.get('/currently/playing', (req, res) => {
 	axios.get('https://api.spotify.com/v1/me/player', {
@@ -290,7 +281,6 @@ app.get('/currently/playing', (req, res) => {
 		}
 	}).then(response => {
 		contextUri = response.data.item.album.uri
-		console.log(contextUri)
 		res.status(200).send(stringify(response))
 	})
 })

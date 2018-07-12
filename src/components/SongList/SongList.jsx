@@ -1,19 +1,32 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {playSong, pauseSong} from '../../ducks/player';
+import {playSong, pauseSong, getCurrentlyPlaying} from '../../ducks/player';
 import {connect} from 'react-redux';
 
-// import {playPlayList} from '../../ducks/player';
+class SongLIst extends Component {
+	constructor(props){
+		super(props)
 
-function SongLIst(props) {
-	let {tracks} = props;
-	console.log(tracks)
+		//Binding
+		this.playSongUpdateCurrentlyPlaying = this.playSongUpdateCurrentlyPlaying.bind(this);
+	}
 
+
+	//Methods
+	playSongUpdateCurrentlyPlaying(trackUri){
+		this.props.playSong(this.props.player.deviceID, trackUri);
+		setTimeout(() => this.props.getCurrentlyPlaying(), 500)
+	}
+
+
+	render(props){
+
+	let {tracks} = this.props;
 	tracks = tracks.map((e) => (
 		<tr key={e.track.id}>
 			<td><FontAwesomeIcon
 				icon="play-circle"
-				onClick={() => props.playSong(props.player.deviceID, e.track.uri)}/>
+				onClick={() => this.playSongUpdateCurrentlyPlaying(e.track.uri)}/>
 			</td>
 			<td>{e.track.name}</td>
 			<td>{e.track.artists.map((artist, i, arr) => (
@@ -44,12 +57,15 @@ function SongLIst(props) {
 				</tbody>
 			</table>
 		</div>
-	);
+	)
+}
+
 }
 
 export default connect(({player}) => ({player}),
 	{
 		playSong,
 		pauseSong,
+		getCurrentlyPlaying
 	})
 (SongLIst);
