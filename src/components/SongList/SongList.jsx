@@ -3,9 +3,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {playSong, pauseSong, getCurrentlyPlaying} from '../../ducks/player';
 import {connect} from 'react-redux';
 
-class SongLIst extends Component {
+class SongList extends Component {
 	constructor(props){
 		super(props)
+		this.state = {
+			songPlaying: ''
+		}
 
 		//Binding
 		this.playSongUpdateCurrentlyPlaying = this.playSongUpdateCurrentlyPlaying.bind(this);
@@ -13,9 +16,10 @@ class SongLIst extends Component {
 
 
 	//Methods
-	playSongUpdateCurrentlyPlaying(trackUri){
+	playSongUpdateCurrentlyPlaying(trackUri, id){
 		this.props.playSong(this.props.player.deviceID, trackUri);
 		setTimeout(() => this.props.getCurrentlyPlaying(), 500)
+		this.setState({songPlaying: id})
 	}
 
 
@@ -25,8 +29,8 @@ class SongLIst extends Component {
 	tracks = tracks.map((e) => (
 		<tr key={e.track.id}>
 			<td><FontAwesomeIcon
-				icon="play-circle"
-				onClick={() => this.playSongUpdateCurrentlyPlaying(e.track.uri)}/>
+				icon={this.state.songPlaying === e.track.id ? 'pause-circle' : "play-circle"}
+				onClick={() => this.playSongUpdateCurrentlyPlaying(e.track.uri, e.track.id)}/>
 			</td>
 			<td>{e.track.name}</td>
 			<td>{e.track.artists.map((artist, i, arr) => (
@@ -68,4 +72,4 @@ export default connect(({player}) => ({player}),
 		pauseSong,
 		getCurrentlyPlaying
 	})
-(SongLIst);
+(SongList);
