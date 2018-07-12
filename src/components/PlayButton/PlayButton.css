@@ -1,0 +1,10 @@
+#play-button {
+    background: #1db954;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    width: 100px;
+    height: 30px;
+    z-index: 5;
+    outline: none;
+}
