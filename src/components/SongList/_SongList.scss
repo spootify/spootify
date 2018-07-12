@@ -6,11 +6,20 @@
 		table-layout: fixed;
 		tr {
 			border-bottom: 1px solid #282828;
+			transition: background-color 0.3s linear;
 			td:first-child {
 				width: 4%;
+				opacity: 0;
+				transition: opacity 0.3s linear;
 			}
 			td:last-child {
 				width: 9%;
+			}
+			&:hover {
+				background-color: #282828;
+				td:first-child {
+					opacity: 1;
+				}
 			}
 		}
 		thead {
@@ -23,7 +32,7 @@
 			}
 		}
 		td {
-			padding: 5px 20px;
+			padding: 20px 20px;
 			color: #FFFFFF;
 		}
 		tbody {
