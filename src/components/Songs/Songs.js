@@ -13,7 +13,8 @@ class Songs extends Component {
       context: '',
       tracks: [],
       offset: 0,
-      highlightedTrack: ''
+      highlightedTrack: '',
+      searchInput: '',
     }
   }
 
@@ -24,7 +25,8 @@ class Songs extends Component {
       this.setState({
         context: '',
         tracks: res.data.data.items,
-        
+        trackUri: res.data.data.items[0].track.uri,
+        id: res.data.data.items[0].track.id
       })
     })
   }
@@ -39,17 +41,29 @@ class Songs extends Component {
     })
   }
 
-  unHighlightTrack(){
+  unHighlightTrack() {
     this.setState({
       highlightedTrack: ''
     })
   }
 
   render() {
+    console.log(this.state.tracksUri, this.state.id)
     return (
-      <div className='flexColumn'>
-        <PlayButton />
-        <SongList tracks={this.state.tracks}/>
+      <div>
+        <h1 style={{ margin: '15px 0' }}>Songs</h1>
+        <div className='flexColumn'>
+          <PlayButton uri={this.state.trackUri}
+            id={this.state.id}
+          />
+          <input className='filterInput'
+            placeholder='Filter'
+            onChange={e => this.setState({ searchInput: e.target.value })}
+          />
+          <SongList tracks={this.state.tracks} 
+                    searchInput={this.state.searchInput}
+          />
+        </div>
       </div>
     )
   }

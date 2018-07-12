@@ -7,17 +7,22 @@ class SideBar extends Component {
 	constructor() {
 		super()
 		this.state = {
-			playlists: []
+			playlists: [],
+			uri: '',
+			id: '',
 		}
 	}
 	componentDidMount() {
 		axios.get('/spotify/saved/playlists').then(res => {
 			this.setState({
-				playlists: res.data.data.items
+				playlists: res.data.data.items,
+				uri: res.data.data.items[0].uri,
+				id: res.data.data.items[0].id
 			})
 		})
 	}
 	render() {
+		console.log(this.state)
 		return (
 			<div className='sideBar'>
 				<div className='textColumn'>
@@ -34,7 +39,7 @@ class SideBar extends Component {
 						<p className='sideBarText'>PLAYLIST</p>
 						{this.state.playlists.map(playlist => {
 							return (
-								<Link to={`/dashboard/playlist/${playlist.owner.id}/${playlist.id}`}><p key={playlist.id} className='sideBarText pTags'>{playlist.name}</p></Link>
+								<Link to={`/dashboard/playlist/${playlist.owner.id}/${playlist.id}/${this.state.uri}/${this.state.id}`}><p key={playlist.id} className='sideBarText pTags'>{playlist.name}</p></Link>
 							)
 						})}
 					</div>

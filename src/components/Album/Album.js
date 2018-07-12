@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import SongList2 from '../SongList2/SongList2';
+import PlayButton from '../PlayButton/PlayButton';
 
 export default class Album extends Component {
     constructor() {
@@ -16,7 +17,9 @@ export default class Album extends Component {
             this.setState({
                 album: res.data.body,
                 image: res.data.body.images[1].url,
-                tracks: res.data.body.tracks.items
+                tracks: res.data.body.tracks.items,
+                uri: res.data.body.tracks.items[0].uri,
+                id: res.data.body.tracks.items[0].id
             })
         })
     }
@@ -25,6 +28,7 @@ export default class Album extends Component {
             <div>
                 <img src={this.state.image} />
                 <h1>{this.state.album.name}</h1>
+                <PlayButton uri={this.state.uri}/>
                 <SongList2 tracks={this.state.tracks} album={this.state.album}/>
 
               

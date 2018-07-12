@@ -36,7 +36,7 @@ export default class Charts extends Component {
 							   || playlist.name === "United States Viral 50"
 					}).map((playList, i) => {
 						return (
-							<Link to={`/dashboard/playlist/${playList.owner.id}/${playList.id}`}>
+							<Link to={`/dashboard/playlist/${playList.owner.id}/${playList.id}/nothing/nothing`}>
 								<div>
 									<img src={playList.images[0].url}/>
 									<p>{playList.name}</p>
