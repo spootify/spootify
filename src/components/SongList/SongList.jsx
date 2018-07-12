@@ -22,6 +22,13 @@ class SongList extends Component {
 		this.setState({songPlaying: id})
 	}
 
+	pauseSong() {
+		this.props.pauseSong()
+		this.setState({
+			songPlaying: '',
+		})
+	}
+
 
 	render(props){
 
@@ -30,7 +37,7 @@ class SongList extends Component {
 		<tr key={e.track.id}>
 			<td><FontAwesomeIcon
 				icon={this.state.songPlaying === e.track.id ? 'pause-circle' : "play-circle"}
-				onClick={() => this.playSongUpdateCurrentlyPlaying(e.track.uri, e.track.id)}/>
+				onClick={this.state.songPlaying === '' ? () => this.playSongUpdateCurrentlyPlaying(e.track.uri, e.track.id) : () => this.pauseSong()}/>
 			</td>
 			<td>{e.track.name}</td>
 			<td>{e.track.artists.map((artist, i, arr) => (
