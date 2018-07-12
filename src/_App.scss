@@ -11,6 +11,7 @@ body {
 	font-family: sans-serif;
 	background-color: #1E1E1E;
 	height: 100vh;
+	color: #959595;
 	.container {
 		display: flex;
 		width: 100%;
@@ -19,5 +20,31 @@ body {
 	::-webkit-scrollbar {
 		display: none;
 	}
+	h1 {
+		font-size: 38px;
+		color: white;
+	}
 }
+
+.filterInput {
+	margin: 15px 0;
+	width: 100%;
+	background: none;
+	opacity: 0.9;
+	border: none;
+	outline: none;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.filterInput:focus {
+	background: #535353;
+}
+
+.filterInput:hover {
+	color: white;
+}
+
+
+
 

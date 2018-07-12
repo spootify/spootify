@@ -1,0 +1,9 @@
+.flexRowWrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.album{
+    margin: 15px;
+}
