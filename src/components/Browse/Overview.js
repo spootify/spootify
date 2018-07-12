@@ -70,8 +70,9 @@ class Overview extends Component {
 							 transform: `translateX(-${this.state.startingIndex * 100}%)`
 						 }}>
 						{this.state.featuredPlaylists.map((filteredPL, i) => {
+							console.log(filteredPL)
 							return (
-								<Link to={`/dashboard/playlist/${filteredPL.owner.id}/${filteredPL.id}`}
+								<Link to={`/dashboard/playlist/${filteredPL.owner.id}/${filteredPL.id}/nothing/nothing`}
 									  key={filteredPL.id + i}
 									  className='hot-playlist'>
 									<div className='featuredPlaylist flexColumn'>

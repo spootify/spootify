@@ -7,11 +7,22 @@ class SongList extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			songPlaying: ''
+			songPlaying: '',
+			searchInput: '',
 		}
 
 		//Binding
 		this.playSongUpdateCurrentlyPlaying = this.playSongUpdateCurrentlyPlaying.bind(this);
+	}
+
+	componentDidMount(){
+		if(this.props.searchInput){
+			this.setState({
+				searchInput: this.props.searchInput
+			})
+		} else {
+			null
+		}
 	}
 
 
@@ -35,7 +46,7 @@ class SongList extends Component {
 		let { tracks } = this.props;
 
 		tracks = tracks.filter(eF => {
-			return eF.track.name.toLowerCase().includes(this.props.searchInput.toLowerCase())
+			return eF.track.name.toLowerCase().includes(this.state.searchInput.toLowerCase())
 		}).map((e) => (
 			<tr key={e.track.id}>
 				<td><FontAwesomeIcon

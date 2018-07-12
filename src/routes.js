@@ -24,7 +24,7 @@ export default (
 		<Route path="/home/" component={Home}/>
 		{/*<Route exact path="/dashboard/browse" component={BrowseNav}/>*/}
 
-		<Route path="/dashboard/playlist/:ownerId/:playlistId" component={Playlist}/>
+		<Route path="/dashboard/playlist/:ownerId/:playlistId/:uri/:id" component={Playlist}/>
 		<Route path='/dashboard/category/:categoryId/:categoryName' component={Category}/>
 		<Route path='/dashboard/album/:albumId' component={Album}/>
 		<Route path='/dashboard/songs' component={Songs}/>
