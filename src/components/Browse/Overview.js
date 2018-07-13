@@ -75,11 +75,18 @@ class Overview extends Component {
 									  key={filteredPL.id + i}
 									  className='hot-playlist'>
 									<div className='featuredPlaylist flexColumn'>
-										<img src={filteredPL.images[0].url}/>
+										<div className='playlist-image'>
+											<img src={filteredPL.images[0].url}/>
+											<div className="playlist-cover">
+												<div className="playlist-button">
+
+												</div>
+											</div>
+										</div>
 										<p>{filteredPL.name}</p>
 									</div>
 								</Link>
-							)
+							);
 						})
 						}
 					</div>
@@ -110,7 +117,10 @@ class Overview extends Component {
 							return (
 								<Link to={`/dashboard/category/${cat.id}/${cat.name}`} key={cat.id + i}>
 									<div>
-										<img src={cat.icons[0].url}/>
+										<div className="category-image">
+											<img src={cat.icons[0].url}/>
+											<p>{cat.name}</p>
+										</div>
 									</div>
 								</Link>
 							)

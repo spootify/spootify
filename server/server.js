@@ -57,6 +57,8 @@ massive(CONNECTION_STRING).then(db => {
 	app.set('db', db);
 })
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 app.use(session({
 	secret: SESSION_SECRET,
 	resave: false,
@@ -123,8 +125,8 @@ app.get('/auth/spotify', passport.authenticate('spotify', {
 }));
 
 app.get('/auth/spotify/callback', passport.authenticate('spotify', {
-	successRedirect: 'http://localhost:3000/#/home/browse/overview',
-	failureRedirect: 'http://localhost:3000'
+	successRedirect: process.env.SUCCESS_REDIRECT,
+	failureRedirect: process.env.FAILURE_REDIRECT
 }))
 
 //End Points
