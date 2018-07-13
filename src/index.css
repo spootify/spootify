@@ -82,7 +82,7 @@ body {
     .browseMainView .flexRow div .arrow-left:hover {
       border-left: 1px solid #ffffff;
       border-bottom: 1px solid #ffffff; }
-    .browseMainView .flexRow div .arrow-right:hover {
+    .browseMainView .flexRow div .arrow-right.hot-playlist {
       border-left: 1px solid #ffffff;
       border-bottom: 1px solid #ffffff; }
 
