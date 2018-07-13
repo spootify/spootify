@@ -4,7 +4,8 @@ import axios from 'axios';
 //Initial State
 const initialState = {
     deviceID: '',
-    currentlyPlaying: []
+    currentlyPlaying: [],
+    isPlaying: false
 };
 
 //Action Types
@@ -53,7 +54,7 @@ export function pauseSong(){
     })
     return {
         type: PAUSE_SONG,
-        payload: initialState
+        payload: false
     }
 }
 
@@ -63,7 +64,7 @@ export function playSong(deviceID, playlistUri){
     })
     return {
         type: PLAY_SONG,
-        payload: initialState
+        payload: true
     }
 }
 
@@ -96,9 +97,9 @@ export default function reducer(state = initialState, action){
         case GET_CURRENTLY_PLAYING + '_FULFILLED':
             return Object.assign({}, state, {currentlyPlaying: action.payload})
         case PAUSE_SONG:
-            return state;
+            return Object.assign({}, state, {isPlaying: action.payload})
         case PLAY_SONG:
-            return state;
+            return Object.assign({}, state, {isPlaying: action.payload});
         case NEXT_SONG:
             return state;
         case PREVIOUS_SONG:
