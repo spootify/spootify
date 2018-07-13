@@ -405,6 +405,9 @@ body {
   height: 50px;
   color: #959595; }
 
+#profileDiv {
+  justify-content: flex-end; }
+
 .searchDiv > * {
   margin: 0 10px;
   color: #959595; }
