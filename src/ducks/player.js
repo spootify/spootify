@@ -9,6 +9,7 @@ const initialState = {
 
 //Action Types
 const SET_DEVICE_ID = "SET_DEVICE_ID";
+const RECENTLY_PLAYED ="RECENTLY_PLAYED";
 const GET_CURRENTLY_PLAYING = "GET_CURRENTLY_PLAYING";
 const PAUSE_SONG = "PAUSE_SONG";
 const PLAY_SONG = "PLAY_SONG";
@@ -24,9 +25,21 @@ export function setDeviceID(deviceID){
     }
 }
 
+export function getRecentlyPlayed(){
+    let recentlyPlayed = axios.get('/get/recently/played').then(response => {
+        console.log(response.data.data.items)
+        return response.data.data.items[0].track
+    })
+    return {
+        type: RECENTLY_PLAYED,
+        payload: recentlyPlayed
+    }
+}
+
 export function getCurrentlyPlaying(){
     let currentlyPlayingInfo = axios.get('/currently/playing').then(response => {
-        return response.data.data
+        console.log(response)
+        return response.data.data.item
     })
     return {
         type: GET_CURRENTLY_PLAYING,
@@ -35,7 +48,6 @@ export function getCurrentlyPlaying(){
 }
 
 export function pauseSong(){
-    console.log(initialState.deviceID)
     axios.get('/pause/song').then(response => {
         return console.log('Music Paused')
     })
@@ -47,7 +59,7 @@ export function pauseSong(){
 
 export function playSong(deviceID, playlistUri){
     axios.put('/resume/track', {deviceID, playlistUri}).then(response => {
-        console.log('end point hit')
+        this.getCurrentlyPlaying();
     })
     return {
         type: PLAY_SONG,
@@ -79,6 +91,8 @@ export default function reducer(state = initialState, action){
     switch(action.type){
         case SET_DEVICE_ID:
             return Object.assign({}, state, {deviceID: action.payload})
+        case RECENTLY_PLAYED + '_FULFILLED':
+            return Object.assign({}, state, {currentlyPlaying: action.payload})
         case GET_CURRENTLY_PLAYING + '_FULFILLED':
             return Object.assign({}, state, {currentlyPlaying: action.payload})
         case PAUSE_SONG:
