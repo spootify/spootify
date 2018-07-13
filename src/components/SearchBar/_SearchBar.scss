@@ -13,6 +13,11 @@
 	justify-content: flex-end;
 }
 
+#profileDiv > a {
+	width: 45%;
+	text-align: right;
+}
+
 .searchDiv > * {
 	margin: 0 10px;
 	color: #959595;
@@ -29,10 +34,11 @@
 .searchDiv > a {
 	text-decoration: none;
 	color: lightgray;
+	width: 65%;
 }
 
 .searchInput {
-	width: 150px;
+	width: 100%;
 	height: 25px;
 	border-radius: 15px;
 	border: none;

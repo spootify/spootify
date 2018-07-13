@@ -16,13 +16,6 @@ class SongList extends Component {
 	}
 
 	componentDidMount(){
-		if(this.props.searchInput){
-			this.setState({
-				searchInput: this.props.searchInput
-			})
-		} else {
-			null
-		}
 		
 	}
 
@@ -42,11 +35,12 @@ class SongList extends Component {
 	}
 
 	render(props) {
-		console.log(props)
+		console.log(this.props)
 
 		let { tracks } = this.props;
 
-		tracks = tracks.filter(eF => {
+		if(this.props.searchInput) {
+			tracks =  tracks.filter(eF => {
 			return eF.track.name.toLowerCase().includes(this.props.searchInput.toLowerCase())
 		}).map((e) => (
 			<tr key={e.track.id}>
@@ -65,6 +59,25 @@ class SongList extends Component {
 				</td>
 			</tr>
 		));
+	} else {
+		tracks =  tracks.map((e) => (
+			<tr key={e.track.id}>
+				<td><FontAwesomeIcon id="play-btn-icon"
+					icon={this.state.songPlaying === e.track.id ? 'pause-circle' : "play-circle"}
+					onClick={this.state.songPlaying === '' ? () => this.playSongUpdateCurrentlyPlaying(e.track.uri, e.track.id) : () => this.pauseSong()} />
+				</td>
+				<td>{e.track.name}</td>
+				<td>{e.track.artists.map((artist, i, arr) => (
+					(arr.length > 1) ? (i === arr.length - 1) ? artist.name : artist.name + ', ' : artist.name))}
+				</td>
+				<td>{e.track.album.name}</td>
+				<td>{Math.floor(e.track.duration_ms / 1000 / 60)}:{(e.track.duration_ms / 60 % 60 < 10) ?
+					'0' + Math.floor(e.track.duration_ms / 60 % 60) :
+					Math.floor(e.track.duration_ms / 60 % 60)}
+				</td>
+			</tr>
+		));
+	}
 
 		return (
 			<div className='song-list'>
