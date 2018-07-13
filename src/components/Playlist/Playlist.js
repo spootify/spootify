@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import SongList from '../SongList/SongList';
 import PlayButton from '../PlayButton/PlayButton';
@@ -8,24 +8,25 @@ class Playlist extends Component {
 		super()
 		this.state = {
 			playlist: {},
-			image   : '',
-			tracks  : [],
+			image: '',
+			tracks: [],
 			uri: '',
 			id: '',
+			searchInput: '',
 		}
 	}
 
 	componentDidMount() {
 		axios.get(`/spotify/playlist/${this.props.match.params.ownerId}/${this.props.match.params.playlistId}`)
-			 .then(res => {
-				 this.setState({
-					 playlist: res.data.body,
-					 image   : <img src={res.data.body.images[0].url} alt=""/>,
-					 tracks  : res.data.body.tracks.items,
-					 uri 	 : res.data.body.tracks.items[0].uri,
-					 id		 : res.data.body.tracks.items[0].id  
-				 })
-			 });
+			.then(res => {
+				this.setState({
+					playlist: res.data.body,
+					image: <img src={res.data.body.images[0].url} alt="" />,
+					tracks: res.data.body.tracks.items,
+					uri: res.data.body.tracks.items[0].uri,
+					id: res.data.body.tracks.items[0].id
+				})
+			});
 	}
 
 	render() {
@@ -40,11 +41,15 @@ class Playlist extends Component {
 						<h1>{this.state.playlist.name}</h1>
 						<p>{this.state.playlist.description}</p>
 						<PlayButton uri={this.state.uri}
-								id={this.state.id}
+							id={this.state.id}
 						/>
 					</div>
 				</div>
-				<SongList tracks={this.state.tracks} playlistUri={this.state.playlist.uri}/>
+				<input className='filterInput'
+					placeholder='Filter'
+					onChange={e => this.setState({ searchInput: e.target.value })}
+				/>
+				<SongList tracks={this.state.tracks} playlistUri={this.state.playlist.uri} searchInput={this.state.searchInput} />
 			</div>
 		)
 
