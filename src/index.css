@@ -408,6 +408,10 @@ body {
 #profileDiv {
   justify-content: flex-end; }
 
+#profileDiv > a {
+  width: 45%;
+  text-align: right; }
+
 .searchDiv > * {
   margin: 0 10px;
   color: #959595; }
