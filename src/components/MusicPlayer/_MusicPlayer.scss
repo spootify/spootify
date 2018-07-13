@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 .musicPlayer {
 	position: fixed;
 	width: 100%;
@@ -7,6 +9,7 @@
 	flex-direction: row;
 	justify-content: space-around;
 	bottom: 0px;
+	font-family: 'Montserrat', sans-serif;
 }
   
   .currently-playing-container {
@@ -31,9 +34,10 @@
   }
   
   .song-artist-container > h3 {
-	  font-size: 16px;
-	  margin-bottom: 15%;
+	  font-size: 12px;
+	  margin-bottom: 10%;
 	  margin-left: 0;
+	  color: white;
   }
 
   .song-artist-container > h3:hover {
