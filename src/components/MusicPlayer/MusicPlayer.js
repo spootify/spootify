@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 //Reducer Functions
 import {getUser} from '../../ducks/user';
-import {setDeviceID, getCurrentlyPlaying, pauseSong, playSong, skipTrack, previousTrack} from '../../ducks/player';
+import {setDeviceID, getCurrentlyPlaying, pauseSong, playSong, skipTrack, previousTrack, getRecentlyPlayed} from '../../ducks/player';
 
 class MusicPlayer extends Component {
     constructor(props){
@@ -51,7 +51,8 @@ class MusicPlayer extends Component {
             })
             this.eventHandler();
         }
-        }, 200)
+        }, 200);
+        this.props.getRecentlyPlayed();
     }
 
     //Initializing the SDK Player
@@ -117,18 +118,20 @@ class MusicPlayer extends Component {
     }
 
     render(){
+        console.log(this.props.player.currentlyPlaying)
         return (
             <div className='musicPlayer'>
                 <div className="currently-playing-container">
-                    <img src={this.state.currentlyPlayingAlbumCover} alt="album cover"/>
+                    <img src={this.props.player.currentlyPlaying.album ? this.props.player.currentlyPlaying.album.images[1].url : ''}/>
                     <div className="song-artist-container">
-                        <h3>{this.state.currentlyPlayingSongName}</h3>
-                        <p>{this.state.currentlyPlayingArtistName}</p>
+                        <h3>{this.props.player.currentlyPlaying.album ? this.props.player.currentlyPlaying.name : ''}</h3>
+                        <p>{this.props.player.currentlyPlaying.album ? this.props.player.currentlyPlaying.album.artists[0].name : ''}</p>
                     </div>
                 </div>
 
                 <div className="player-options-container">
                     <div className="play-button-container">
+                        <FontAwesomeIcon icon="random" id="shuffle"/>
                         <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.previousSongFunc()}/>
                         {this.state.playing ?
                         <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSongFunc()}/>
@@ -136,15 +139,14 @@ class MusicPlayer extends Component {
                         <FontAwesomeIcon icon="play-circle" id="middle-icon" onClick={() => this.playSongFunc()}/>
                         }
                         <FontAwesomeIcon icon="step-forward" id="last-icon" onClick={() => this.nextSongFunc()}/>
-                    </div>
-
-                    <div className="playback-time-container">
-                        
+                        <FontAwesomeIcon icon="redo" id="repeat"/>
                     </div>
                 </div>
 
                 <div className="volume-container">
-
+                    <FontAwesomeIcon icon="volume-down"/>
+                    <div className="green-bar"></div>
+                    <FontAwesomeIcon icon="volume-up"/>
                 </div>
             </div>
         )
@@ -165,5 +167,6 @@ export default connect(mapStateToProps, {
 	pauseSong,
 	playSong,
 	skipTrack,
-	previousTrack
+    previousTrack,
+    getRecentlyPlayed
 })(MusicPlayer);

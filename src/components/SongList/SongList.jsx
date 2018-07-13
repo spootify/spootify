@@ -29,18 +29,19 @@ class SongList extends Component {
 	//Methods
 	playSongUpdateCurrentlyPlaying(trackUri, id) {
 		this.props.playSong(this.props.player.deviceID, trackUri);
-		setTimeout(() => this.props.getCurrentlyPlaying(), 500)
+		// this.props.getCurrentlyPlaying();
 		this.setState({ songPlaying: id })
 	}
 
-	pauseSong() {
-		this.props.pauseSong()
+	pauseSong(trackUri) {
+		this.props.pauseSong(this.props.player.deviceID, trackUri)
 		this.setState({
 			songPlaying: '',
 		})
 	}
 
 	render(props) {
+		console.log(props)
 
 		let { tracks } = this.props;
 
@@ -83,7 +84,6 @@ class SongList extends Component {
 			</div>
 		)
 	}
-
 }
 
 export default connect(({ player }) => ({ player }),

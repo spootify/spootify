@@ -107,6 +107,10 @@ passport.deserializeUser((id, done) => {
 	})
 })
 
+app.get('/test/endpoint', (req, res) => {
+	let testData = ['hello', 'how', 'are', 'you'];
+	res.status(200).send(testData)
+})
 
 //Favorite Song Endpoints
 app.get('/get/favorite/song/:spotify_id', profile_controller.getFavoriteSong)
@@ -275,6 +279,17 @@ app.get('/spotify/saved/playlists', (req, res) => {
 })
 //Music Player EndPoints
 
+// Get recently played
+app.get('/get/recently/played', (req, res) => {
+	axios.get('https://api.spotify.com/v1/me/player/recently-played', {
+		headers: {
+			"Authorization": "Bearer" + ' ' + accToken
+		}
+	}).then(response => {
+		res.status(200).send(stringify(response))
+	})
+})
+
 // Get Currently Playing song
 app.get('/currently/playing', (req, res) => {
 	axios.get('https://api.spotify.com/v1/me/player', {
@@ -282,7 +297,6 @@ app.get('/currently/playing', (req, res) => {
 			"Authorization": "Bearer" + ' ' + accToken
 		}
 	}).then(response => {
-		contextUri = response.data.item.album.uri
 		res.status(200).send(stringify(response))
 	})
 })
@@ -317,6 +331,7 @@ app.put('/resume/track', (req, res) => {
 			"Authorization": "Bearer" + ' ' + accToken
 		}
 	}).then(response => {
+
 		res.status(200).send('Music Resumed')
 	})
 })
