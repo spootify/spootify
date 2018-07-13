@@ -47,7 +47,7 @@ class SongList extends Component {
 		let { tracks } = this.props;
 
 		tracks = tracks.filter(eF => {
-			return eF.track.name.toLowerCase().includes(this.state.searchInput.toLowerCase())
+			return eF.track.name.toLowerCase().includes(this.props.searchInput.toLowerCase())
 		}).map((e) => (
 			<tr key={e.track.id}>
 				<td><FontAwesomeIcon id="play-btn-icon"
