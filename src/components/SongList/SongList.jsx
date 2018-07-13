@@ -40,7 +40,6 @@ class SongList extends Component {
 		})
 	}
 
-
 	render(props) {
 
 		let { tracks } = this.props;
@@ -74,7 +73,7 @@ class SongList extends Component {
 							<td>Title</td>
 							<td>Artist</td>
 							<td>Album</td>
-							<td>Dur</td>
+							<td><FontAwesomeIcon icon='clock'/></td>
 						</tr>
 					</thead>
 					<tbody>

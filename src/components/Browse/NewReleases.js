@@ -29,11 +29,17 @@ export default class NewRealeses extends Component {
 						return (
 							<Link to={`/dashboard/album/${album.id}`} key={album.id}>
 								<div>
-									<img src={album.images[1].url} alt='album'/>
+									<div className="playlist-image">
+										<img src={album.images[1].url} alt='album'/>
+										<div className="playlist-cover">
+											<div className="playlist-button">
+											</div>
+										</div>
+									</div>
 									<p>{album.name}</p>
 								</div>
 							</Link>
-						)
+						);
 					})}
 				</div>
 			</div>

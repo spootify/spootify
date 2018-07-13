@@ -27,9 +27,16 @@ class Category extends Component {
 				<div className="category-wrapper">
 					{this.state.categoryPlaylists.map((playlist, i) => {
 						return (
-							<Link to={`/dashboard/playlist/${playlist.owner.id}/${playlist.id}/nothing/nothing`} key={playlist.id}>
+							<Link to={`/dashboard/playlist/${playlist.owner.id}/${playlist.id}/nothing/nothing`}
+								  key={playlist.id}>
 								<div>
-									<img src={playlist.images[0].url} style={{margin: "15px"}} alt='playlist'/>
+									<div className="playlist-image">
+										<img src={playlist.images[0].url} style={{margin: "15px"}} alt='playlist'/>
+										<div className="playlist-cover">
+											<div className="playlist-button">
+											</div>
+										</div>
+									</div>
 									<p>{playlist.name}</p>
 								</div>
 							</Link>
