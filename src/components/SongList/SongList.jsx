@@ -49,7 +49,7 @@ class SongList extends Component {
 			return eF.track.name.toLowerCase().includes(this.state.searchInput.toLowerCase())
 		}).map((e) => (
 			<tr key={e.track.id}>
-				<td><FontAwesomeIcon
+				<td><FontAwesomeIcon id="play-btn-icon"
 					icon={this.state.songPlaying === e.track.id ? 'pause-circle' : "play-circle"}
 					onClick={this.state.songPlaying === '' ? () => this.playSongUpdateCurrentlyPlaying(e.track.uri, e.track.id) : () => this.pauseSong()} />
 				</td>

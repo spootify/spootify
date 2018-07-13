@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 body {
   margin: 0;
   padding: 0; }
@@ -212,7 +216,8 @@ body {
     display: none; }
 
 .dashboard {
-  margin: 0; }
+  margin: 0;
+  font-family: 'Montserrat', sans-serif; }
 
 .musicPlayer {
   position: fixed;
@@ -222,7 +227,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  bottom: 0px; }
+  bottom: 0px;
+  font-family: 'Montserrat', sans-serif; }
 
 .currently-playing-container {
   width: 20%;
@@ -244,9 +250,10 @@ body {
   margin-left: 5%; }
 
 .song-artist-container > h3 {
-  font-size: 16px;
-  margin-bottom: 15%;
-  margin-left: 0; }
+  font-size: 12px;
+  margin-bottom: 10%;
+  margin-left: 0;
+  color: white; }
 
 .song-artist-container > h3:hover {
   color: #1ed760;
@@ -376,6 +383,8 @@ body {
   width: 15%;
   background-color: #121212;
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -405,7 +414,9 @@ body {
   color: white; }
 
 .song-list {
-  width: 100%; }
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; }
   .song-list table {
     margin-top: 50px;
     width: 100%;
@@ -438,6 +449,13 @@ body {
         cursor: pointer; }
       .song-list table tbody tr td:last-child {
         text-align: center; }
+
+#play-btn-icon {
+  font-size: 22px;
+  color: #181818;
+  background: white;
+  border-radius: 50%;
+  border: .5px solid white; }
 
 .playlist .playlist-header {
   display: flex; }
