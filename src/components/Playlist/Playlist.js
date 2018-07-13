@@ -29,21 +29,19 @@ class Playlist extends Component {
 	}
 
 	render() {
-		console.log(this.state);
-		// const {}
 		return (
 			<div className='playlist'>
 				<div className="playlist-header">
 					<div className="plylist-image">
 						{this.state.image}
-						<PlayButton uri={this.state.uri}
-								id={this.state.id}
-						/>
 					</div>
 					<div className="playlist-info">
 						<h3>Playist</h3>
 						<h1>{this.state.playlist.name}</h1>
 						<p>{this.state.playlist.description}</p>
+						<PlayButton uri={this.state.uri}
+								id={this.state.id}
+						/>
 					</div>
 				</div>
 				<SongList tracks={this.state.tracks} playlistUri={this.state.playlist.uri}/>

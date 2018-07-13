@@ -17,6 +17,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faRandom } from '@fortawesome/free-solid-svg-icons'
+import { faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import { faVolumeDown } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
 
 
 class App extends Component {
@@ -31,7 +36,8 @@ class App extends Component {
 
 
 	render() {
-		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle, faPlus, faCheck, faAngleLeft, faAngleRight);
+		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle, faPlus, faCheck, faAngleLeft, faAngleRight, faRandom, faRedo, faVolumeUp, faVolumeDown);
+		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle, faPlus, faCheck, faAngleLeft, faAngleRight, faClock);
 		console.log(this.props);
 		return (
 			<div className="App">
