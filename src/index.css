@@ -226,11 +226,31 @@ body {
 .browse-nav .flexRow {
   display: flex; }
   .browse-nav .flexRow a {
-    margin-right: 20px;
     text-decoration: none;
     color: #959595; }
     .browse-nav .flexRow a:last-child {
       margin-right: 0; }
+    .browse-nav .flexRow a h3:hover {
+      color: #ffffff; }
+
+.activeTab {
+  color: #ffffff; }
+
+.active {
+  width: 25px;
+  margin: 5px 0;
+  background: #1db954;
+  height: 2px;
+  border-radius: 5px; }
+
+.none {
+  display: none; }
+
+.navTabDiv {
+  margin: 0 25px 0 0;
+  height: 35px;
+  align-items: center;
+  justify-content: flex-start; }
 
 .content {
   display: inline-block;
