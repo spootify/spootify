@@ -133,7 +133,7 @@ class MusicPlayer extends Component {
                     <div className="play-button-container">
                         <FontAwesomeIcon icon="random" id="shuffle"/>
                         <FontAwesomeIcon icon="step-backward" id="first-icon" onClick={() => this.previousSongFunc()}/>
-                        {this.state.playing ?
+                        {this.props.player.isPlaying ?
                         <FontAwesomeIcon icon="pause-circle" id="middle-icon" onClick={() => this.pauseSongFunc()}/>
                         :
                         <FontAwesomeIcon icon="play-circle" id="middle-icon" onClick={() => this.playSongFunc()}/>
