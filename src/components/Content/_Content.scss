@@ -1,11 +1,15 @@
 .content {
+	box-sizing: border-box;
 	display: inline-block;
 	height: 90vh;
+	position: fixed;
+	left: 15%;
 	overflow: scroll;
 	//background-color: #181818;
 	background: #181818;
 	padding: 3px 40px;
-	width: 100%;
+	// padding: 1px;
+	width: 85%;
 	::-webkit-scrollbar {
 		display: none;
 	}

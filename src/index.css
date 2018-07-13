@@ -16,11 +16,13 @@ body {
   font-family: sans-serif;
   background-color: #1E1E1E;
   height: 100vh;
-  color: #959595; }
+  color: #959595;
+  box-sizing: border-box; }
   .App .container {
     display: flex;
     width: 100%;
-    height: 85vh; }
+    height: 85vh;
+    box-sizing: border-box; }
   .App ::-webkit-scrollbar {
     display: none; }
   .App h1 {
@@ -43,19 +45,24 @@ body {
 .filterInput:hover {
   color: white; }
 
+.flexColumn {
+  display: flex;
+  flex-direction: column; }
+
 .browseMainView hr {
   width: 100%;
   height: 1px;
   margin: 30px 0;
   padding: 0;
-  border-bottom: 2px solid #FFFFFF;
+  border-bottom: .25px solid #535353;
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-left: 1px solid transparent; }
 
 .browseMainView .messageHeader {
   margin: 20px 0;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: center; }
   .browseMainView .messageHeader h3 {
     color: #FFFFFF;
     font: bold 24px 'Arial'; }
@@ -65,15 +72,22 @@ body {
   .browseMainView .flexRow div {
     display: flex; }
     .browseMainView .flexRow div .arrow {
-      width: 18px;
-      height: 18px;
-      border-left: 1px solid #FFFFFF;
-      border-bottom: 1px solid #FFFFFF;
+      width: 12px;
+      height: 12px;
+      margin: 0 8px;
+      border-left: 1px solid #959595;
+      border-bottom: 1px solid #959595;
       cursor: pointer; }
     .browseMainView .flexRow div .arrow-left {
       transform: rotate(45deg); }
     .browseMainView .flexRow div .arrow-right {
       transform: rotate(225deg); }
+    .browseMainView .flexRow div .arrow-left:hover {
+      border-left: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff; }
+    .browseMainView .flexRow div .arrow-right.hot-playlist {
+      border-left: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff; }
 
 .browseMainView .featuredPlaylists {
   width: 100%;
@@ -90,7 +104,7 @@ body {
     transition: transform 0.5s linear; }
     .browseMainView .featuredPlaylists .slider .hot-playlist {
       text-decoration: none;
-      color: #FFFFFF;
+      color: #959595;
       text-align: center;
       height: 100%;
       min-width: 300px;
@@ -111,7 +125,8 @@ body {
         margin-right: 0; }
     .browseMainView .featuredPlaylists .slider .featuredPlaylist {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      align-items: flex-start; }
       .browseMainView .featuredPlaylists .slider .featuredPlaylist .playlist-image {
         position: relative; }
         .browseMainView .featuredPlaylists .slider .featuredPlaylist .playlist-image:hover .playlist-cover {
@@ -153,10 +168,13 @@ body {
             left: 50%;
             transform: translate(-57%, -50%); }
       .browseMainView .featuredPlaylists .slider .featuredPlaylist p {
-        margin-top: 10px; }
+        margin-top: 15px;
+        color: #ffffff; }
 
 .browseMainView .subheader {
-  margin: 40px 0; }
+  border-top: .25px #535353 solid;
+  padding: 40px 0;
+  justify-content: space-evenly; }
   .browseMainView .subheader a {
     text-decoration: none;
     color: #959595;
@@ -168,7 +186,8 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 100%; }
+  width: 100%;
+  border-top: .25px #535353 solid; }
   .browseMainView .flexRowWrap .category a {
     min-width: 24%;
     margin-right: calc((100% - 24% * 4) / 3);
@@ -197,22 +216,55 @@ body {
       .browseMainView .flexRowWrap .category a:nth-child(4n) {
         margin-right: 0; } }
 
+.sectionButton {
+  width: 350px;
+  height: 200px;
+  align-items: center;
+  justify-content: space-between; }
+
+.sectionImage {
+  width: 100%;
+  height: 80%; }
+
 .browse-nav .flexRow {
   display: flex; }
   .browse-nav .flexRow a {
-    margin-right: 20px;
     text-decoration: none;
     color: #959595; }
     .browse-nav .flexRow a:last-child {
       margin-right: 0; }
+    .browse-nav .flexRow a h3:hover {
+      color: #ffffff; }
+
+.activeTab {
+  color: #ffffff; }
+
+.active {
+  width: 25px;
+  margin: 5px 0;
+  background: #1db954;
+  height: 2px;
+  border-radius: 5px; }
+
+.none {
+  display: none; }
+
+.navTabDiv {
+  margin: 0 25px 0 0;
+  height: 35px;
+  align-items: center;
+  justify-content: flex-start; }
 
 .content {
+  box-sizing: border-box;
   display: inline-block;
   height: 90vh;
+  position: fixed;
+  left: 15%;
   overflow: scroll;
   background: #181818;
   padding: 3px 40px;
-  width: 100%; }
+  width: 85%; }
   .content ::-webkit-scrollbar {
     display: none; }
 
@@ -345,6 +397,7 @@ body {
   cursor: pointer; }
 
 .searchBar {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -353,14 +406,18 @@ body {
   height: 50px;
   color: #959595; }
 
+#profileDiv {
+  justify-content: flex-end; }
+
 .searchDiv > * {
   margin: 0 10px;
   color: #959595; }
 
 .searchDiv {
+  box-sizing: border-box;
   display: flex;
-  justify-content: flex-end;
-  width: 15%;
+  justify-content: flex-start;
+  width: 25%;
   align-items: center; }
 
 .searchDiv > a {
@@ -614,7 +671,7 @@ body {
           margin-bottom: 10px; }
 
 .category {
-  margin: 20px 0;
+  padding: 20px 0;
   width: 100%; }
   .category h3 {
     color: #FFFFFF;

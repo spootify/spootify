@@ -1,4 +1,5 @@
 .searchBar {
+	box-sizing: border-box;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -8,15 +9,20 @@
 	color: #959595;
 }
 
+#profileDiv {
+	justify-content: flex-end;
+}
+
 .searchDiv > * {
 	margin: 0 10px;
 	color: #959595;
 }
 
 .searchDiv {
+	box-sizing: border-box;
 	display: flex;
-	justify-content: flex-end;
-	width: 15%;
+	justify-content: flex-start;
+	width: 25%;
 	align-items: center;
 }
 
