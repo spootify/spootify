@@ -60,7 +60,7 @@
 				max-width: 24%;
 				margin-right: calc((100% - 24% * 4) / 3);
 				overflow: hidden;
-				@media (max-width: 1185px) {
+				@media (max-width: 1344px) {
 					min-width: 33%;
 					max-width: 33%;
 					margin-right: calc((100% - 33% * 3) / 2);
@@ -69,7 +69,7 @@
 					}
 				}
 				&:nth-child(4n) {
-					@media (min-width: 1186px) {
+					@media (min-width: 1344px) {
 						margin-right: 0;
 					}
 				}
@@ -80,10 +80,56 @@
 			.featuredPlaylist {
 				display: flex;
 				flex-direction: column;
-				img {
-					width: 100%;
+				.playlist-image {
+					position: relative;
+					&:hover {
+						.playlist-cover {
+							background-color: rgba(0, 0, 0, 0.5);
+							.playlist-button {
+								display: block;
+							}
+							&:after {
+								display: block;
+							}
+						}
+					}
+					img {
+						height: 100%;
+					}
+					.playlist-cover {
+						width: 100%;
+						height: 100%;
+						position: absolute;
+						background-color: rgba(0, 0, 0, 0);
+						z-index: 2;
+						.playlist-button {
+							display: none;
+							position: absolute;
+							left: 50%;
+							top: 50%;
+							transform: translate(-50%, -50%);
+							border-left: 30px solid #FFFFFF;
+							border-top: 20px solid transparent;
+							border-bottom: 20px solid transparent;
+							z-index: 9;
+						}
+						&:after {
+							content: '';
+							display: none;
+							position: absolute;
+							border: 2px solid #FFFFFF;
+							border-radius: 50%;
+							background-color: rgba(0, 0, 0, 0.8);
+							width: 70px;
+							height: 70px;
+							z-index: 5;
+							top: 50%;
+							left: 50%;
+							transform: translate(-57%, -50%);
+						}
+					}
 				}
-				p{
+				p {
 					margin-top: 10px;
 				}
 			}
@@ -111,7 +157,12 @@
 				min-width: 24%;
 				margin-right: calc((100% - 24% * 4) / 3);
 				margin-bottom: 40px;
-				@media (max-width: 1185px) {
+				&:hover{
+					p{
+						text-decoration: underline;
+					}
+				}
+				@media (max-width: 1344px) {
 					flex-basis: 33%;
 					//min-width: 33%;
 					margin-right: calc((100% - 33% * 3) / 2);
@@ -120,12 +171,24 @@
 					}
 				}
 				div {
-					img {
+					.category-image {
 						width: 100%;
+						height: 100%;
+						position: relative;
+						img {
+							width: 100%;
+						}
+						p {
+							position: absolute;
+							top: 75%;
+							left: 50%;
+							transform: translateX(-50%);
+							color: #FFFFFF;
+						}
 					}
 				}
 				&:nth-child(4n) {
-					@media (min-width: 1186px) {
+					@media (min-width: 1344px) {
 						margin-right: 0;
 					}
 				}
