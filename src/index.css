@@ -38,6 +38,10 @@ body {
 .filterInput:hover {
   color: white; }
 
+.flexColumn {
+  display: flex;
+  flex-direction: column; }
+
 .browseMainView hr {
   width: 100%;
   height: 1px;
@@ -113,7 +117,8 @@ body {
         margin-top: 10px; }
 
 .browseMainView .subheader {
-  margin: 40px 0; }
+  margin: 40px 0;
+  justify-content: space-evenly; }
   .browseMainView .subheader a {
     text-decoration: none;
     color: #959595;
@@ -141,6 +146,14 @@ body {
     @media (min-width: 1186px) {
       .browseMainView .flexRowWrap .category a:nth-child(4n) {
         margin-right: 0; } }
+
+.sectionButton {
+  width: 350px;
+  height: 200px; }
+
+.sectionImage {
+  width: 100%;
+  height: 80%; }
 
 .browse-nav .flexRow {
   display: flex; }

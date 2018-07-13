@@ -4,6 +4,8 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {getUser} from '../../ducks/user';
 import BrowseNav from '../BrowseNav/BrowseNav';
+import charts from './charts.png';
+import newReleases from './new-releases.png';
 
 class Overview extends Component {
 	constructor() {
@@ -89,15 +91,15 @@ class Overview extends Component {
 
 				<div className='flexRow subheader'>
 					<Link to='/home/browse/charts'>
-						<div>
-							<h1>Charts</h1>
+						<div className='flexColumn sectionButton'>
+							<img className='sectionImage' src={charts} alt='charts' width='100%' height='80%' />
 							<p>Gloabal and regional top charts</p>
 						</div>
 					</Link>
 
 					<Link to="/home/browse/releases">
-						<div>
-							<h1>New Releases</h1>
+						<div className='flexColumn sectionButton'>
+							<img className='sectionImage' src={newReleases} alt='new-releases' />
 							<p>Drake, Florence + The Machine, Gorillaz</p>
 						</div>
 					</Link>

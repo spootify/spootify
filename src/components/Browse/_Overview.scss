@@ -92,6 +92,7 @@
 	}
 	.subheader {
 		margin: 40px 0;
+		justify-content: space-evenly;
 		a {
 			text-decoration: none;
 			color: $text;
@@ -132,4 +133,14 @@
 			}
 		}
 	}
+}
+
+.sectionButton {
+	width: 350px;
+	height: 200px
+}
+
+.sectionImage {
+	width: 100%;
+	height: 80%;
 }
