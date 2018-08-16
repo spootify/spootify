@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
-const Auth0Strategy = require('passport-auth0');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const massive = require('massive');
 const bodyParser = require('body-parser');
@@ -12,7 +11,6 @@ const stringify = require('json-stringify-safe');
 const profile_controller = require('./profile_controller');
 
 let contextUri = '';
-let userDevice = '';
 
 const scope = 'user-read-private user-read-email user-read-birthdate user-top-read user-read-recently-played user-library-modify user-library-read playlist-modify-public playlist-modify-private playlist-read-collaborative playlist-read-private user-follow-modify user-follow-read user-read-currently-playing user-read-playback-state user-modify-playback-state streaming';
 
@@ -41,7 +39,6 @@ sp.clientCredentialsGrant().then(
 const {
 	SERVER_PORT,
 	SESSION_SECRET,
-	DOMAIN,
 	CLIENT_ID,
 	CLIENT_SECRET,
 	CALLBACK_URL,
@@ -321,6 +318,7 @@ app.put('/resume/track', (req, res) => {
 	let trackUri = []
 	trackUri.push(playlistUri);
 	console.log(trackUri)
+	console.log(accToken)
 	let body = {
 		"uris": trackUri
 	}

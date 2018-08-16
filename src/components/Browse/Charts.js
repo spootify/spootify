@@ -38,7 +38,7 @@ export default class Charts extends Component {
 							<Link key={i} to={`/dashboard/playlist/${playList.owner.id}/${playList.id}/nothing/nothing`}>
 								<div>
 									<div className="playlist-image">
-										<img src={playList.images[0].url}/>
+										<img src={playList.images[0].url} alt="playlist cover"/>
 										<div className="playlist-cover">
 											<div className="playlist-button">
 											</div>

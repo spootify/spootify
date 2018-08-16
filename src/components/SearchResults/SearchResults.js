@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 class SearchResults extends Component {
-    constructor(props){
-        super(props)
-    }
-
     render(){
         console.log(this.props.results)
 
@@ -16,7 +12,7 @@ class SearchResults extends Component {
         }).map((element, index) => {
             return (
                 <div className="album-container">
-                    <Link to={`/dashboard/album/${element.id}`}><img src={element.images[2].url}/></Link>
+                    <Link to={`/dashboard/album/${element.id}`}><img src={element.images[2].url} alt="album cover"/></Link>
                     <div className="album-split">
                     <h1>{element.name}</h1>
                     <p>{element.artists[0].name}</p>
@@ -31,7 +27,7 @@ class SearchResults extends Component {
         }).map((element, index) => {
             return (
                 <div className="playlist-container">
-                    <Link to={`/dashboard/playlist/${element.owner.id}/${element.id}/nothing/nothing`}><img src={element.images[0].url}/></Link>
+                    <Link to={`/dashboard/playlist/${element.owner.id}/${element.id}/nothing/nothing`}><img src={element.images[0].url} alt="album cover"/></Link>
                     <div className="playlist-split">
                         <h1>{element.name}</h1>
                     </div>

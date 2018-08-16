@@ -105,5 +105,4 @@ export default connect(({ player }) => ({ player }),
 		playSong,
 		pauseSong,
 		getCurrentlyPlaying
-	})
-	(SongList);
+	})(SongList);

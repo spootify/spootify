@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PlusIcon from './plus-icon.png';
 import axios from 'axios';
 
 class SideBar extends Component {

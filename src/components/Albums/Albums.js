@@ -37,7 +37,7 @@ export default class Albums extends Component {
           }).map(album => {
             return (
               <div key={album.album.id} className='album'>
-                <Link to={`/dashboard/album/${album.album.id}`}><img src={album.album.images[1].url} /></Link>
+                <Link to={`/dashboard/album/${album.album.id}`}><img src={album.album.images[1].url} alt="dashboard album"/></Link>
                 <p style={{ fontWeight: 'bold', color: 'white' }}>{album.album.name}</p>
                 <p>{album.album.artists[0].name}</p>
               </div>

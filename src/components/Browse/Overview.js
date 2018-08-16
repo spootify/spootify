@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {getUser} from '../../ducks/user';
-import BrowseNav from '../BrowseNav/BrowseNav';
 import charts from './charts.png';
 import newReleases from './new-releases.png';
 
@@ -78,7 +77,7 @@ class Overview extends Component {
 									  className='hot-playlist'>
 									<div className='featuredPlaylist flexColumn'>
 										<div className='playlist-image'>
-											<img src={filteredPL.images[0].url}/>
+											<img src={filteredPL.images[0].url} alt="featured"/>
 											<div className="playlist-cover">
 												<div className="playlist-button">
 
@@ -120,7 +119,7 @@ class Overview extends Component {
 								<Link to={`/dashboard/category/${cat.id}/${cat.name}`} key={cat.id + i}>
 									<div>
 										<div className="category-image">
-											<img src={cat.icons[0].url}/>
+											<img src={cat.icons[0].url} alt="category"/>
 											<p>{cat.name}</p>
 										</div>
 									</div>

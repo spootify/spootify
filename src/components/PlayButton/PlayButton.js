@@ -12,6 +12,7 @@ class PlayButton extends Component {
     }
 
     playSongUpdateCurrentlyPlaying(trackUri, id) {
+        console.log(trackUri, this.props)
         this.props.playSong(this.props.player.deviceID, trackUri);
         setTimeout(() => this.props.getCurrentlyPlaying(), 500)
         this.setState({ songPlaying: id })
@@ -37,5 +38,4 @@ export default connect(({ player }) => ({ player }),
         playSong,
         pauseSong,
         getCurrentlyPlaying
-    })
-    (PlayButton)
+    })(PlayButton);

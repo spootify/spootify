@@ -13,7 +13,7 @@ class MusicPlayer extends Component {
     constructor(props){
         super(props)
 
-        this.player;
+        this.player = null;
 
         this.state = {
             playing: false,
@@ -41,9 +41,7 @@ class MusicPlayer extends Component {
         this.props.getUser();
         //Setting Player SDK
         let interval_id = setInterval(() => {
-        console.log(window.Spotify, this.props.user.access_token);
         if(window.Spotify && this.props.user.access_token){
-            console.log('hit')
             clearInterval(interval_id);
             this.player = new window.Spotify.Player({
                 name: 'Web Playback DSK Quick Start Player',
@@ -118,11 +116,10 @@ class MusicPlayer extends Component {
     }
 
     render(){
-        console.log(this.props.player.currentlyPlaying)
         return (
             <div className='musicPlayer'>
                 <div className="currently-playing-container">
-                    <img src={this.props.player.currentlyPlaying.album ? this.props.player.currentlyPlaying.album.images[1].url : ''}/>
+                    <img src={this.props.player.currentlyPlaying.album ? this.props.player.currentlyPlaying.album.images[1].url : ''} alt="currently playing"/>
                     <div className="song-artist-container">
                         <h3>{this.props.player.currentlyPlaying.album ? this.props.player.currentlyPlaying.name : ''}</h3>
                         <p>{this.props.player.currentlyPlaying.album ? this.props.player.currentlyPlaying.album.artists[0].name : ''}</p>

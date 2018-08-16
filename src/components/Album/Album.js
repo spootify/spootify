@@ -30,7 +30,7 @@ export default class Album extends Component {
 			<div className='album'>
 				<div className="album-header">
 					<div className="album-image">
-						<img src={this.state.image}/>
+						<img src={this.state.image} alt="album cover"/>
 					</div>
 					<div className="album-info">
 						<h1>{this.state.album.name}</h1>

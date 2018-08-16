@@ -8,7 +8,6 @@ import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import Login from "./components/Login/Login";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward } from '@fortawesome/free-solid-svg-icons'
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
 import { faStepForward } from '@fortawesome/free-solid-svg-icons'
@@ -25,12 +24,7 @@ import { faClock } from '@fortawesome/free-solid-svg-icons'
 
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
-		console.log(this.props);
 		this.props.getUser();
 	}
 
@@ -38,7 +32,6 @@ class App extends Component {
 	render() {
 		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle, faPlus, faCheck, faAngleLeft, faAngleRight, faRandom, faRedo, faVolumeUp, faVolumeDown);
 		library.add(faStepBackward, faPlayCircle, faStepForward, faPauseCircle, faPlus, faCheck, faAngleLeft, faAngleRight, faClock);
-		console.log(this.props);
 		return (
 			<div className="App">
 				{(this.props.user.id) ?

@@ -4,7 +4,7 @@ import Overview from "../Browse/Overview";
 import Genres from "../Browse/Genres";
 import Charts from "../Browse/Charts";
 import NewReleases from "../Browse/NewReleases";
-import {Route, Switch} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 class Home extends Component {
 	render() {

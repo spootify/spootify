@@ -2,16 +2,10 @@ import React from 'react';
 
 import {Route, Switch} from 'react-router-dom';
 
-import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import Playlist from './components/Playlist/Playlist';
 import Category from './components/Category/Category';
 import Album from './components/Album/Album';
-import BrowseNav from './components/BrowseNav/BrowseNav';
-import Overview from './components/Browse/Overview';
-import Charts from './components/Browse/Charts';
-import Genres from './components/Browse/Genres';
-import NewReleases from './components/Browse/NewReleases';
 import Songs from './components/Songs/Songs';
 import Albums from './components/Albums/Albums';
 import Artists from './components/Artists/Artists';
